@@ -412,7 +412,6 @@ input, textarea, select{
     letter-spacing:1px;
     color:#1a1a1a;
     font-size:60px;
-    
 }
 .home .intro .text-container p:nth-child(3){
     font-family: myriad pro regular;
@@ -499,7 +498,7 @@ input, textarea, select{
 } */
 /* New Code for About Section */
 .about .about-content .about-container{
-    width:90%;
+    width:95%;
     height:330px;
     background:#ffffff;
     border-radius:20px;
@@ -515,7 +514,7 @@ input, textarea, select{
     height:250px;
 }
 .about .about-content .about-text{
-    width:500px;
+    width: 500px;/*90%;*/
 } 
 .about .about-content .about-text p:nth-child(1){
     color:#403e3e;
@@ -1213,6 +1212,70 @@ input, textarea, select{
     .main-content{
         padding-left: 0;
     }
+    .home .intro img{
+        position: relative;
+        bottom: 0px;
+        left: 40%;
+        transform: none;
+        /* border: none; */
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        display: inline-block;
+        border: 8px solid #ffffff;
+    }
+    .home .intro .text-container p{
+        text-align: center;
+    }
+    .home .intro .text-container p:nth-child(1){
+        /* font-family: calibri;
+        font-weight:bold;
+        color:#6d6d6d; */
+        font-size:12px;
+    }
+    .home .intro .text-container p:nth-child(2){
+        /* font-family:calibri;
+        font-weight:bold;
+        letter-spacing:1px;
+        color:#1a1a1a; */
+        font-size:30px;
+        
+    }
+    .home .intro .text-container p:nth-child(3){
+        /* font-family: myriad pro regular;
+        color: #403e3e; */
+        font-size:16px;
+        line-height:16px;
+    }
+    .home .intro .social-links{
+        text-align: center;
+    }
+    .about .about-content .about-container{
+        width:95%;
+        height:330px;
+        background:#ffffff30;
+        border-radius:20px;
+        box-shadow:2px 2px 12px rgba(0,0,0,0.2);
+        display: flex;
+        margin: -7%  auto 20px auto;
+        position: relative;
+        justify-content:space-evenly;
+        align-items: center;
+        top: 30px;
+    }
+    .about .about-content .about-text{
+        width: 90%;/*500px;*/
+    } 
+    .about .about-content .about-container img{
+        display: none;
+        /* height:250px; */
+    }
+    .about .about-content .skills .skill-item{
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
     .about .about-content .personal-info .info-item p span{
         display: block;
         margin-left: 0;
@@ -1225,6 +1288,9 @@ input, textarea, select{
         -ms-flex: 0 0 50%;
         flex: 0 0 50%;
         max-width: 50%;
+    }
+    .about .about-content .about-container{
+        height:330px;
     }
 }
 @media(max-width: 767px){
@@ -1241,6 +1307,9 @@ input, textarea, select{
     }
     .portfolio .portfolio-filter button{
         margin-bottom: 10px;
+    }
+    .about .about-content .about-container{
+        height:450px;
     }
 }
 @media(max-width: 575px){
@@ -1262,8 +1331,29 @@ input, textarea, select{
         display: block;
         margin-left: 0;
     }
+    .about .about-content .about-container{
+        height:500px;
+    }
+}
+@media(max-width: 500px){
+    .about .about-content .about-container{
+        height:600px;
+    }
+}
+@media(max-width: 450px){
+    .about .about-content .about-container{
+        height:950px;
+    }
+}
+@media(max-width: 386px){
+    .about .about-content .about-container{
+        height:1100px;
+    }
 }
 @media(max-width: 370px){
+    .about .about-content .about-container{
+        height:1200px;
+    }
     .about .about-content .timeline .timeline-date{
         font-size: 12px;
     }
@@ -1298,6 +1388,16 @@ input, textarea, select{
         margin-left: 0;
     }
 }
+@media(max-width: 340px){
+    .about .about-content .about-container{
+        height:1550px;
+    }
+}
+@media(max-width: 320px){
+    .about .about-content .about-container{
+        height:1700px;
+    }
+}
 
 /* Dark Body Theme */
 body.dark .section{
@@ -1323,6 +1423,7 @@ body.dark .about .about-content .personal-info .info-item p,
 body.dark .about .about-content .about-text h3,
 body.dark .section-title h2,
 body.dark .home .intro h1,
+body.dark .home .intro .text-container p,
 body.dark .aside .logo a,
 body.dark .aside .nav li a{
     color: #ffffff;
