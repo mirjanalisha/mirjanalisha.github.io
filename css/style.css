@@ -1,9 +1,8 @@
-
- /*Font Awesome Free Icon*/
- @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
- /*Google fonts*/
- @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
- @import url('https://fonts.googleapis.com/css?family=Rubik:500,700,900&display=swap');
+/*Font Awesome Free Icon*/
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+/*Google fonts*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rubik:500,700,900&display=swap');
 
 /* General Style */
 body{
@@ -370,26 +369,6 @@ input, textarea, select{
     font-size: 13px;
     color: #7d7d7d;
 }
-/* Upper NavBar */
-/* .upper-nav{
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-    height:60px;
-    background-color:#ffffff;
-    box-shadow:2px 2px 12px rgba(0,0,0,0.2);
-    padding:0px 5%;
-}
-.upper-nav ul{
-    display: flex;
-}
-.upper-nav ul li a{
-    margin:30px;
-    font-family:myriad pro regular;
-    color:#505050;
-    font-size: 15px;
-    font-weight:700;
-} */
 
 /* Home */
 .home {
@@ -437,20 +416,6 @@ input, textarea, select{
     display: inline-block;
     border: 8px solid #ffffff; */
 }
-/* .home .intro h1{
-    font-size: 30px;
-    color: #302e4d;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 700;
-    margin: 20px 0 5px;
-}
-.home .intro p{
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0;
-    line-height: 22px;
-    color: #504e70;
-} */
 .home .intro .social-links{
     margin-top: 25px;
 }
@@ -472,31 +437,13 @@ input, textarea, select{
     transform: scale(1.1);
 }
 
-/* About Section */
+/* About Section (Simplified) */
 .about .about-content{
-    /* background-color: red; */
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     max-width: 100%;
 }
-/* .about .about-content .about-text{
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
-    max-width: 100%;
-}
-.about .about-content .about-text h3{
-    font-size: 24px;
-    margin-bottom: 15px;
-    font-weight: 700;
-    color: #302e4d;
-}
-.about .about-content .about-text p{
-    font-size: 15px;
-    line-height: 25px;
-    color: #504e70;
-    margin: 0;
-} */
-/* New Code for About Section */
+
 .about .about-content .about-container{
     width:95%;
     height:330px;
@@ -514,7 +461,7 @@ input, textarea, select{
     height:250px;
 }
 .about .about-content .about-text{
-    width: 500px;/*90%;*/
+    width: 500px;
 } 
 .about .about-content .about-text p:nth-child(1){
     color:#403e3e;
@@ -522,16 +469,13 @@ input, textarea, select{
     font-weight:bold;
     font-size:23px;
     line-height:0px;
-    /* top: 10px; */
 }
 .about .about-content .about-text p:nth-child(2){
     color:#3e3d3d;
     font-size:18px;
     font-family: calibri;
     font-weight:bold;
-    /* line-height:5px; */
 }
-/* .about .about-content .about-text p:nth-child(2), */
 .about .about-content .about-text p:nth-child(3),
 .about .about-content .about-text p:nth-child(4){
     color:#7e7d7d;
@@ -548,22 +492,19 @@ input, textarea, select{
     font-family: calibri;
     background-color:#262525;
 }
-/* End of new About section */
+
 .about .about-content .personal-info{
-    /* background-color: red; */
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     max-width: 100%;
     margin-top: 40px;
 }
 .about .about-content .personal-info .info-item{
-    /* background-color: red; */
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
 }
 .about .about-content .personal-info .info-item p{
-    /* background-color: red; */
     font-weight: 600;
     font-size: 16px;
     color: #302e4d;
@@ -576,7 +517,6 @@ input, textarea, select{
     color: #504e70;
     margin-left: 4px;
     display: inline-block;
-
 }
 .about .about-content .personal-info .buttons{
     margin-top: 30px;
@@ -585,30 +525,36 @@ input, textarea, select{
     margin-right: 15px;
     margin-top: 10px;
 }
-.about .about-content h2.title{
+
+/* Skills & Education Section */
+.skills-education .about-content{
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.skills-education .about-content h2.title{
     font-size: 24px;
     margin-top: 40px;
     margin-bottom: 10px;
     font-weight: 700;
     color: #302e4d;
 }
-.about .about-content .skills{
-    /* background-color: blue; */
+.skills-education .about-content .skills{
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     max-width: 100%;
 }
-.about .about-content .skills .skill-item{
+.skills-education .about-content .skills .skill-item{
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
     margin-bottom: 30px;
 }
-.about .about-content .skills .skill-item span{
+.skills-education .about-content .skills .skill-item span{
     font-size: 12px;
     text-transform: none;
 }
-.about .about-content .skills .skill-item h5{
+.skills-education .about-content .skills .skill-item h5{
     line-height: 40px;
     font-weight: 600;
     font-size: 16px;
@@ -616,56 +562,46 @@ input, textarea, select{
     text-transform: capitalize;
     margin: 0;
 }
-.about .about-content .skills .skill-item .progress{
+.skills-education .about-content .skills .skill-item .progress{
     background-color: #e3e3e3;
     height: 7px;
     border-radius: 4px;
-    /* overflow: hidden; */
     width: 100%;
     position: relative;
 }
-.about .about-content .skills .skill-item .progress .progress-in{
+.skills-education .about-content .skills .skill-item .progress .progress-in{
     position: absolute;
     left: 0;
     top: 0;
     height: 100%;
     border-radius: 4px;
 }
-.about .about-content .skills .skill-item .skill-percent{
-    /* display: none; */
+.skills-education .about-content .skills .skill-item .skill-percent{
     line-height: 40px;
     position: absolute;
     right: 0;
-    top: -40px; /* To position the text in upper side */
+    top: -40px;
     font-weight: 400;
     color: #302e4d;
 }
-.about .about-content .education{
-    /* background-color: red; */
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%;
+.skills-education .about-content .education{
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
     margin-top: 30px;
 }
-.about .about-content .experiences{
-    /* background-color: blue; */
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%;
-    margin-top: 30px;
-}
-.about .about-content h3.title{
+.skills-education .about-content h3.title{
     font-size: 24px;
     margin-bottom: 30px;
     font-weight: 700;
     color: #302e4d;
 }
-.about .about-content .timeline-box{
+.skills-education .about-content .timeline-box{
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     max-width: 100%;
 }
-.about .about-content .timeline{
+.skills-education .about-content .timeline{
     background-color: #fdf9ff;
     padding: 30px 15px;
     border: 1px solid #d4d4e3;
@@ -673,15 +609,15 @@ input, textarea, select{
     width: 100%;
     position: relative;
 }
-.about .about-content .timeline .timeline-item{
+.skills-education .about-content .timeline .timeline-item{
     position: relative;
     padding-left: 37px;
     padding-bottom: 50px;
 }
-.about .about-content .timeline .timeline-item:last-child{
+.skills-education .about-content .timeline .timeline-item:last-child{
     padding-bottom: 0;
 }
-.about .about-content .timeline .timeline-item::before{
+.skills-education .about-content .timeline .timeline-item::before{
     content: '';
     width: 1px;
     position: absolute;
@@ -689,7 +625,7 @@ input, textarea, select{
     left: 7px;
     top: 0;
 }
-.about .about-content .timeline .circle-dot{
+.skills-education .about-content .timeline .circle-dot{
     position: absolute;
     left: 0;
     top: 0;
@@ -697,23 +633,108 @@ input, textarea, select{
     width: 15px;
     border-radius: 50%;
 }
-.about .about-content .timeline .timeline-date{
+.skills-education .about-content .timeline .timeline-date{
     font-weight: 400;
     font-size: 14px;
     margin-bottom: 12px;
     color: #504e70;
 }
-.about .about-content .timeline .timeline-date .fa{
+.skills-education .about-content .timeline .timeline-date .fa{
     margin-right: 5px;
 }
-.about .about-content .timeline .timeline-title{
+.skills-education .about-content .timeline .timeline-title{
     font-weight: 700;
     font-size: 18px;
     margin-bottom: 15px;
     text-transform: capitalize;
     color: #302e4d;
 }
-.about .about-content .timeline .timeline-text{
+.skills-education .about-content .timeline .timeline-text{
+    font-size: 16px;
+    line-height: 25px;
+    color: #504e70;
+    margin: 0;
+}
+
+/* Corporate Experience Section */
+.experience .about-content{
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.experience .about-content .experiences{
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-top: 30px;
+}
+.experience .about-content h3.title{
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #302e4d;
+}
+.experience .about-content .timeline-box{
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.experience .about-content .timeline{
+    background-color: #fdf9ff;
+    padding: 30px 15px;
+    border: 1px solid #d4d4e3;
+    border-radius: 10px;
+    width: 100%;
+    position: relative;
+}
+.experience .about-content .timeline .timeline-item{
+    position: relative;
+    padding-left: 37px;
+    padding-bottom: 50px;
+}
+.experience .about-content .timeline .timeline-item:last-child{
+    padding-bottom: 0;
+}
+.experience .about-content .timeline .timeline-item::before{
+    content: '';
+    width: 1px;
+    position: absolute;
+    height: 100%;
+    left: 7px;
+    top: 0;
+}
+.experience .about-content .timeline .circle-dot{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+}
+.experience .about-content .timeline .timeline-date{
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: #504e70;
+}
+.experience .about-content .timeline .timeline-date .fa{
+    margin-right: 5px;
+}
+.experience .about-content .timeline .timeline-title{
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+    color: #302e4d;
+}
+.experience .about-content .timeline .timeline-company{
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #504e70;
+    font-style: italic;
+}
+.experience .about-content .timeline .timeline-text{
     font-size: 16px;
     line-height: 25px;
     color: #504e70;
@@ -725,8 +746,6 @@ input, textarea, select{
     padding-bottom: 40px;
 }
 .service .service-item{
-    /* background-color: red; */
-    /* padding: 15px; */
     -ms-flex: 0 0 33.33%;
     flex: 0 0 33.33%;
     max-width: 33.33%;
@@ -751,7 +770,6 @@ input, textarea, select{
 .service .service-item .service-item-inner .icon{
     height: 60px;
     width: 60px;
-    /* background-color: red; */
     display: block;
     margin: 0 auto 30px;
     text-align: center;
@@ -760,14 +778,16 @@ input, textarea, select{
     transition: all 0.3s ease;
 }
 .service .service-item .service-item-inner .icon .fas,
-.service .service-item .service-item-inner .icon .fa{
+.service .service-item .service-item-inner .icon .fa,
+.service .service-item .service-item-inner .icon .fab{
     font-size: 40px;
     line-height: 60px;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 .service .service-item .service-item-inner:hover .icon .fas,
-.service .service-item .service-item-inner:hover .icon .fa{
+.service .service-item .service-item-inner:hover .icon .fa,
+.service .service-item .service-item-inner:hover .icon .fab{
     font-size: 25px;
     color: #ffffff;
 }
@@ -783,7 +803,6 @@ input, textarea, select{
     color: #504e70;
     line-height: 25px;
     margin: 0;
-    /* text-align: justify; */
 }
 
 /* Portfolio Section */
@@ -791,7 +810,6 @@ input, textarea, select{
     padding-bottom: 40px;
 }
 .portfolio .portfolio-filter{
-    /* background-color: red; */
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     max-width: 100%;
@@ -814,7 +832,6 @@ input, textarea, select{
     transition: all 0.3s ease;
 }
 .portfolio .portfolio-item{
-    /* background-color: red; */
     flex: 0 0 33.33%;
     max-width: 33.33%;
     margin-bottom: 30px;
@@ -887,11 +904,50 @@ input, textarea, select{
     -webkit-transform: translateX(-20px);
     transform: translateX(-20px);
     opacity: 0;
+    margin-bottom: 10px;
 }
 .portfolio .portfolio-item-inner:hover .portfolio-info h4{
     opacity: 1;
     -webkit-transform: translateX(0px);
     transform: translateX(0px);
+}
+.portfolio .portfolio-item .portfolio-info p{
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 15px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    -webkit-transform: translateX(-20px);
+    transform: translateX(-20px);
+    opacity: 0;
+}
+.portfolio .portfolio-item-inner:hover .portfolio-info p{
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+}
+.portfolio .portfolio-item .portfolio-info .portfolio-links{
+    font-size: 12px;
+    color: #ffffff;
+    margin-bottom: 15px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    -webkit-transform: translateX(-20px);
+    transform: translateX(-20px);
+    opacity: 0;
+}
+.portfolio .portfolio-item-inner:hover .portfolio-info .portfolio-links{
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+}
+.portfolio .portfolio-item .portfolio-info .portfolio-links a{
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+}
+.portfolio .portfolio-item .portfolio-info .portfolio-links a:hover{
+    text-decoration: underline;
 }
 .portfolio .portfolio-item .portfolio-info .icon{
     height: 40px;
@@ -977,8 +1033,7 @@ input, textarea, select{
     position: absolute;
     height: 40px;
     width: 40px;
-    /* background-color: red; */
-    top: 0; /*-40px*/
+    top: 0;
     right: 0px;
     font-size: 32px;
     text-align: right;
@@ -991,7 +1046,6 @@ input, textarea, select{
     bottom: 0;
     left: 0;
     width: 100%;
-    /* background-color: rgba(0, 0, 0, 0.5); */
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: space-between;
@@ -1043,7 +1097,6 @@ input, textarea, select{
     padding-bottom: 40px;
 }
 .blog .blog-item{
-    /* background-color: red; */
     -ms-flex: 0 0 33.33%;
     flex: 0 0 33.33%;
     max-width: 33.33%;
@@ -1083,7 +1136,6 @@ input, textarea, select{
 }
 .blog .blog-item-inner .blog-info{
     padding: 30px 15px;
-    /* background-color: #fdf9ff; */
 }
 .blog .blog-item-inner .blog-info .blog-title{
     font-size: 18px;
@@ -1113,7 +1165,6 @@ input, textarea, select{
 
 /* Contact Section */
 .contact .contact-info-item{
-    /* background-color: red; */
     -ms-flex: 0 0 33.33%;
     flex: 0 0 33.33%;
     max-width: 33.33%;
@@ -1141,19 +1192,16 @@ input, textarea, select{
     font-weight: 400;
 }
 .contact .contact-form{
-    /* background-color: red; */
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     max-width: 100%;
 }
 .contact .contact-form .col-6{
-    /* background-color: red; */
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
 }
 .contact .contact-form .col-12{
-    /* background-color: red; */
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     max-width: 100%;
@@ -1217,7 +1265,6 @@ input, textarea, select{
         bottom: 0px;
         left: 40%;
         transform: none;
-        /* border: none; */
         height: 200px;
         width: 200px;
         border-radius: 50%;
@@ -1228,22 +1275,12 @@ input, textarea, select{
         text-align: center;
     }
     .home .intro .text-container p:nth-child(1){
-        /* font-family: calibri;
-        font-weight:bold;
-        color:#6d6d6d; */
         font-size:12px;
     }
     .home .intro .text-container p:nth-child(2){
-        /* font-family:calibri;
-        font-weight:bold;
-        letter-spacing:1px;
-        color:#1a1a1a; */
         font-size:30px;
-        
     }
     .home .intro .text-container p:nth-child(3){
-        /* font-family: myriad pro regular;
-        color: #403e3e; */
         font-size:16px;
         line-height:16px;
     }
@@ -1264,13 +1301,12 @@ input, textarea, select{
         top: 30px;
     }
     .about .about-content .about-text{
-        width: 90%;/*500px;*/
+        width: 90%;
     } 
     .about .about-content .about-container img{
         display: none;
-        /* height:250px; */
     }
-    .about .about-content .skills .skill-item{
+    .skills-education .about-content .skills .skill-item{
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
         max-width: 100%;
@@ -1296,10 +1332,9 @@ input, textarea, select{
 @media(max-width: 767px){
     .contact .contact-form .col-6,
     .blog .blog-item,
-    /* .service .service-item, */
-    .about .about-content .experiences,
-    .about .about-content .education,
-    .about .about-content .skills,
+    .experience .about-content .experiences,
+    .skills-education .about-content .education,
+    .skills-education .about-content .skills,
     .about .about-content .personal-info{
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
@@ -1354,15 +1389,21 @@ input, textarea, select{
     .about .about-content .about-container{
         height:1200px;
     }
-    .about .about-content .timeline .timeline-date{
+    .skills-education .about-content .timeline .timeline-date,
+    .experience .about-content .timeline .timeline-date{
         font-size: 12px;
     }
-    .about .about-content .timeline .timeline-title{
+    .skills-education .about-content .timeline .timeline-title,
+    .experience .about-content .timeline .timeline-title{
         font-size: 16px;
     }
-    .about .about-content .timeline .timeline-text{
+    .skills-education .about-content .timeline .timeline-text,
+    .experience .about-content .timeline .timeline-text{
         font-size: 12px;
         line-height: 15px;
+    }
+    .experience .about-content .timeline .timeline-company{
+        font-size: 14px;
     }
     .home .intro .social-links a{
         margin-bottom: 5px;
@@ -1380,7 +1421,8 @@ input, textarea, select{
     .contact .contact-form .btn{
         padding: 0 8px;
     }
-    .about .about-content .timeline{
+    .skills-education .about-content .timeline,
+    .experience .about-content .timeline{
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
         max-width: 100%;
@@ -1407,7 +1449,8 @@ body.dark .section{
 body.dark .contact .contact-form .form-item .form-control,
 body.dark .blog .blog-item-inner .blog-info,
 body.dark .service .service-item .service-item-inner,
-body.dark .about .about-content .timeline,
+body.dark .skills-education .about-content .timeline,
+body.dark .experience .about-content .timeline,
 body.dark .about .about-content .about-container,
 body.dark .aside{
     background-color: #222222;
@@ -1417,9 +1460,12 @@ body.dark .contact .contact-info-item h4,
 body.dark .blog .blog-item-inner .blog-info .blog-title,
 body.dark .portfolio .portfolio-filter button,
 body.dark .service .service-item .service-item-inner h4,
-body.dark .about .about-content .timeline .timeline-title,
-body.dark .about-content h3.title,
-body.dark .about .about-content .skills .skill-item h5,
+body.dark .skills-education .about-content .timeline .timeline-title,
+body.dark .experience .about-content .timeline .timeline-title,
+body.dark .skills-education .about-content h3.title,
+body.dark .experience .about-content h3.title,
+body.dark .skills-education .about-content h2.title,
+body.dark .skills-education .about-content .skills .skill-item h5,
 body.dark .about .about-content .personal-info .info-item p,
 body.dark .about .about-content .about-text h3,
 body.dark .section-title h2,
@@ -1429,30 +1475,23 @@ body.dark .aside .logo a,
 body.dark .aside .nav li a{
     color: #ffffff;
 }
+
 body.dark .contact .contact-form .form-item .form-control,
 body.dark .contact .contact-info-item p,
 body.dark .blog .blog-item-inner .blog-info .blog-tags,
 body.dark .blog .blog-item-inner .blog-info .blog-description,
 body.dark .service .service-item .service-item-inner p,
-body.dark .about .about-content .timeline .timeline-text,
-body.dark .about .about-content .timeline .timeline-date,
-body.dark .about .about-content .skills .skill-item .skill-percent,
+body.dark .skills-education .about-content .timeline .timeline-text,
+body.dark .skills-education .about-content .timeline .timeline-date,
+body.dark .experience .about-content .timeline .timeline-text,
+body.dark .experience .about-content .timeline .timeline-date,
+body.dark .experience .about-content .timeline .timeline-company,
+body.dark .skills-education .about-content .skills .skill-item .skill-percent,
 body.dark .about .about-content .personal-info .info-item p span,
 body.dark .about .about-content .about-text p,
 body.dark .home .intro p{
     color: #e9e9e9;
 }
-
-/* For Better View set white color in this section */
-/* body.dark .aside,
-body.dark .contact .contact-form .form-item .form-control,
-body.dark .blog .blog-item-inner,
-body.dark .service .service-item .service-item-inner,
-body.dark .about .about-content .timeline,
-body.dark .about .about-content .personal-info .info-item p,
-body.dark .aside .nav li a{
-    border-color: #393939;
-} */
 
 body.dark .shadow-dark{
     -webkit-box-shadow: none;
