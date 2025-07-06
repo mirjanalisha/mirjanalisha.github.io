@@ -29,23 +29,29 @@ input, textarea, select{
     max-width: 100%;
 }
 
-/* FIXED: Main Content Layout - This fixes the overlap issue */
+/* MAIN CONTENT - UNIVERSAL FIX FOR ALL SECTIONS */
 .main-content {
-    margin-left: 270px; /* Changed from padding-left to margin-left */
+    margin-left: 270px;
     min-height: 100vh;
     transition: all 0.3s ease;
 }
 
-/* Sections */
+/* SECTIONS - APPLY OFFSET TO ALL SECTIONS INDIVIDUALLY */
 .section{
     background-color: #ffffff;
     min-height: 100vh;
     display: block;
-    padding: 0 30px; /* Keep original padding */
-    position: relative; /* Add this */
+    padding: 0 30px;
+    margin-left: 270px; /* CRITICAL FIX: Apply offset to ALL sections */
+    position: relative;
     right: 0;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
+}
+
+/* Override for sections already inside main-content */
+.main-content .section{
+    margin-left: 0; /* Reset margin for sections inside main-content */
 }
 
 .section.back-section{
@@ -1351,7 +1357,7 @@ input, textarea, select{
     padding: 0 50px;
 }
 
-/* RESPONSIVE DESIGN - FIXED FOR SIDEBAR OVERLAP */
+/* RESPONSIVE DESIGN - COMPLETELY FIXED */
 @media(max-width: 1199px){
     .aside{
         left: -270px;
@@ -1371,20 +1377,21 @@ input, textarea, select{
         left: 220px;
     }
     
+    /* CRITICAL: Reset all margins on mobile */
     .main-content{
-        margin-left: 0; /* Remove margin on mobile */
-    }
-    
-    .main-content.open{
-        margin-left: 270px; /* Add margin when sidebar is open on mobile */
+        margin-left: 0;
     }
     
     .section{
-        left: 0;
+        margin-left: 0; /* Reset margin for all sections on mobile */
+    }
+    
+    .main-content.open{
+        margin-left: 270px;
     }
     
     .section.open{
-        left: 270px;
+        margin-left: 270px; /* Apply margin when mobile menu is open */
     }
     
     .section .container{
