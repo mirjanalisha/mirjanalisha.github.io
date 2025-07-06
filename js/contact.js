@@ -174,3 +174,113 @@ document.addEventListener('DOMContentLoaded', function() {
         formMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 });
+// Copy to Clipboard Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const copyItems = document.querySelectorAll('.contact-copy');
+    
+    copyItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const textToCopy = this.getAttribute('data-copy-text');
+            const copyIndicator = this.querySelector('.copy-indicator i');
+            
+            // Copy to clipboard using modern API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showCopySuccess(this, copyIndicator);
+                }).catch(err => {
+                    // Fallback for older browsers
+                    fallbackCopyTextToClipboard(textToCopy, this, copyIndicator);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopyTextToClipboard(textToCopy, this, copyIndicator);
+            }
+        });
+    });
+    
+    // Modern clipboard API
+    function showCopySuccess(element, indicator) {
+        // Add success class
+        element.classList.add('copied');
+        
+        // Change icon to checkmark
+        indicator.className = 'fas fa-check';
+        
+        // Show success message (optional)
+        showToast('Email address copied to clipboard!');
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+            element.classList.remove('copied');
+            indicator.className = 'fas fa-copy';
+        }, 2000);
+    }
+    
+    // Fallback for older browsers
+    function fallbackCopyTextToClipboard(text, element, indicator) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'absolute';
+        textArea.style.left = '-9999px';
+        
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopySuccess(element, indicator);
+            } else {
+                showToast('Failed to copy email address', 'error');
+            }
+        } catch (err) {
+            showToast('Failed to copy email address', 'error');
+        }
+        
+        document.body.removeChild(textArea);
+    }
+    
+    // Simple toast notification
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `copy-toast ${type}`;
+        toast.textContent = message;
+        
+        // Toast styles
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? '#2ecc71' : '#e74c3c'};
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        `;
+        
+        document.body.appendChild(toast);
+        
+        // Animate in
+        setTimeout(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+        }, 100);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            }, 300);
+        }, 3000);
+    }
+});
