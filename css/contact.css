@@ -239,3 +239,50 @@
         padding: 20px;
     }
 }
+
+/* Clickable Contact Items */
+.contact-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.contact-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    color: inherit;
+}
+
+.contact-link:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Hover effects for icons */
+.contact-link:hover .contact-icon {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Active state */
+.contact-link:active {
+    transform: translateY(-2px);
+}
+
+/* Ensure text color remains consistent */
+.contact-link .contact-details h3,
+.contact-link .contact-details p {
+    color: inherit;
+}
+
