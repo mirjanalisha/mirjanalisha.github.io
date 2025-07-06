@@ -1,7 +1,6 @@
 /*!
  * Contact Section Enhancement Script
- * Handles copy-to-clipboard, validation, theme integration (NO form submission)
- * Compatible with existing Google Apps Script form handler
+ * Compatible with existing theme system (alternate stylesheets + dark class)
  */
 
 (function() {
@@ -88,14 +87,6 @@
         setTimeout(() => {
             element.classList.remove('copied');
         }, 2000);
-        
-        // Track copy event (if analytics available)
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'copy_email', {
-                event_category: 'contact',
-                event_label: 'email_copied'
-            });
-        }
     }
     
     function fallbackCopyTextToClipboard(text, element, indicator) {
@@ -112,7 +103,7 @@
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
-        textArea.setSelectionRange(0, 99999); // For mobile devices
+        textArea.setSelectionRange(0, 99999);
         
         try {
             const successful = document.execCommand('copy');
@@ -149,13 +140,13 @@
             charCount.textContent = currentLength;
             
             if (currentLength > maxLength) {
-                charCount.style.color = 'var(--error-color, #e74c3c)';
+                charCount.style.color = '#e74c3c';
                 this.value = this.value.substring(0, maxLength);
                 charCount.textContent = maxLength;
             } else if (currentLength > maxLength * 0.8) {
-                charCount.style.color = 'var(--warning-color, #f39c12)';
+                charCount.style.color = '#f39c12';
             } else {
-                charCount.style.color = 'var(--form-helper-color, #666)';
+                charCount.style.color = '#666';
             }
         });
         
@@ -163,7 +154,7 @@
     }
 
     // ====================================
-    // FORM VALIDATION (NON-INTRUSIVE)
+    // FORM VALIDATION
     // ====================================
     
     function initializeFormValidation() {
@@ -175,12 +166,10 @@
         }
         
         formInputs.forEach(input => {
-            // Add visual feedback on blur
             input.addEventListener('blur', function() {
                 validateSingleField(this);
             });
             
-            // Remove error styling on focus
             input.addEventListener('focus', function() {
                 this.style.borderColor = '';
                 hideFieldError(this);
@@ -196,7 +185,6 @@
         let isValid = true;
         let errorMessage = '';
         
-        // Skip validation if field is not required and empty
         if (!field.hasAttribute('required') && !value) {
             return true;
         }
@@ -231,7 +219,7 @@
                 break;
                 
             case 'tel':
-                if (value) { // Optional field
+                if (value) {
                     const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
                     const cleanPhone = value.replace(/[\s\-\(\)\.]/g, '');
                     if (!phoneRegex.test(cleanPhone)) {
@@ -262,12 +250,11 @@
                 break;
         }
         
-        // Apply visual feedback
         if (isValid) {
-            field.style.borderColor = 'var(--success-color, #27ae60)';
+            field.style.borderColor = '#27ae60';
             hideFieldError(field);
         } else {
-            field.style.borderColor = 'var(--error-color, #e74c3c)';
+            field.style.borderColor = '#e74c3c';
             showFieldError(field, errorMessage);
         }
         
@@ -290,33 +277,40 @@
     }
 
     // ====================================
-    // THEME INTEGRATION
+    // THEME INTEGRATION (COMPATIBLE WITH YOUR SYSTEM)
     // ====================================
     
     function initializeThemeIntegration() {
-        // Listen for custom theme change events
-        document.addEventListener('themeChanged', handleThemeChange);
-        
-        // Observe theme changes via mutations
+        // Monitor dark/light mode changes
         const observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
-                if (mutation.type === 'attributes' && 
-                    (mutation.attributeName === 'data-theme' || 
-                     mutation.attributeName === 'class')) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
                     updateContactTheme();
                 }
             });
         });
         
-        // Observe document element and body for theme changes
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ['data-theme', 'class']
-        });
-        
         observer.observe(document.body, {
             attributes: true,
-            attributeFilter: ['data-theme', 'class']
+            attributeFilter: ['class']
+        });
+        
+        // Monitor theme color changes (alternate stylesheets)
+        const stylesheetObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'disabled') {
+                    updateContactTheme();
+                }
+            });
+        });
+        
+        // Observe all alternate stylesheets
+        const alternateStyles = document.querySelectorAll('.alternate-style');
+        alternateStyles.forEach(style => {
+            stylesheetObserver.observe(style, {
+                attributes: true,
+                attributeFilter: ['disabled']
+            });
         });
         
         // Initial theme application
@@ -325,53 +319,38 @@
         console.log('Theme integration initialized');
     }
     
-    function handleThemeChange(event) {
-        const { colorTheme, mode } = event.detail || {};
-        updateContactTheme(colorTheme, mode);
-    }
-    
-    function updateContactTheme(colorTheme, mode) {
+    function updateContactTheme() {
         const contactSection = document.querySelector('.contact-section');
         if (!contactSection) return;
         
-        // Get current theme from various sources
-        const currentTheme = document.documentElement.getAttribute('data-theme') || 
-                           document.body.getAttribute('data-theme') ||
-                           getThemeFromClasses();
+        // Check if dark mode is active
+        const isDarkMode = document.body.classList.contains('dark') || document.body.className === 'dark';
         
-        if (currentTheme) {
-            contactSection.setAttribute('data-theme', currentTheme);
+        // Get active color theme from alternate stylesheets
+        const activeColorTheme = getActiveColorTheme();
+        
+        // Apply theme classes to contact section
+        contactSection.className = contactSection.className.replace(/\btheme-\w+\b/g, '').replace(/\bdark\b/g, '');
+        
+        if (isDarkMode) {
+            contactSection.classList.add('dark');
         }
         
-        // Copy theme classes from body
-        const themeClasses = Array.from(document.body.classList)
-            .filter(cls => cls.startsWith('theme-') || cls.includes('mode') || cls.includes('color'));
+        if (activeColorTheme) {
+            contactSection.classList.add(`theme-${activeColorTheme}`);
+        }
         
-        // Remove existing theme classes from contact section
-        contactSection.className = contactSection.className
-            .replace(/\btheme-[\w-]+\b/g, '')
-            .replace(/\b[\w-]*mode[\w-]*\b/g, '')
-            .replace(/\b[\w-]*color[\w-]*\b/g, '');
-        
-        // Add new theme classes
-        themeClasses.forEach(cls => {
-            contactSection.classList.add(cls);
-        });
+        console.log(`Theme updated - Dark: ${isDarkMode}, Color: ${activeColorTheme}`);
     }
     
-    function getThemeFromClasses() {
-        const body = document.body;
-        const classes = Array.from(body.classList);
-        
-        // Look for theme-related classes
-        const colorTheme = classes.find(cls => cls.startsWith('theme-') && !cls.includes('mode'));
-        const modeTheme = classes.find(cls => cls.includes('mode'));
-        
-        if (colorTheme && modeTheme) {
-            return `${colorTheme.replace('theme-', '')}-${modeTheme.replace('-mode', '')}`;
+    function getActiveColorTheme() {
+        const alternateStyles = document.querySelectorAll('.alternate-style');
+        for (let style of alternateStyles) {
+            if (!style.hasAttribute('disabled')) {
+                return style.getAttribute('title');
+            }
         }
-        
-        return colorTheme || modeTheme || null;
+        return null;
     }
 
     // ====================================
@@ -379,7 +358,6 @@
     // ====================================
     
     function showToast(message, type = 'success') {
-        // Remove existing toasts
         const existingToasts = document.querySelectorAll('.copy-toast');
         existingToasts.forEach(toast => toast.remove());
         
@@ -389,13 +367,12 @@
         toast.setAttribute('role', 'alert');
         toast.setAttribute('aria-live', 'polite');
         
-        // Apply styles directly for better compatibility
         toast.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
-            background: ${type === 'success' ? 'var(--toast-success-bg, #2ecc71)' : 'var(--toast-error-bg, #e74c3c)'};
-            color: ${type === 'success' ? 'var(--toast-success-color, white)' : 'var(--toast-error-color, white)'};
+            background: ${type === 'success' ? '#2ecc71' : '#e74c3c'};
+            color: white;
             padding: 12px 20px;
             border-radius: 6px;
             font-size: 14px;
@@ -411,13 +388,11 @@
         
         document.body.appendChild(toast);
         
-        // Trigger animation
         requestAnimationFrame(() => {
             toast.style.opacity = '1';
             toast.style.transform = 'translateY(0)';
         });
         
-        // Auto-hide after 3 seconds
         setTimeout(() => {
             toast.style.opacity = '0';
             toast.style.transform = 'translateY(-20px)';
@@ -428,48 +403,15 @@
             }, 300);
         }, 3000);
     }
-    
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
 
     // ====================================
     // PUBLIC API
     // ====================================
     
-    // Expose functions for external use
     window.ContactEnhancements = {
         updateTheme: updateContactTheme,
         showToast: showToast,
         validateField: validateSingleField
     };
-
-    // ====================================
-    // MOBILE OPTIMIZATIONS
-    // ====================================
-    
-    // Handle mobile-specific interactions
-    if ('ontouchstart' in window) {
-        document.addEventListener('DOMContentLoaded', function() {
-            const copyItems = document.querySelectorAll('.contact-copy');
-            copyItems.forEach(item => {
-                item.style.cursor = 'pointer';
-                item.addEventListener('touchstart', function() {
-                    this.style.transform = 'scale(0.98)';
-                });
-                item.addEventListener('touchend', function() {
-                    this.style.transform = '';
-                });
-            });
-        });
-    }
 
 })();
