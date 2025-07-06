@@ -1,6 +1,7 @@
 /*!
- * Contact Form and Theme Integration
- * Handles form validation, submission, copy-to-clipboard, and theme switching
+ * Contact Section Enhancement Script
+ * Handles copy-to-clipboard, validation, theme integration (NO form submission)
+ * Compatible with existing Google Apps Script form handler
  */
 
 (function() {
@@ -11,315 +12,25 @@
     // ====================================
     
     document.addEventListener('DOMContentLoaded', function() {
-        initializeContactForm();
+        console.log('Contact enhancements loading...');
         initializeCopyToClipboard();
+        initializeFormValidation();
+        initializeCharacterCounter();
         initializeThemeIntegration();
+        console.log('Contact enhancements loaded successfully');
     });
 
-    // ====================================
-    // CONTACT FORM FUNCTIONALITY
-    // ====================================
-    
-    function initializeContactForm() {
-        const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const formMessages = document.getElementById('formMessages');
-        const messageTextarea = document.getElementById('contactMessage');
-        const charCount = document.getElementById('charCount');
-        
-        if (!contactForm) return;
-        
-        // Initialize character counter
-        initializeCharacterCounter(messageTextarea, charCount);
-        
-        // Initialize form validation
-        initializeFormValidation();
-        
-        // Handle form submission
-        contactForm.addEventListener('submit', handleFormSubmission);
-    }
-    
-    function initializeCharacterCounter(textarea, counter) {
-        if (!textarea || !counter) return;
-        
-        textarea.addEventListener('input', function() {
-            const currentLength = this.value.length;
-            const maxLength = 500;
-            
-            counter.textContent = currentLength;
-            
-            if (currentLength > maxLength) {
-                counter.style.color = 'var(--error-color, #e74c3c)';
-                this.value = this.value.substring(0, maxLength);
-                counter.textContent = maxLength;
-            } else if (currentLength > maxLength * 0.8) {
-                counter.style.color = 'var(--warning-color, #f39c12)';
-            } else {
-                counter.style.color = 'var(--form-helper-color, #666)';
-            }
-        });
-    }
-    
-    // ====================================
-    // FORM VALIDATION
-    // ====================================
-    
-    function initializeFormValidation() {
-        const validators = {
-            name: {
-                element: document.getElementById('contactName'),
-                error: document.getElementById('nameError'),
-                validate: function(value) {
-                    if (!value.trim()) {
-                        return 'Name is required';
-                    }
-                    if (value.trim().length < 2) {
-                        return 'Name must be at least 2 characters long';
-                    }
-                    if (!/^[a-zA-Z\s\u00C0-\u024F\u1E00-\u1EFF]+$/.test(value.trim())) {
-                        return 'Name can only contain letters and spaces';
-                    }
-                    if (value.trim().length > 50) {
-                        return 'Name cannot exceed 50 characters';
-                    }
-                    return null;
-                }
-            },
-            email: {
-                element: document.getElementById('contactEmail'),
-                error: document.getElementById('emailError'),
-                validate: function(value) {
-                    if (!value.trim()) {
-                        return 'Email is required';
-                    }
-                    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-                    if (!emailRegex.test(value.trim())) {
-                        return 'Please enter a valid email address';
-                    }
-                    if (value.length > 254) {
-                        return 'Email address is too long';
-                    }
-                    return null;
-                }
-            },
-            phone: {
-                element: document.getElementById('contactPhone'),
-                error: null, // Optional field
-                validate: function(value) {
-                    if (!value.trim()) return null; // Optional field
-                    
-                    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-                    const cleanPhone = value.replace(/[\s\-\(\)\.]/g, '');
-                    
-                    if (!phoneRegex.test(cleanPhone)) {
-                        return 'Please enter a valid phone number';
-                    }
-                    return null;
-                }
-            },
-            subject: {
-                element: document.getElementById('contactSubject'),
-                error: document.getElementById('subjectError'),
-                validate: function(value) {
-                    if (!value.trim()) {
-                        return 'Please select a subject';
-                    }
-                    return null;
-                }
-            },
-            message: {
-                element: document.getElementById('contactMessage'),
-                error: document.getElementById('messageError'),
-                validate: function(value) {
-                    if (!value.trim()) {
-                        return 'Message is required';
-                    }
-                    if (value.trim().length < 10) {
-                        return 'Message must be at least 10 characters long';
-                    }
-                    if (value.length > 500) {
-                        return 'Message cannot exceed 500 characters';
-                    }
-                    return null;
-                }
-            }
-        };
-        
-        // Add real-time validation listeners
-        Object.keys(validators).forEach(field => {
-            const validator = validators[field];
-            if (!validator.element) return;
-            
-            validator.element.addEventListener('blur', function() {
-                validateField(field, validators);
-            });
-            
-            validator.element.addEventListener('input', debounce(function() {
-                if (validator.error && validator.error.style.display === 'block') {
-                    validateField(field, validators);
-                }
-            }, 300));
-        });
-        
-        // Store validators for global access
-        window.contactValidators = validators;
-    }
-    
-    function validateField(fieldName, validators) {
-        const validator = validators[fieldName];
-        if (!validator.element) return true;
-        
-        const value = validator.element.value;
-        const error = validator.validate(value);
-        
-        if (error) {
-            if (validator.error) {
-                validator.error.textContent = error;
-                validator.error.style.display = 'block';
-            }
-            validator.element.style.borderColor = 'var(--error-color, #e74c3c)';
-            validator.element.setAttribute('aria-invalid', 'true');
-            return false;
-        } else {
-            if (validator.error) {
-                validator.error.style.display = 'none';
-            }
-            validator.element.style.borderColor = 'var(--success-color, #27ae60)';
-            validator.element.removeAttribute('aria-invalid');
-            return true;
-        }
-    }
-    
-    function validateForm() {
-        const validators = window.contactValidators;
-        if (!validators) return false;
-        
-        let isValid = true;
-        let firstInvalidField = null;
-        
-        Object.keys(validators).forEach(field => {
-            if (!validateField(field, validators)) {
-                isValid = false;
-                if (!firstInvalidField && validators[field].element) {
-                    firstInvalidField = validators[field].element;
-                }
-            }
-        });
-        
-        // Focus first invalid field
-        if (!isValid && firstInvalidField) {
-            firstInvalidField.focus();
-        }
-        
-        return isValid;
-    }
-    
-    // ====================================
-    // FORM SUBMISSION
-    // ====================================
-    
-    async function handleFormSubmission(e) {
-        e.preventDefault();
-        
-        const submitBtn = document.getElementById('submitBtn');
-        const formMessages = document.getElementById('formMessages');
-        const contactForm = document.getElementById('contactForm');
-        
-        if (!validateForm()) {
-            showMessage('Please fix the errors above before submitting.', 'error');
-            return;
-        }
-        
-        // Show loading state
-        setLoadingState(submitBtn, true);
-        
-        try {
-            const formData = new FormData(contactForm);
-            
-            // Add timestamp and user agent for tracking
-            formData.append('timestamp', new Date().toISOString());
-            formData.append('user_agent', navigator.userAgent);
-            
-            const response = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: formData
-            });
-            
-            const data = await response.json();
-            
-            if (data.success) {
-                handleFormSuccess(contactForm);
-            } else {
-                throw new Error(data.message || 'Form submission failed');
-            }
-        } catch (error) {
-            console.error('Form submission error:', error);
-            showMessage(
-                'Oops! There was an error sending your message. Please try again or contact me directly at mirjan.personal@gmail.com', 
-                'error'
-            );
-        } finally {
-            setLoadingState(submitBtn, false);
-        }
-    }
-    
-    function setLoadingState(button, isLoading) {
-        if (!button) return;
-        
-        const btnText = button.querySelector('.btn-text');
-        const btnLoading = button.querySelector('.btn-loading');
-        
-        if (isLoading) {
-            button.disabled = true;
-            if (btnText) btnText.style.display = 'none';
-            if (btnLoading) btnLoading.style.display = 'inline-flex';
-        } else {
-            button.disabled = false;
-            if (btnText) btnText.style.display = 'inline-block';
-            if (btnLoading) btnLoading.style.display = 'none';
-        }
-    }
-    
-    function handleFormSuccess(form) {
-        showMessage(
-            'Thank you! Your message has been sent successfully. I\'ll get back to you soon.', 
-            'success'
-        );
-        
-        // Reset form
-        form.reset();
-        
-        // Reset character counter
-        const charCount = document.getElementById('charCount');
-        if (charCount) charCount.textContent = '0';
-        
-        // Reset field styles
-        const validators = window.contactValidators;
-        if (validators) {
-            Object.keys(validators).forEach(field => {
-                const element = validators[field].element;
-                if (element) {
-                    element.style.borderColor = 'var(--form-input-border, #e1e5e9)';
-                    element.removeAttribute('aria-invalid');
-                }
-            });
-        }
-        
-        // Track successful submission (if analytics available)
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'form_submit', {
-                event_category: 'contact',
-                event_label: 'contact_form_success'
-            });
-        }
-    }
-    
     // ====================================
     // COPY TO CLIPBOARD FUNCTIONALITY
     // ====================================
     
     function initializeCopyToClipboard() {
         const copyItems = document.querySelectorAll('.contact-copy');
+        
+        if (copyItems.length === 0) {
+            console.log('No copy items found');
+            return;
+        }
         
         copyItems.forEach(item => {
             item.addEventListener('click', handleCopyClick);
@@ -330,6 +41,8 @@
                 }
             });
         });
+        
+        console.log(`Initialized copy functionality for ${copyItems.length} items`);
     }
     
     async function handleCopyClick(e) {
@@ -338,7 +51,10 @@
         const textToCopy = this.getAttribute('data-copy-text');
         const copyIndicator = this.querySelector('.copy-indicator i');
         
-        if (!textToCopy) return;
+        if (!textToCopy) {
+            console.error('No copy text found');
+            return;
+        }
         
         try {
             if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -357,17 +73,20 @@
         element.classList.add('copied');
         
         if (indicator) {
+            const originalClass = indicator.className;
             indicator.className = 'fas fa-check';
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+                indicator.className = originalClass;
+            }, 2000);
         }
         
         showToast('Email address copied to clipboard!', 'success');
         
-        // Reset after 2 seconds
+        // Reset element state
         setTimeout(() => {
             element.classList.remove('copied');
-            if (indicator) {
-                indicator.className = 'fas fa-copy';
-            }
         }, 2000);
         
         // Track copy event (if analytics available)
@@ -382,9 +101,12 @@
     function fallbackCopyTextToClipboard(text, element, indicator) {
         const textArea = document.createElement('textarea');
         textArea.value = text;
-        textArea.style.position = 'absolute';
-        textArea.style.left = '-9999px';
-        textArea.style.top = '0';
+        textArea.style.cssText = `
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            opacity: 0;
+        `;
         textArea.setAttribute('readonly', '');
         
         document.body.appendChild(textArea);
@@ -406,16 +128,176 @@
             document.body.removeChild(textArea);
         }
     }
+
+    // ====================================
+    // CHARACTER COUNTER
+    // ====================================
     
+    function initializeCharacterCounter() {
+        const messageTextarea = document.getElementById('contactMessage');
+        const charCount = document.getElementById('charCount');
+        
+        if (!messageTextarea || !charCount) {
+            console.log('Character counter elements not found');
+            return;
+        }
+        
+        messageTextarea.addEventListener('input', function() {
+            const currentLength = this.value.length;
+            const maxLength = 500;
+            
+            charCount.textContent = currentLength;
+            
+            if (currentLength > maxLength) {
+                charCount.style.color = 'var(--error-color, #e74c3c)';
+                this.value = this.value.substring(0, maxLength);
+                charCount.textContent = maxLength;
+            } else if (currentLength > maxLength * 0.8) {
+                charCount.style.color = 'var(--warning-color, #f39c12)';
+            } else {
+                charCount.style.color = 'var(--form-helper-color, #666)';
+            }
+        });
+        
+        console.log('Character counter initialized');
+    }
+
+    // ====================================
+    // FORM VALIDATION (NON-INTRUSIVE)
+    // ====================================
+    
+    function initializeFormValidation() {
+        const formInputs = document.querySelectorAll('#contactForm .form-input, #contactForm .form-select, #contactForm .form-textarea');
+        
+        if (formInputs.length === 0) {
+            console.log('No form inputs found for validation');
+            return;
+        }
+        
+        formInputs.forEach(input => {
+            // Add visual feedback on blur
+            input.addEventListener('blur', function() {
+                validateSingleField(this);
+            });
+            
+            // Remove error styling on focus
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '';
+                hideFieldError(this);
+            });
+        });
+        
+        console.log(`Form validation initialized for ${formInputs.length} fields`);
+    }
+    
+    function validateSingleField(field) {
+        const value = field.value.trim();
+        const fieldType = field.type || field.tagName.toLowerCase();
+        let isValid = true;
+        let errorMessage = '';
+        
+        // Skip validation if field is not required and empty
+        if (!field.hasAttribute('required') && !value) {
+            return true;
+        }
+        
+        switch (fieldType) {
+            case 'text':
+                if (field.id === 'contactName') {
+                    if (!value) {
+                        errorMessage = 'Name is required';
+                        isValid = false;
+                    } else if (value.length < 2) {
+                        errorMessage = 'Name must be at least 2 characters long';
+                        isValid = false;
+                    } else if (!/^[a-zA-Z\s\u00C0-\u024F\u1E00-\u1EFF]+$/.test(value)) {
+                        errorMessage = 'Name can only contain letters and spaces';
+                        isValid = false;
+                    }
+                }
+                break;
+                
+            case 'email':
+                if (!value) {
+                    errorMessage = 'Email is required';
+                    isValid = false;
+                } else {
+                    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+                    if (!emailRegex.test(value)) {
+                        errorMessage = 'Please enter a valid email address';
+                        isValid = false;
+                    }
+                }
+                break;
+                
+            case 'tel':
+                if (value) { // Optional field
+                    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+                    const cleanPhone = value.replace(/[\s\-\(\)\.]/g, '');
+                    if (!phoneRegex.test(cleanPhone)) {
+                        errorMessage = 'Please enter a valid phone number';
+                        isValid = false;
+                    }
+                }
+                break;
+                
+            case 'select':
+                if (field.hasAttribute('required') && !value) {
+                    errorMessage = 'Please select an option';
+                    isValid = false;
+                }
+                break;
+                
+            case 'textarea':
+                if (!value) {
+                    errorMessage = 'Message is required';
+                    isValid = false;
+                } else if (value.length < 10) {
+                    errorMessage = 'Message must be at least 10 characters long';
+                    isValid = false;
+                } else if (value.length > 500) {
+                    errorMessage = 'Message cannot exceed 500 characters';
+                    isValid = false;
+                }
+                break;
+        }
+        
+        // Apply visual feedback
+        if (isValid) {
+            field.style.borderColor = 'var(--success-color, #27ae60)';
+            hideFieldError(field);
+        } else {
+            field.style.borderColor = 'var(--error-color, #e74c3c)';
+            showFieldError(field, errorMessage);
+        }
+        
+        return isValid;
+    }
+    
+    function showFieldError(field, message) {
+        const errorElement = document.getElementById(field.id.replace('contact', '') + 'Error');
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+    }
+    
+    function hideFieldError(field) {
+        const errorElement = document.getElementById(field.id.replace('contact', '') + 'Error');
+        if (errorElement) {
+            errorElement.style.display = 'none';
+        }
+    }
+
     // ====================================
     // THEME INTEGRATION
     // ====================================
     
     function initializeThemeIntegration() {
-        // Listen for theme changes if your theme system uses custom events
+        // Listen for custom theme change events
         document.addEventListener('themeChanged', handleThemeChange);
         
-        // Observe theme attribute changes
+        // Observe theme changes via mutations
         const observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.type === 'attributes' && 
@@ -426,6 +308,7 @@
             });
         });
         
+        // Observe document element and body for theme changes
         observer.observe(document.documentElement, {
             attributes: true,
             attributeFilter: ['data-theme', 'class']
@@ -435,6 +318,11 @@
             attributes: true,
             attributeFilter: ['data-theme', 'class']
         });
+        
+        // Initial theme application
+        updateContactTheme();
+        
+        console.log('Theme integration initialized');
     }
     
     function handleThemeChange(event) {
@@ -446,7 +334,7 @@
         const contactSection = document.querySelector('.contact-section');
         if (!contactSection) return;
         
-        // Get current theme from document or body
+        // Get current theme from various sources
         const currentTheme = document.documentElement.getAttribute('data-theme') || 
                            document.body.getAttribute('data-theme') ||
                            getThemeFromClasses();
@@ -455,14 +343,15 @@
             contactSection.setAttribute('data-theme', currentTheme);
         }
         
-        // Also copy classes for compatibility
+        // Copy theme classes from body
         const themeClasses = Array.from(document.body.classList)
-            .filter(cls => cls.startsWith('theme-') || cls.includes('mode'));
+            .filter(cls => cls.startsWith('theme-') || cls.includes('mode') || cls.includes('color'));
         
-        // Remove existing theme classes
+        // Remove existing theme classes from contact section
         contactSection.className = contactSection.className
-            .replace(/\btheme-\w+(-\w+)?\b/g, '')
-            .replace(/\b\w*-mode\b/g, '');
+            .replace(/\btheme-[\w-]+\b/g, '')
+            .replace(/\b[\w-]*mode[\w-]*\b/g, '')
+            .replace(/\b[\w-]*color[\w-]*\b/g, '');
         
         // Add new theme classes
         themeClasses.forEach(cls => {
@@ -474,7 +363,7 @@
         const body = document.body;
         const classes = Array.from(body.classList);
         
-        // Look for theme classes
+        // Look for theme-related classes
         const colorTheme = classes.find(cls => cls.startsWith('theme-') && !cls.includes('mode'));
         const modeTheme = classes.find(cls => cls.includes('mode'));
         
@@ -484,7 +373,7 @@
         
         return colorTheme || modeTheme || null;
     }
-    
+
     // ====================================
     // UTILITY FUNCTIONS
     // ====================================
@@ -500,45 +389,44 @@
         toast.setAttribute('role', 'alert');
         toast.setAttribute('aria-live', 'polite');
         
+        // Apply styles directly for better compatibility
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? 'var(--toast-success-bg, #2ecc71)' : 'var(--toast-error-bg, #e74c3c)'};
+            color: ${type === 'success' ? 'var(--toast-success-color, white)' : 'var(--toast-error-color, white)'};
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 300px;
+            word-wrap: break-word;
+        `;
+        
         document.body.appendChild(toast);
         
-        // Trigger reflow and show
-        toast.offsetHeight;
-        toast.classList.add('show');
+        // Trigger animation
+        requestAnimationFrame(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+        });
         
         // Auto-hide after 3 seconds
         setTimeout(() => {
-            toast.classList.remove('show');
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(-20px)';
             setTimeout(() => {
                 if (document.body.contains(toast)) {
                     document.body.removeChild(toast);
                 }
             }, 300);
         }, 3000);
-    }
-    
-    function showMessage(message, type) {
-        const formMessages = document.getElementById('formMessages');
-        if (!formMessages) return;
-        
-        formMessages.textContent = message;
-        formMessages.className = `form-messages ${type}`;
-        formMessages.style.display = 'block';
-        formMessages.setAttribute('role', 'alert');
-        formMessages.setAttribute('aria-live', 'polite');
-        
-        // Auto-hide success messages
-        if (type === 'success') {
-            setTimeout(() => {
-                formMessages.style.display = 'none';
-            }, 5000);
-        }
-        
-        // Smooth scroll to message
-        formMessages.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'nearest' 
-        });
     }
     
     function debounce(func, wait) {
@@ -552,17 +440,36 @@
             timeout = setTimeout(later, wait);
         };
     }
-    
+
     // ====================================
     // PUBLIC API
     // ====================================
     
     // Expose functions for external use
-    window.ContactForm = {
+    window.ContactEnhancements = {
         updateTheme: updateContactTheme,
-        validateForm: validateForm,
         showToast: showToast,
-        showMessage: showMessage
+        validateField: validateSingleField
     };
+
+    // ====================================
+    // MOBILE OPTIMIZATIONS
+    // ====================================
+    
+    // Handle mobile-specific interactions
+    if ('ontouchstart' in window) {
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyItems = document.querySelectorAll('.contact-copy');
+            copyItems.forEach(item => {
+                item.style.cursor = 'pointer';
+                item.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                item.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+    }
 
 })();
