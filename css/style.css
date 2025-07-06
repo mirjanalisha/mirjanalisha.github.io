@@ -29,6 +29,38 @@ input, textarea, select{
      max-width: 100%;
 }
 
+/* Update your existing main-content class */
+.main-content {
+    padding-left: 270px;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+/* Ensure sections inside main-content don't double-pad */
+.main-content .section {
+    padding-left: 30px; /* Normal section padding */
+    padding-right: 30px;
+}
+
+/* Mobile adjustment */
+@media(max-width: 1199px){
+    .main-content {
+        padding-left: 0; /* Remove offset on mobile */
+    }
+}
+
+/* Mobile responsive - sidebar overlap fix */
+@media(max-width: 1199px){
+    .section {
+        padding-left: 30px; /* Reset on mobile when sidebar is hidden */
+    }
+    
+    .section.open {
+        padding-left: 300px; /* Add offset when mobile menu is open */
+    }
+}
+
+
 /* Sections */
 .section{
    background-color: #ffffff/*#f2f2fc; */
