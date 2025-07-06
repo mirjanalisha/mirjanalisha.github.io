@@ -596,123 +596,125 @@
       </section>
       <!-- Blog Section End -->
       <!-- Contact Section -->
-<section id="contact" class="contact-section">
-    <div class="container">
-        <div class="contact-header">
-            <h2>Get In Touch</h2>
-            <p>Let's discuss your next GIS project or data analysis needs</p>
-        </div>
-        
-            <!-- Contact Information with Clickable Links -->
-            <!-- Compact Contact Information -->
-            <div class="contact-info">
-                <!-- Copy-to-Clipboard Email -->
-                <div class="contact-item contact-copy" data-copy-text="mirjan.personal@gmail.com">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Email</h3>
-                        <p>mirjan.personal@gmail.com</p>
-                    </div>
-                    <div class="copy-indicator">
-                        <i class="fas fa-copy"></i>
-                    </div>
-                </div>
-                
-                <!-- Clickable LinkedIn -->
-                <a href="https://linkedin.com/in/your-linkedin-username" target="_blank" rel="noopener noreferrer" class="contact-item contact-link">
-                    <div class="contact-icon">
-                        <i class="fab fa-linkedin"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>LinkedIn</h3>
-                        <p>Connect professionally</p>
-                    </div>
-                    <div class="link-indicator">
-                        <i class="fas fa-external-link-alt"></i>
-                    </div>
-                </a>
-                
-                <!-- Clickable Location -->
-                <a href="https://www.google.com/maps/place/Bengaluru,+Karnataka,+India" target="_blank" rel="noopener noreferrer" class="contact-item contact-link">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Location</h3>
-                        <p>Bengaluru, India</p>
-                    </div>
-                    <div class="link-indicator">
-                        <i class="fas fa-external-link-alt"></i>
-                    </div>
-                </a>
-            </div>
-            
-            <!-- Interactive Contact Form -->
-            <div class="contact-form-container">
-                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-                    <!-- Web3Forms Access Key - Replace with your actual key -->
-                    <input type="hidden" name="access_key" value="18909221-c276-4d4a-bd99-68c3b0a0b250">
-                    
-                    <!-- Honeypot Spam Protection -->
-                    <input type="checkbox" name="botcheck" id="" style="display: none;">
-                    
-                    <!-- Form Fields -->
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
-                        <span class="error-message" id="nameError"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
-                        <span class="error-message" id="emailError"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">Subject *</label>
-                        <select id="subject" name="subject" required>
-                            <option value="">Select a topic</option>
-                            <option value="GIS Analysis">GIS Analysis Project</option>
-                            <option value="Data Science">Data Science Consultation</option>
-                            <option value="Remote Sensing">Remote Sensing Analysis</option>
-                            <option value="Web Development">Web Development</option>
-                            <option value="Career Opportunity">Career Opportunity</option>
-                            <option value="General Inquiry">General Inquiry</option>
-                        </select>
-                        <span class="error-message" id="subjectError"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or inquiry..."></textarea>
-                        <span class="error-message" id="messageError"></span>
-                        <div class="character-count">
-                            <span id="charCount">0</span> / 500 characters
-                        </div>
-                    </div>
-                    
-                    <button type="submit" id="submitBtn" class="submit-btn">
-                        <span class="btn-text">Send Message</span>
-                        <span class="btn-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Sending...
-                        </span>
-                    </button>
-                </form>
-                
-                <!-- Success/Error Messages -->
-                <div id="formMessages" class="form-messages"></div>
-            </div>
-        </div>
-    </div>
-</section>
+      <section id="contact" class="contact-section">
+          <div class="contact-container">
+              <div class="contact-header">
+                  <h2>Get In Touch</h2>
+                  <p>Let's discuss your next GIS project or data analysis needs</p>
+              </div>
+              
+              <div class="contact-content">
+                  <!-- Compact Contact Information -->
+                  <div class="contact-info-wrapper">
+                      <div class="contact-info">
+                          <!-- Copy-to-Clipboard Email -->
+                          <div class="contact-item contact-copy" data-copy-text="mirjan.personal@gmail.com">
+                              <div class="contact-icon">
+                                  <i class="fas fa-envelope"></i>
+                              </div>
+                              <div class="contact-details">
+                                  <h3>Email</h3>
+                                  <p>mirjan.personal@gmail.com</p>
+                              </div>
+                              <div class="copy-indicator">
+                                  <i class="fas fa-copy"></i>
+                              </div>
+                          </div>
+                          
+                          <!-- Clickable LinkedIn -->
+                          <a href="https://linkedin.com/in/your-linkedin-username" target="_blank" rel="noopener noreferrer" class="contact-item contact-link">
+                              <div class="contact-icon">
+                                  <i class="fab fa-linkedin"></i>
+                              </div>
+                              <div class="contact-details">
+                                  <h3>LinkedIn</h3>
+                                  <p>Connect professionally</p>
+                              </div>
+                              <div class="link-indicator">
+                                  <i class="fas fa-external-link-alt"></i>
+                              </div>
+                          </a>
+                          
+                          <!-- Clickable Location -->
+                          <a href="https://www.google.com/maps/place/Bengaluru,+Karnataka,+India" target="_blank" rel="noopener noreferrer" class="contact-item contact-link">
+                              <div class="contact-icon">
+                                  <i class="fas fa-map-marker-alt"></i>
+                              </div>
+                              <div class="contact-details">
+                                  <h3>Location</h3>
+                                  <p>Bengaluru, India</p>
+                              </div>
+                              <div class="link-indicator">
+                                  <i class="fas fa-external-link-alt"></i>
+                              </div>
+                          </a>
+                      </div>
+                  </div>
+                  
+                  <!-- Interactive Contact Form -->
+                  <div class="contact-form-wrapper">
+                      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                          <!-- Web3Forms Access Key - Replace with your actual key -->
+                          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+                          
+                          <!-- Honeypot Spam Protection -->
+                          <input type="checkbox" name="botcheck" id="botcheck" style="display: none;">
+                          
+                          <!-- Form Fields -->
+                          <div class="form-group">
+                              <label for="contactName">Full Name *</label>
+                              <input type="text" id="contactName" name="name" required class="form-input">
+                              <span class="error-message" id="nameError"></span>
+                          </div>
+                          
+                          <div class="form-group">
+                              <label for="contactEmail">Email Address *</label>
+                              <input type="email" id="contactEmail" name="email" required class="form-input">
+                              <span class="error-message" id="emailError"></span>
+                          </div>
+                          
+                          <div class="form-group">
+                              <label for="contactPhone">Phone Number</label>
+                              <input type="tel" id="contactPhone" name="phone" class="form-input">
+                          </div>
+                          
+                          <div class="form-group">
+                              <label for="contactSubject">Subject *</label>
+                              <select id="contactSubject" name="subject" required class="form-select">
+                                  <option value="">Select a topic</option>
+                                  <option value="GIS Analysis">GIS Analysis Project</option>
+                                  <option value="Data Science">Data Science Consultation</option>
+                                  <option value="Remote Sensing">Remote Sensing Analysis</option>
+                                  <option value="Web Development">Web Development</option>
+                                  <option value="Career Opportunity">Career Opportunity</option>
+                                  <option value="General Inquiry">General Inquiry</option>
+                              </select>
+                              <span class="error-message" id="subjectError"></span>
+                          </div>
+                          
+                          <div class="form-group">
+                              <label for="contactMessage">Message *</label>
+                              <textarea id="contactMessage" name="message" rows="5" required class="form-textarea" placeholder="Tell me about your project or inquiry..."></textarea>
+                              <span class="error-message" id="messageError"></span>
+                              <div class="character-count">
+                                  <span id="charCount">0</span> / 500 characters
+                              </div>
+                          </div>
+                          
+                          <button type="submit" id="submitBtn" class="submit-btn">
+                              <span class="btn-text">Send Message</span>
+                              <span class="btn-loading" style="display: none;">
+                                  <i class="fas fa-spinner fa-spin"></i> Sending...
+                              </span>
+                          </button>
+                      </form>
+                      
+                      <!-- Success/Error Messages -->
+                      <div id="formMessages" class="form-messages"></div>
+                  </div>
+              </div>
+          </div>
+      </section>
 
       <!-- Contact Section End -->
     </div>
