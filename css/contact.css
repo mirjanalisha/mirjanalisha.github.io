@@ -1,110 +1,66 @@
-/* Compact Contact Info Section */
+/* Ultra-Compact Horizontal Layout */
 .contact-info {
     display: flex;
-    flex-direction: column;
-    gap: 12px; /* Reduced spacing */
-    max-width: 350px; /* Limit maximum width */
-    margin: 0 auto; /* Center the contact info */
+    flex-direction: row; /* Horizontal layout */
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* Wrap on smaller screens */
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    gap: 12px; /* Reduced gap */
-    padding: 12px 16px; /* Much smaller padding */
+    gap: 8px;
+    padding: 10px 12px; /* Very compact padding */
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px; /* Smaller radius */
+    border-radius: 8px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
-    width: 100%; /* Full width of the container only */
+    flex: 1; /* Equal width distribution */
+    min-width: 140px; /* Minimum width */
     box-sizing: border-box;
 }
 
 .contact-item:hover {
-    transform: translateY(-2px); /* Reduced movement */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     background: rgba(255, 255, 255, 0.15);
 }
 
-/* Much Smaller Icons */
+/* Mini Icons */
 .contact-icon {
-    width: 35px; /* Reduced from 45px */
-    height: 35px; /* Reduced from 45px */
+    width: 28px;
+    height: 28px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem; /* Smaller icon size */
+    font-size: 0.9rem;
     color: white;
     flex-shrink: 0;
 }
 
-.contact-item:hover .contact-icon {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
-}
-
-/* Compact Text */
-.contact-details {
-    flex: 1;
-    min-width: 0; /* Prevent text overflow */
+/* Hide details text in horizontal layout */
+.contact-details p {
+    display: none; /* Hide the email address/location text */
 }
 
 .contact-details h3 {
     color: white;
-    margin: 0 0 2px 0; /* Minimal margin */
-    font-size: 0.9rem; /* Smaller font */
+    margin: 0;
+    font-size: 0.85rem;
     font-weight: 600;
 }
 
-.contact-details p {
-    color: rgba(255, 255, 255, 0.8);
-    margin: 0;
-    font-size: 0.8rem; /* Smaller font */
-    white-space: nowrap; /* Prevent text wrapping */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Add ... for long text */
-}
-
-/* Smaller Action Indicators */
+/* Mini indicators */
 .copy-indicator,
 .link-indicator {
     color: rgba(255, 255, 255, 0.6);
-    font-size: 0.8rem; /* Smaller indicator icons */
+    font-size: 0.75rem;
     transition: all 0.3s ease;
-    flex-shrink: 0;
-}
-
-.contact-item:hover .copy-indicator,
-.contact-item:hover .link-indicator {
-    color: rgba(255, 255, 255, 0.9);
-    transform: scale(1.1);
-}
-
-/* Keep the same animation styles but smaller */
-.contact-copy.copied {
-    background: rgba(46, 204, 113, 0.2);
-    border-color: rgba(46, 204, 113, 0.4);
-}
-
-.contact-copy.copied .copy-indicator {
-    color: #2ecc71;
-}
-
-.contact-copy.copied .copy-indicator i::before {
-    content: "\f00c";
-}
-
-.contact-link {
-    text-decoration: none;
-    color: inherit;
-}
-
-.contact-link:hover {
-    text-decoration: none;
-    color: inherit;
 }
