@@ -433,7 +433,6 @@ input, textarea, select{
 .home .intro .social-links{
     margin-top: 25px;
 }
-
 .home .intro .social-links a{
     height: 35px;
     width: 35px;
@@ -447,7 +446,6 @@ input, textarea, select{
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
-
 .home .intro .social-links a:hover{
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
