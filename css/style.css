@@ -31,7 +31,7 @@ input, textarea, select{
 
 /* MAIN CONTENT - UNIVERSAL FIX FOR ALL SECTIONS */
 .main-content {
-    margin-left: 50px;
+    margin-left: 270px;
     min-height: 100vh;
     transition: all 0.3s ease;
 }
@@ -42,7 +42,7 @@ input, textarea, select{
     min-height: 100vh;
     display: block;
     padding: 0 30px;
-    margin-left: 50px; /* CRITICAL FIX: Apply offset to ALL sections */
+    margin-left: 270px; /* CRITICAL FIX: Apply offset to ALL sections */
     position: relative;
     right: 0;
     -webkit-transition: all 0.3s ease;
@@ -475,7 +475,7 @@ input, textarea, select{
 }
 
 .about .about-content .about-container img{
-    height:250px;
+    height:50px;
 }
 
 .about .about-content .about-text{
@@ -1387,11 +1387,11 @@ input, textarea, select{
     }
     
     .main-content.open{
-        margin-left: 50px;
+        margin-left: 270px;
     }
     
     .section.open{
-        margin-left: 50px; /* Apply margin when mobile menu is open */
+        margin-left: 270px; /* Apply margin when mobile menu is open */
     }
     
     .section .container{
