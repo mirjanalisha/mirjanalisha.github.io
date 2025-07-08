@@ -12,6 +12,72 @@ window.addEventListener("load", function(){
 });
 
 // ====================================
+// SMOOTH SCROLLING UTILITY
+// ====================================
+function smoothScrollToSection(targetElement, offset = 0) {
+    if (!targetElement) return;
+    
+    // Calculate scroll position with offset
+    const elementTop = targetElement.offsetTop;
+    const scrollTop = elementTop - offset;
+    
+    // Use smooth scrolling with modern API
+    if ('scrollBehavior' in document.documentElement.style) {
+        window.scrollTo({
+            top: scrollTop,
+            behavior: 'smooth'
+        });
+    } else {
+        // Fallback for older browsers
+        smoothScrollPolyfill(scrollTop);
+    }
+}
+
+// Smooth scroll polyfill for older browsers
+function smoothScrollPolyfill(targetY) {
+    const startY = window.pageYOffset;
+    const distance = targetY - startY;
+    const duration = 800; // 800ms duration
+    let startTime = null;
+    
+    function animateScroll(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        // Easing function (ease-in-out)
+        const easeInOutQuad = progress < 0.5 
+            ? 2 * progress * progress 
+            : -1 + (4 - 2 * progress) * progress;
+        
+        window.scrollTo(0, startY + (distance * easeInOutQuad));
+        
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animateScroll);
+        }
+    }
+    
+    requestAnimationFrame(animateScroll);
+}
+
+// Calculate scroll offset based on fixed elements
+function getScrollOffset() {
+    const aside = document.querySelector(".aside");
+    const header = document.querySelector("header");
+    let offset = 0;
+    
+    // Add offset for fixed header if exists
+    if (header && window.getComputedStyle(header).position === 'fixed') {
+        offset += header.offsetHeight;
+    }
+    
+    // Add some padding for better visual spacing
+    offset += 20;
+    
+    return offset;
+}
+
+// ====================================
 // PORTFOLIO FILTER FUNCTIONALITY
 // ====================================
 function initializePortfolioFilter() {
@@ -146,7 +212,7 @@ function initializeLightbox() {
 }
 
 // ====================================
-// NAVIGATION FUNCTIONALITY
+// NAVIGATION FUNCTIONALITY WITH SMOOTH SCROLLING
 // ====================================
 function initializeNavigation() {
     const nav = document.querySelector(".nav");
@@ -200,6 +266,12 @@ function initializeNavigation() {
             const targetElement = document.querySelector("#" + target);
             if (targetElement) {
                 targetElement.classList.add("active");
+                
+                // Add smooth scrolling to the target section
+                setTimeout(() => {
+                    const scrollOffset = getScrollOffset();
+                    smoothScrollToSection(targetElement, scrollOffset);
+                }, 100); // Small delay to ensure section is visible
             }
         }
     }
@@ -230,7 +302,7 @@ function initializeNavigation() {
         }
     }
 
-    // Hire me button functionality
+    // Enhanced hire me button functionality with smooth scrolling
     const hireMeBtn = document.querySelector(".hire-me");
     if (hireMeBtn) {
         hireMeBtn.addEventListener("click", function(event) {
@@ -243,6 +315,46 @@ function initializeNavigation() {
     // Expose functions globally if needed
     window.showSection = showSection;
     window.updateNav = updateNav;
+}
+
+// ====================================
+// SCROLL SPY FUNCTIONALITY
+// ====================================
+function initializeScrollSpy() {
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.nav a');
+    
+    if (sections.length === 0 || navLinks.length === 0) return;
+    
+    function updateActiveNavOnScroll() {
+        const scrollPos = window.pageYOffset + 100; // Add offset for better detection
+        
+        sections.forEach((section, index) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                // Remove active class from all nav links
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                // Add active class to corresponding nav link
+                const correspondingLink = document.querySelector(`.nav a[href="#${sectionId}"]`);
+                if (correspondingLink) {
+                    correspondingLink.classList.add('active');
+                }
+            }
+        });
+    }
+    
+    // Throttle scroll event for better performance
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(updateActiveNavOnScroll, 10);
+    });
 }
 
 // ====================================
@@ -290,6 +402,50 @@ function initializeMobileNavigation() {
 }
 
 // ====================================
+// ENHANCED SCROLL TO TOP FUNCTIONALITY
+// ====================================
+function initializeScrollToTop() {
+    // Create scroll to top button if it doesn't exist
+    let scrollToTopBtn = document.querySelector('.scroll-to-top');
+    
+    if (!scrollToTopBtn) {
+        scrollToTopBtn = document.createElement('button');
+        scrollToTopBtn.className = 'scroll-to-top';
+        scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        scrollToTopBtn.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        `;
+        document.body.appendChild(scrollToTopBtn);
+    }
+    
+    // Show/hide scroll to top button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.style.display = 'block';
+        } else {
+            scrollToTopBtn.style.display = 'none';
+        }
+    });
+    
+    // Smooth scroll to top when clicked
+    scrollToTopBtn.addEventListener('click', () => {
+        smoothScrollToSection(document.body, 0);
+    });
+}
+
+// ====================================
 // INITIALIZATION
 // ====================================
 document.addEventListener("DOMContentLoaded", function() {
@@ -311,7 +467,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     try {
         initializeNavigation();
-        console.log("Navigation initialized");
+        console.log("Navigation with smooth scrolling initialized");
     } catch (error) {
         console.error("Error initializing navigation:", error);
     }
@@ -321,6 +477,20 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Mobile navigation initialized");
     } catch (error) {
         console.error("Error initializing mobile navigation:", error);
+    }
+    
+    try {
+        initializeScrollSpy();
+        console.log("Scroll spy initialized");
+    } catch (error) {
+        console.error("Error initializing scroll spy:", error);
+    }
+    
+    try {
+        initializeScrollToTop();
+        console.log("Scroll to top initialized");
+    } catch (error) {
+        console.error("Error initializing scroll to top:", error);
     }
     
     console.log("All components initialized successfully");
@@ -345,3 +515,39 @@ window.addEventListener("load", function() {
         console.log("Page load time:", loadTime + "ms");
     }
 });
+
+// ====================================
+// UTILITY FUNCTIONS
+// ====================================
+
+// Debounce function for performance optimization
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Check if element is in viewport
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+// Smooth scroll to any element (public utility)
+window.scrollToElement = function(elementId, offset = 0) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        smoothScrollToSection(element, offset || getScrollOffset());
+    }
+};
