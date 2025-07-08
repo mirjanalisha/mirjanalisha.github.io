@@ -174,19 +174,83 @@ document.querySelector(".hire-me").addEventListener("click",function(){
 })
 
 // Navigation Toggler
+// Enhanced Navigation Toggler for Mobile
 const navTogglerBtn = document.querySelector(".nav-toggler"),
-   aside = document.querySelector(".aside");
+      aside = document.querySelector(".aside"),
+      mainContent = document.querySelector(".main-content");
 
-navTogglerBtn.addEventListener("click",asideSectionTogglerBtn)
-//You can write like below code also
-// navTogglerBtn.addEventListener("click", () => {
-//     asideSectionTogglerBtn();
-// })
+if (navTogglerBtn) {
+    navTogglerBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        asideSectionTogglerBtn();
+    });
+}
 
 function asideSectionTogglerBtn() {
-   aside.classList.toggle("open");
-   navTogglerBtn.classList.toggle("open");
-   for (let i = 0; i < totalSection; i++) {
-       allSection[i].classList.toggle("open");
-   }
+    aside.classList.toggle("open");
+    navTogglerBtn.classList.toggle("open");
+    
+    // Toggle main content
+    if (mainContent) {
+        mainContent.classList.toggle("open");
+    }
+    
+    // Toggle all sections
+    for (let i = 0; i < totalSection; i++) {
+        allSection[i].classList.toggle("open");
+    }
+    
+    // Close menu when clicking outside on mobile
+    if (aside.classList.contains("open")) {
+        document.addEventListener("click", closeMobileMenu);
+    } else {
+        document.removeEventListener("click", closeMobileMenu);
+    }
+}
+
+// Close mobile menu when clicking outside
+function closeMobileMenu(e) {
+    if (window.innerWidth < 1200) {
+        if (!aside.contains(e.target) && !navTogglerBtn.contains(e.target)) {
+            aside.classList.remove("open");
+            navTogglerBtn.classList.remove("open");
+            
+            if (mainContent) {
+                mainContent.classList.remove("open");
+            }
+            
+            for (let i = 0; i < totalSection; i++) {
+                allSection[i].classList.remove("open");
+            }
+            
+            document.removeEventListener("click", closeMobileMenu);
+        }
+    }
+}
+
+// Auto-close menu when navigating on mobile
+for (let i = 0; i < totalNavList; i++) {
+    const a = navList[i].querySelector("a");
+    a.addEventListener("click", function () {
+        // Remove Back Section Class
+        removeBackSection();
+        
+        for (let j = 0; j < totalNavList; j++) {
+            if (navList[j].querySelector("a").classList.contains("active")) {
+                addBackSection(j);
+            }
+            navList[j].querySelector("a").classList.remove("active");
+        }
+        
+        this.classList.add("active");
+        showSection(this);
+        
+        // Close mobile menu after navigation
+        if(window.innerWidth < 1200){
+            setTimeout(() => {
+                asideSectionTogglerBtn();
+            }, 300);
+        }
+    });
 }
