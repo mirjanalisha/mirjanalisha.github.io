@@ -174,83 +174,129 @@ document.querySelector(".hire-me").addEventListener("click",function(){
 })
 
 // Navigation Toggler
-// Enhanced Navigation Toggler for Mobile
-const navTogglerBtn = document.querySelector(".nav-toggler"),
-      aside = document.querySelector(".aside"),
-      mainContent = document.querySelector(".main-content");
+/* ───────────────────────────────────────────────────────────
+   PRE-LOADER
+───────────────────────────────────────────────────────────*/
+window.addEventListener("load", () => {
+  const pre = document.querySelector(".preloader");
+  pre.classList.add("opacity-0");
+  setTimeout(() => (pre.style.display = "none"), 1000);
+});
 
-if (navTogglerBtn) {
-    navTogglerBtn.addEventListener("click", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        asideSectionTogglerBtn();
-    });
+/* ───────────────────────────────────────────────────────────
+   PORTFOLIO FILTER
+───────────────────────────────────────────────────────────*/
+const filterContainer = document.querySelector(".portfolio-filter"),
+      filterBtns       = filterContainer.children,
+      portfolioItems   = document.querySelectorAll(".portfolio-item"),
+      totalItems       = portfolioItems.length;
+
+for (let i = 0; i < filterBtns.length; i++) {
+  filterBtns[i].addEventListener("click", function () {
+    filterContainer.querySelector(".active").classList.remove("active");
+    this.classList.add("active");
+    const filter = this.getAttribute("data-filter");
+
+    for (let k = 0; k < totalItems; k++) {
+      const itemCat = portfolioItems[k].getAttribute("data-category");
+      const showIt  = filter === "all" || filter === itemCat;
+      portfolioItems[k].classList.toggle("show", showIt);
+      portfolioItems[k].classList.toggle("hide", !showIt);
+    }
+  });
 }
 
-function asideSectionTogglerBtn() {
-    aside.classList.toggle("open");
-    navTogglerBtn.classList.toggle("open");
-    
-    // Toggle main content
-    if (mainContent) {
-        mainContent.classList.toggle("open");
-    }
-    
-    // Toggle all sections
-    for (let i = 0; i < totalSection; i++) {
-        allSection[i].classList.toggle("open");
-    }
-    
-    // Close menu when clicking outside on mobile
-    if (aside.classList.contains("open")) {
-        document.addEventListener("click", closeMobileMenu);
-    } else {
-        document.removeEventListener("click", closeMobileMenu);
-    }
+/* ───────────────────────────────────────────────────────────
+   PORTFOLIO LIGHTBOX
+───────────────────────────────────────────────────────────*/
+const lightbox      = document.querySelector(".lightbox"),
+      lbImg         = lightbox.querySelector(".lightbox-img"),
+      lbClose       = lightbox.querySelector(".lightbox-close"),
+      lbText        = lightbox.querySelector(".caption-text"),
+      lbCounter     = lightbox.querySelector(".caption-counter");
+let itemIndex = 0;
+
+portfolioItems.forEach((item, i) =>
+  item.addEventListener("click", () => {
+    itemIndex = i;
+    changeItem();
+    lightbox.classList.toggle("open");
+  })
+);
+
+function changeItem() {
+  const imgSrc = portfolioItems[itemIndex].querySelector("img").src;
+  lbImg.src    = imgSrc;
+  lbText.textContent = portfolioItems[itemIndex].querySelector("h4").textContent;
+  lbCounter.textContent = `${itemIndex + 1} of ${totalItems}`;
 }
 
-// Close mobile menu when clicking outside
-function closeMobileMenu(e) {
-    if (window.innerWidth < 1200) {
-        if (!aside.contains(e.target) && !navTogglerBtn.contains(e.target)) {
-            aside.classList.remove("open");
-            navTogglerBtn.classList.remove("open");
-            
-            if (mainContent) {
-                mainContent.classList.remove("open");
-            }
-            
-            for (let i = 0; i < totalSection; i++) {
-                allSection[i].classList.remove("open");
-            }
-            
-            document.removeEventListener("click", closeMobileMenu);
-        }
-    }
+function nextItem() { itemIndex = (itemIndex + 1) % totalItems; changeItem(); }
+function prevItem() { itemIndex = (itemIndex - 1 + totalItems) % totalItems; changeItem(); }
+
+lightbox.addEventListener("click", e => {
+  if (e.target === lbClose || e.target === lightbox) lightbox.classList.toggle("open");
+});
+
+/* ───────────────────────────────────────────────────────────
+   SIDEBAR / MOBILE-TOGGLER LOGIC
+───────────────────────────────────────────────────────────*/
+const nav       = document.querySelector(".nav"),
+      navLinks  = nav.querySelectorAll("a"),
+      sections  = document.querySelectorAll(".section"),
+      navBtn    = document.querySelector(".nav-toggler"),
+      aside     = document.querySelector(".aside");
+
+navLinks.forEach(link =>
+  link.addEventListener("click", function () {
+    activateLink(this);
+    showSection(this);
+
+    /* ⇣ Auto-close for small screens ⇣ */
+    if (window.innerWidth < 1200) toggleAside();
+  })
+);
+
+navBtn.addEventListener("click", toggleAside);
+
+function toggleAside() {
+  aside.classList.toggle("open");
+  navBtn.classList.toggle("open");
+  sections.forEach(sec => sec.classList.toggle("open"));
 }
 
-// Auto-close menu when navigating on mobile
-for (let i = 0; i < totalNavList; i++) {
-    const a = navList[i].querySelector("a");
-    a.addEventListener("click", function () {
-        // Remove Back Section Class
-        removeBackSection();
-        
-        for (let j = 0; j < totalNavList; j++) {
-            if (navList[j].querySelector("a").classList.contains("active")) {
-                addBackSection(j);
-            }
-            navList[j].querySelector("a").classList.remove("active");
-        }
-        
-        this.classList.add("active");
-        showSection(this);
-        
-        // Close mobile menu after navigation
-        if(window.innerWidth < 1200){
-            setTimeout(() => {
-                asideSectionTogglerBtn();
-            }, 300);
-        }
-    });
+/* Close with ESC key or outside click (mobile only) */
+document.addEventListener("keyup", e => {
+  if (e.key === "Escape" && aside.classList.contains("open") && window.innerWidth < 1200) {
+    toggleAside();
+  }
+});
+document.addEventListener("click", e => {
+  if (window.innerWidth < 1200 && aside.classList.contains("open")) {
+    const clickInside = aside.contains(e.target) || navBtn.contains(e.target);
+    if (!clickInside) toggleAside();
+  }
+});
+
+/* Highlight active link */
+function activateLink(activeAnchor) {
+  navLinks.forEach(a => a.classList.remove("active"));
+  activeAnchor.classList.add("active");
+}
+
+/* Show targeted section */
+function showSection(element) {
+  sections.forEach(sec => sec.classList.remove("active"));
+  const target = element.getAttribute("href").split("#")[1];
+  document.getElementById(target).classList.add("active");
+}
+
+/* HIRE-ME button (if present) */
+const hireMe = document.querySelector(".hire-me");
+if (hireMe) {
+  hireMe.addEventListener("click", function () {
+    showSection(this);
+    activateLink(nav.querySelector(`a[href="${this.getAttribute("href")}"]`));
+    if (window.innerWidth < 1200) toggleAside();
+  });
 }
