@@ -498,6 +498,12 @@ document.addEventListener("DOMContentLoaded", function() {
     } catch (error) {
         console.error("Error initializing FAQ:", error);
     }
+    try {
+        initializeBlogSection();
+        console.log("Blog section initialized");
+    } catch (error) {
+        console.error("Error initializing blog section:", error);
+    }
     
     console.log("All components initialized successfully");
 });
@@ -579,4 +585,285 @@ function initializeFAQ() {
         });
     });
 }
+
+// Blog Modal and Markdown Loading Functionality
+function initializeBlogSection() {
+    const blogModal = document.getElementById('blogModal');
+    const modalClose = document.querySelector('.modal-close');
+    const modalTitle = document.querySelector('.modal-title');
+    const loadingSpinner = document.querySelector('.loading-spinner');
+    const blogContent = document.querySelector('.blog-content');
+    
+    // Read More buttons for featured blogs
+    const readMoreBtns = document.querySelectorAll('.read-more-btn');
+    
+    // Archive item buttons
+    const archiveItems = document.querySelectorAll('.archive-item');
+    
+    // Initialize marked.js for markdown parsing
+    if (typeof marked === 'undefined') {
+        console.warn('Marked.js not loaded. Please include marked.js library.');
+        return;
+    }
+    
+    // Configure marked options
+    marked.setOptions({
+        breaks: true,
+        gfm: true,
+        headerIds: true,
+        highlight: function(code, lang) {
+            return code; // You can integrate syntax highlighter here
+        }
+    });
+    
+    // Featured blog read more functionality
+    readMoreBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const markdownPath = this.getAttribute('data-markdown');
+            const title = this.closest('.blog-item').querySelector('.blog-title').textContent;
+            openBlogModal(markdownPath, title);
+        });
+    });
+    
+    // Archive item functionality
+    archiveItems.forEach(item => {
+        const readBtn = item.querySelector('.archive-read-btn');
+        const markdownPath = item.getAttribute('data-markdown');
+        const title = item.querySelector('h5').textContent;
+        
+        readBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Check if item is already expanded
+            if (item.classList.contains('expanded')) {
+                // Collapse inline content
+                const inlineContent = item.querySelector('.inline-content');
+                if (inlineContent) {
+                    inlineContent.remove();
+                }
+                item.classList.remove('expanded');
+                this.querySelector('i').style.transform = 'rotate(0deg)';
+            } else {
+                // Collapse all other expanded items
+                archiveItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('expanded')) {
+                        const otherInlineContent = otherItem.querySelector('.inline-content');
+                        if (otherInlineContent) {
+                            otherInlineContent.remove();
+                        }
+                        otherItem.classList.remove('expanded');
+                        otherItem.querySelector('.archive-read-btn i').style.transform = 'rotate(0deg)';
+                    }
+                });
+                
+                // Expand current item
+                expandArchiveItem(item, markdownPath, title);
+            }
+        });
+    });
+    
+    // Modal close functionality
+    modalClose.addEventListener('click', closeBlogModal);
+    
+    // Close modal when clicking outside
+    blogModal.addEventListener('click', function(e) {
+        if (e.target === blogModal) {
+            closeBlogModal();
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && blogModal.classList.contains('active')) {
+            closeBlogModal();
+        }
+    });
+    
+    function openBlogModal(markdownPath, title) {
+        modalTitle.textContent = title;
+        blogModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Show loading spinner
+        loadingSpinner.style.display = 'flex';
+        blogContent.style.display = 'none';
+        blogContent.classList.remove('loaded');
+        
+        // Load markdown content
+        loadMarkdownContent(markdownPath)
+            .then(html => {
+                blogContent.innerHTML = html;
+                loadingSpinner.style.display = 'none';
+                blogContent.style.display = 'block';
+                blogContent.classList.add('loaded');
+            })
+            .catch(error => {
+                console.error('Error loading markdown:', error);
+                blogContent.innerHTML = '<p>Error loading article content. Please try again later.</p>';
+                loadingSpinner.style.display = 'none';
+                blogContent.style.display = 'block';
+                blogContent.classList.add('loaded');
+            });
+    }
+    
+    function closeBlogModal() {
+        blogModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    function expandArchiveItem(item, markdownPath, title) {
+        // Create inline content container
+        const inlineContent = document.createElement('div');
+        inlineContent.className = 'inline-content';
+        inlineContent.innerHTML = `
+            <div class="inline-loading">
+                <div class="small-spinner"></div>
+                <span>Loading...</span>
+            </div>
+            <div class="inline-blog-content"></div>
+        `;
+        
+        // Add to item
+        item.appendChild(inlineContent);
+        item.classList.add('expanded');
+        item.querySelector('.archive-read-btn i').style.transform = 'rotate(45deg)';
+        
+        // Load content
+        const inlineContentDiv = inlineContent.querySelector('.inline-blog-content');
+        const inlineLoading = inlineContent.querySelector('.inline-loading');
+        
+        loadMarkdownContent(markdownPath)
+            .then(html => {
+                inlineContentDiv.innerHTML = html;
+                inlineLoading.style.display = 'none';
+                inlineContentDiv.style.display = 'block';
+                
+                // Smooth scroll to expanded content
+                setTimeout(() => {
+                    inlineContent.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            })
+            .catch(error => {
+                console.error('Error loading markdown:', error);
+                inlineContentDiv.innerHTML = '<p>Error loading article content.</p>';
+                inlineLoading.style.display = 'none';
+                inlineContentDiv.style.display = 'block';
+            });
+    }
+    
+    async function loadMarkdownContent(markdownPath) {
+        try {
+            const response = await fetch(markdownPath);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const markdownText = await response.text();
+            return marked.parse(markdownText);
+        } catch (error) {
+            console.error('Error fetching markdown:', error);
+            throw error;
+        }
+    }
+}
+
+// Add CSS for inline content
+const inlineContentCSS = `
+    .inline-content {
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border: 1px solid #e8dfec;
+        animation: expandIn 0.3s ease;
+    }
+    
+    @keyframes expandIn {
+        from {
+            max-height: 0;
+            opacity: 0;
+        }
+        to {
+            max-height: 1000px;
+            opacity: 1;
+        }
+    }
+    
+    .inline-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px;
+        color: #667eea;
+    }
+    
+    .small-spinner {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #e8dfec;
+        border-top: 2px solid #667eea;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    
+    .inline-blog-content {
+        display: none;
+        line-height: 1.6;
+        color: #504e70;
+    }
+    
+    .inline-blog-content h1, .inline-blog-content h2, .inline-blog-content h3 {
+        color: #302e4d;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .inline-blog-content p {
+        margin-bottom: 12px;
+    }
+    
+    .inline-blog-content pre {
+        background: #ffffff;
+        border: 1px solid #d4d4e3;
+        border-radius: 5px;
+        padding: 10px;
+        overflow-x: auto;
+        font-size: 12px;
+    }
+    
+    .inline-blog-content code {
+        background: #ffffff;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-size: 12px;
+    }
+    
+    /* Dark mode support */
+    body.dark .inline-content {
+        background: #2a2a2a;
+        border-color: #393939;
+    }
+    
+    body.dark .inline-blog-content {
+        color: #e9e9e9;
+    }
+    
+    body.dark .inline-blog-content h1, 
+    body.dark .inline-blog-content h2, 
+    body.dark .inline-blog-content h3 {
+        color: #ffffff;
+    }
+    
+    body.dark .inline-blog-content pre,
+    body.dark .inline-blog-content code {
+        background: #333333;
+        border-color: #393939;
+    }
+`;
+
+// Add inline content styles
+const inlineStyleSheet = document.createElement('style');
+inlineStyleSheet.textContent = inlineContentCSS;
+document.head.appendChild(inlineStyleSheet);
+
 
