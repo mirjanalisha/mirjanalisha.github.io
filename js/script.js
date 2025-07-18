@@ -551,3 +551,37 @@ window.scrollToElement = function(elementId, offset = 0) {
         smoothScrollToSection(element, offset || getScrollOffset());
     }
 };
+
+
+// FAQ Accordion Functionality
+function initializeFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Close all other FAQ items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            item.classList.toggle('active');
+        });
+    });
+}
+
+// Add to your existing initialization
+document.addEventListener("DOMContentLoaded", function() {
+    // ... your existing initialization code ...
+    
+    try {
+        initializeFAQ();
+        console.log("FAQ functionality initialized");
+    } catch (error) {
+        console.error("Error initializing FAQ:", error);
+    }
+});
