@@ -492,6 +492,12 @@ document.addEventListener("DOMContentLoaded", function() {
     } catch (error) {
         console.error("Error initializing scroll to top:", error);
     }
+    try {
+        initializeFAQ();
+        console.log("FAQ functionality initialized");
+    } catch (error) {
+        console.error("Error initializing FAQ:", error);
+    }
     
     console.log("All components initialized successfully");
 });
@@ -574,14 +580,3 @@ function initializeFAQ() {
     });
 }
 
-// Add to your existing initialization
-document.addEventListener("DOMContentLoaded", function() {
-    // ... your existing initialization code ...
-    
-    try {
-        initializeFAQ();
-        console.log("FAQ functionality initialized");
-    } catch (error) {
-        console.error("Error initializing FAQ:", error);
-    }
-});
