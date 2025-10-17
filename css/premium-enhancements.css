@@ -1,0 +1,1553 @@
+/* ============================================
+   PREMIUM PORTFOLIO ENHANCEMENTS
+   Modern, Glossy, Lightweight Design
+   ============================================ */
+
+/* CSS Variables for Better Theme Management */
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --primary-color: #667eea;
+    --primary-rgb: 102, 126, 234;
+    --secondary-color: #764ba2;
+    --secondary-rgb: 118, 75, 162;
+    --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    
+    --premium-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --premium-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --premium-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+    --premium-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.2);
+    
+    --hover-lift: translateY(-8px);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced Body - Dark Mode Compatible */
+body {
+    overflow-x: hidden;
+}
+
+/* Light background for non-dark sections only */
+.section:not(.dark) {
+    background: linear-gradient(135deg, #fafbfd 0%, #f5f7fa 100%);
+}
+
+/* Glassmorphism Sidebar */
+.aside {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid var(--glass-border);
+    box-shadow: var(--premium-shadow-lg);
+}
+
+/* Dark mode sidebar support */
+body.dark .aside {
+    background: rgba(30, 30, 40, 0.95);
+    border-right-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced Logo with Gradient Text */
+.aside .logo a {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.aside .logo a::before,
+.aside .logo a::after {
+    background: var(--primary-gradient);
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+
+/* Premium Navigation Links */
+.aside .nav li a {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 5px 0;
+    transition: var(--transition-smooth);
+}
+
+.aside .nav li a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: var(--primary-gradient);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.aside .nav li a:hover::before,
+.aside .nav li a.active::before {
+    transform: scaleY(1);
+}
+
+.aside .nav li a:hover,
+.aside .nav li a.active {
+    background: rgba(102, 126, 234, 0.08);
+    padding-left: 15px;
+}
+
+/* Enhanced Preloader */
+.preloader {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.preloader .loader {
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top: 4px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Premium Section Background */
+.section {
+    background: transparent;
+}
+
+/* Enhanced Section Titles */
+.section-title h2 {
+    position: relative;
+    display: inline-block;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+
+.section-title h2::before {
+    background: var(--primary-gradient);
+    height: 5px;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+.section-title h2::after {
+    background: var(--secondary-gradient);
+    height: 5px;
+    border-radius: 3px;
+}
+
+/* Premium Button Styles */
+.btn {
+    background: var(--primary-gradient);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    border: none;
+    position: relative;
+    overflow: hidden;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+/* Glassmorphic Home Section */
+.home .intro {
+    position: relative;
+}
+
+/* Enhanced Social Links with Gradients */
+.home .intro .social-links a {
+    background: var(--primary-gradient);
+    box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.4);
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.home .intro .social-links a:hover {
+    transform: translateY(-5px) scale(1.15);
+    box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.6);
+}
+
+/* Premium Profile Image - Fixed Position */
+.home .intro img {
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+    transition: var(--transition-smooth);
+    position: absolute !important;
+    bottom: -35px !important;
+    left: 70% !important;
+    transform: translateX(-45%) !important;
+    height: 505px !important;
+}
+
+.home .intro img:hover {
+    transform: translateX(-45%) scale(1.03) !important;
+    filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.4));
+}
+
+/* Enhanced About Container with Glassmorphism */
+.about .about-content .about-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--premium-shadow-xl);
+    transition: var(--transition-smooth);
+}
+
+.about .about-content .about-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.about .about-content .about-container img {
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+    transition: var(--transition-smooth);
+}
+
+.about .about-content .about-container:hover img {
+    transform: scale(1.05);
+}
+
+/* Premium Info Items */
+.about .about-content .personal-info .info-item p {
+    background: rgba(102, 126, 234, 0.03);
+    border-radius: 8px;
+    padding: 15px;
+    border: none;
+    border-left: 3px solid transparent;
+    transition: var(--transition-smooth);
+}
+
+.about .about-content .personal-info .info-item p:hover {
+    background: rgba(102, 126, 234, 0.08);
+    border-left-color: #667eea;
+    transform: translateX(5px);
+}
+
+/* Enhanced Progress Bars with Gradients */
+.skills-education .about-content .skills .skill-item .progress {
+    background: linear-gradient(90deg, #e8e8f0 0%, #f0f0f5 100%);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: 10px;
+    border-radius: 10px;
+    overflow: visible;
+}
+
+.skills-education .about-content .skills .skill-item .progress .progress-in {
+    background: var(--primary-gradient);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+    border-radius: 10px;
+    position: relative;
+    animation: progressLoad 1.5s ease-in-out;
+}
+
+.skills-education .about-content .skills .skill-item .progress .progress-in::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border: 2px solid #667eea;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.5);
+}
+
+@keyframes progressLoad {
+    0% { width: 0; }
+}
+
+/* Premium Timeline Cards */
+.skills-education .about-content .timeline,
+.experience .about-content .timeline {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--premium-shadow-lg);
+    border-radius: 15px;
+}
+
+.skills-education .about-content .timeline .timeline-item,
+.experience .about-content .timeline .timeline-item {
+    transition: var(--transition-smooth);
+    padding: 20px 20px 50px 37px;
+    border-radius: 10px;
+}
+
+.skills-education .about-content .timeline .timeline-item:hover,
+.experience .about-content .timeline .timeline-item:hover {
+    background: rgba(102, 126, 234, 0.05);
+    transform: translateX(10px);
+}
+
+.skills-education .about-content .timeline .circle-dot,
+.experience .about-content .timeline .circle-dot {
+    background: var(--primary-gradient);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+    width: 18px;
+    height: 18px;
+    border: 3px solid #fff;
+}
+
+.skills-education .about-content .timeline .timeline-item::before,
+.experience .about-content .timeline .timeline-item::before {
+    background: linear-gradient(180deg, #667eea 0%, rgba(102, 126, 234, 0.3) 100%);
+    width: 2px;
+}
+
+/* Enhanced Service Cards */
+.service .service-item .service-item-inner {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--premium-shadow-md);
+    border-radius: 15px;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.service .service-item .service-item-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.service .service-item .service-item-inner:hover::before {
+    left: 100%;
+}
+
+.service .service-item .service-item-inner:hover {
+    transform: var(--hover-lift);
+    box-shadow: var(--premium-shadow-xl);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.service .service-item .service-item-inner .icon {
+    background: var(--primary-gradient);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.service .service-item .service-item-inner:hover .icon {
+    transform: rotateY(360deg);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+}
+
+/* Premium Portfolio Cards */
+.portfolio .portfolio-item-inner {
+    border: none;
+    box-shadow: var(--premium-shadow-md);
+    transition: var(--transition-smooth);
+    border-radius: 15px;
+    overflow: hidden;
+    background: var(--glass-bg);
+}
+
+.portfolio .portfolio-item-inner:hover {
+    transform: var(--hover-lift);
+    box-shadow: var(--premium-shadow-xl);
+}
+
+.portfolio .portfolio-item .portfolio-info {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Enhanced Portfolio Filter Buttons */
+.portfolio .portfolio-filter button {
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: var(--transition-smooth);
+    border: 2px solid transparent;
+}
+
+.portfolio .portfolio-filter button:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.portfolio .portfolio-filter button.active {
+    background: var(--primary-gradient);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Premium Blog Cards */
+.blog .blog-item-inner {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--premium-shadow-md);
+    transition: var(--transition-smooth);
+}
+
+.blog .blog-item-inner:hover {
+    transform: var(--hover-lift);
+    box-shadow: var(--premium-shadow-xl);
+}
+
+.blog .blog-date {
+    background: var(--primary-gradient);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.blog .read-more-btn {
+    background: var(--primary-gradient);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.blog .read-more-btn:hover {
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+/* Enhanced Shadow Classes */
+.shadow-dark {
+    box-shadow: var(--premium-shadow-lg) !important;
+    border-radius: 15px;
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-gradient);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* Floating Animation for Profile */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.home .intro img {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Subtle Glow Effects */
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.6); }
+}
+
+/* Responsive Enhancements */
+@media (max-width: 1199px) {
+    :root {
+        --hover-lift: translateY(-5px);
+    }
+}
+
+@media (max-width: 991px) {
+    .aside {
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+    }
+}
+
+@media (max-width: 767px) {
+    .service .service-item .service-item-inner:hover,
+    .portfolio .portfolio-item-inner:hover,
+    .blog .blog-item-inner:hover {
+        transform: translateY(-3px);
+    }
+    
+    .home .intro img {
+        animation: none;
+    }
+}
+
+/* Print Styles - Maintain Clean Look */
+@media print {
+    .aside,
+    .nav-toggler,
+    .style-switcher {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+    }
+}
+
+/* Performance Optimization */
+.section {
+    will-change: transform;
+}
+
+.btn,
+.portfolio .portfolio-item-inner,
+.service .service-item .service-item-inner,
+.blog .blog-item-inner {
+    will-change: transform, box-shadow;
+}
+
+/* Accessibility Enhancements */
+.btn:focus,
+.portfolio .portfolio-filter button:focus,
+.aside .nav li a:focus {
+    outline: 3px solid rgba(102, 126, 234, 0.5);
+    outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================
+   ADDITIONAL FIXES & PREMIUM ENHANCEMENTS
+   ============================================ */
+
+/* Fix horizontal overflow */
+.main-content {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+/* Premium Glossy Card Effects */
+.about .about-content .about-container::before,
+.service .service-item .service-item-inner::before,
+.portfolio .portfolio-item-inner::before,
+.blog .blog-item-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Glossy Reflection on Cards */
+.service .service-item .service-item-inner,
+.portfolio .portfolio-item-inner,
+.blog .blog-item-inner {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(245, 247, 250, 1) 100%);
+}
+
+/* Enhanced Glass Effect for Timeline */
+.skills-education .about-content .timeline,
+.experience .about-content .timeline {
+    position: relative;
+}
+
+.skills-education .about-content .timeline::before,
+.experience .about-content .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, transparent 100%);
+    border-radius: 15px 15px 0 0;
+    pointer-events: none;
+}
+
+/* Dark Mode Enhancements */
+body.dark .section {
+    background: #1a1a2e !important;
+}
+
+body.dark .service .service-item .service-item-inner,
+body.dark .portfolio .portfolio-item-inner,
+body.dark .blog .blog-item-inner,
+body.dark .about .about-content .about-container,
+body.dark .skills-education .about-content .timeline,
+body.dark .experience .about-content .timeline {
+    background: rgba(30, 30, 40, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark .about .about-content .personal-info .info-item p {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Premium Shimmer Effect on Hover */
+.service .service-item .service-item-inner::after,
+.portfolio .portfolio-item-inner::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 70%
+    );
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.service .service-item .service-item-inner:hover::after,
+.portfolio .portfolio-item-inner:hover::after {
+    opacity: 1;
+    animation: shimmer 1.5s ease-in-out;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+/* Enhanced Contact Section */
+.contact .contact-info-item {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 30px;
+    transition: var(--transition-smooth);
+    box-shadow: var(--premium-shadow-md);
+}
+
+.contact .contact-info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--premium-shadow-lg);
+}
+
+body.dark .contact .contact-info-item {
+    background: rgba(30, 30, 40, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Premium Text Highlights */
+.home .intro .text-container p:nth-child(2) {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Gradient Overlays */
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.dark .section::before {
+    background: linear-gradient(180deg, rgba(26, 26, 46, 0.8) 0%, transparent 100%);
+}
+
+.section > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Fix floating animation for profile - make it subtle */
+@keyframes float {
+    0%, 100% { 
+        transform: translateX(-45%) translateY(0px); 
+    }
+    50% { 
+        transform: translateX(-45%) translateY(-15px); 
+    }
+}
+
+.home .intro img {
+    animation: float 6s ease-in-out infinite !important;
+}
+
+/* Glossy Badge/Tag Effects */
+.blog .tag {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+/* Enhanced Portfolio Filter */
+.portfolio .portfolio-filter button {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.portfolio .portfolio-filter button.active {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Smooth Content Fade In */
+.section.active {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Premium Focus States */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* Enhanced Skill Progress Glow */
+.skills-education .about-content .skills .skill-item:hover .progress .progress-in {
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
+}
+
+/* Premium Link Styles */
+a:not(.btn):not(.social-links a) {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+a:not(.btn):not(.social-links a):hover {
+    color: #667eea;
+}
+
+/* Glossy Timeline Enhancement */
+.experience .about-content .timeline .timeline-item:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+}
+
+/* Fix profile image on mobile */
+@media (max-width: 991px) {
+    .home .intro img {
+        position: relative !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        height: auto !important;
+        max-height: 400px !important;
+        margin-top: 30px;
+    }
+    
+    .home .intro img:hover {
+        transform: translateX(-50%) scale(1.02) !important;
+    }
+    
+    @keyframes float {
+        0%, 100% { 
+            transform: translateX(-50%) translateY(0px); 
+        }
+        50% { 
+            transform: translateX(-50%) translateY(-10px); 
+        }
+    }
+}
+
+/* ============================================
+   EXTRA GLOSSY & PREMIUM EFFECTS
+   ============================================ */
+
+/* Glass reflection shine on all cards */
+.service .service-item .service-item-inner,
+.portfolio .portfolio-item-inner,
+.blog .blog-item-inner,
+.about .about-content .about-container {
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.12),
+        0 1px 2px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.service .service-item .service-item-inner:hover,
+.portfolio .portfolio-item-inner:hover,
+.blog .blog-item-inner:hover {
+    box-shadow: 
+        0 14px 28px rgba(0, 0, 0, 0.15),
+        0 10px 10px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Frosted glass navbar on mobile */
+@media (max-width: 991px) {
+    .aside {
+        backdrop-filter: blur(30px) saturate(180%);
+        -webkit-backdrop-filter: blur(30px) saturate(180%);
+        background: rgba(255, 255, 255, 0.85) !important;
+    }
+    
+    body.dark .aside {
+        background: rgba(30, 30, 40, 0.95) !important;
+        backdrop-filter: blur(30px) saturate(150%);
+        -webkit-backdrop-filter: blur(30px) saturate(150%);
+    }
+}
+
+/* Premium gradient borders */
+.service .service-item .service-item-inner,
+.portfolio .portfolio-item-inner,
+.blog .blog-item-inner {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+}
+
+/* Enhance button 3D effect */
+.btn {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 
+        0 4px 6px rgba(102, 126, 234, 0.3),
+        0 1px 3px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn:hover {
+    box-shadow: 
+        0 7px 14px rgba(102, 126, 234, 0.4),
+        0 3px 6px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 
+        0 3px 8px rgba(102, 126, 234, 0.3),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Glossy text effect on headings */
+.section-title h2 {
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+body.dark .section-title h2 {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Premium skill bars with shine */
+.skills-education .about-content .skills .skill-item .progress {
+    position: relative;
+    overflow: visible;
+}
+
+.skills-education .about-content .skills .skill-item .progress::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, transparent 50%);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+/* Enhanced social icons with glow */
+.home .intro .social-links a {
+    position: relative;
+    box-shadow: 
+        0 4px 12px rgba(var(--primary-rgb), 0.4),
+        0 0 0 0 rgba(var(--primary-rgb), 0.5);
+    animation: socialPulse 3s ease-in-out infinite;
+}
+
+@keyframes socialPulse {
+    0%, 100% {
+        box-shadow: 
+            0 4px 12px rgba(var(--primary-rgb), 0.4),
+            0 0 0 0 rgba(var(--primary-rgb), 0.5);
+    }
+    50% {
+        box-shadow: 
+            0 4px 12px rgba(var(--primary-rgb), 0.4),
+            0 0 0 8px rgba(var(--primary-rgb), 0);
+    }
+}
+
+.home .intro .social-links a:hover {
+    animation: none;
+}
+
+/* Premium timeline dots with glow */
+.skills-education .about-content .timeline .circle-dot,
+.experience .about-content .timeline .circle-dot {
+    box-shadow: 
+        0 0 0 4px rgba(102, 126, 234, 0.2),
+        0 0 10px rgba(102, 126, 234, 0.5);
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 0 4px rgba(102, 126, 234, 0.2),
+            0 0 10px rgba(102, 126, 234, 0.5);
+    }
+    50% {
+        box-shadow: 
+            0 0 0 8px rgba(102, 126, 234, 0.1),
+            0 0 15px rgba(102, 126, 234, 0.7);
+    }
+}
+
+/* Luxury gradient text for logo */
+.aside .logo a {
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(102, 126, 234, 0.3);
+}
+
+/* Professional card stack effect */
+.portfolio .portfolio-item-inner {
+    transform-style: preserve-3d;
+}
+
+.portfolio .portfolio-item-inner:hover {
+    transform: translateY(-8px) rotateX(2deg);
+}
+
+/* Premium glass morphism for all sections in light mode */
+body:not(.dark) .section {
+    background: rgba(250, 251, 253, 0.8) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Ensure full dark mode coverage */
+body.dark {
+    background: #0f0f23 !important;
+}
+
+body.dark .section {
+    background: #1a1a2e !important;
+}
+
+body.dark .main-content {
+    background: #0f0f23 !important;
+}
+
+/* High contrast focus for accessibility */
+*:focus-visible {
+    outline: 3px solid #667eea;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+}
+
+/* Smooth page transitions */
+.section {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Premium loading states */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Enhanced hover state for info items */
+.about .about-content .personal-info .info-item p {
+    position: relative;
+    overflow: hidden;
+}
+
+.about .about-content .personal-info .info-item p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.about .about-content .personal-info .info-item p:hover::before {
+    left: 100%;
+}
+
+/* Glossy finish on timeline container */
+.skills-education .about-content .timeline,
+.experience .about-content .timeline {
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+body.dark .skills-education .about-content .timeline,
+body.dark .experience .about-content .timeline {
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Prevent any background color bleeding */
+* {
+    background-clip: padding-box;
+}
+
+/* Ensure sections respect dark mode */
+body.dark .home,
+body.dark .about,
+body.dark .skills-education,
+body.dark .experience,
+body.dark .service,
+body.dark .portfolio,
+body.dark .blog,
+body.dark .contact {
+    background: #1a1a2e !important;
+}
+
+/* ============================================
+   ADVANCED ANIMATIONS & GLASS EFFECTS
+   ============================================ */
+
+/* Animated Logo "Mirjan" with Glass Effect */
+.aside .logo a {
+    animation: logoGlow 3s ease-in-out infinite;
+    position: relative;
+    display: inline-block;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(102, 126, 234, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aside .logo a:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 12px 40px rgba(102, 126, 234, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body.dark .aside .logo a {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+@keyframes logoGlow {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.2);
+    }
+}
+
+/* Animated Home Text Container */
+.home .intro .text-container {
+    animation: fadeInUp 1s ease-out;
+}
+
+/* "Hello," Text Animation */
+.home .intro .text-container p:nth-child(1) {
+    animation: slideInLeft 0.8s ease-out;
+    font-size: 22px;
+    font-weight: 500;
+    color: #667eea;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-delay: 0.2s;
+    position: relative;
+    display: inline-block;
+}
+
+.home .intro .text-container p:nth-child(1)::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: 3px;
+    animation: underlineGrow 0.6s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+/* "I'M MIRJAN" Headline Animation */
+.home .intro .text-container p:nth-child(2) {
+    animation: slideInRight 1s ease-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+    font-weight: 900;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Typewriter effect for name */
+.home .intro .text-container p:nth-child(2)::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fafbfd 0%, #f5f7fa 100%);
+    animation: typewriter 1.5s steps(10) forwards;
+    animation-delay: 0.5s;
+}
+
+body.dark .home .intro .text-container p:nth-child(2)::before {
+    background: #1a1a2e;
+}
+
+/* Subtitle Animation */
+.home .intro .text-container p:nth-child(3) {
+    animation: fadeIn 1.2s ease-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-delay: 1.5s;
+}
+
+/* Premium Profile Picture Animations */
+.home .intro img {
+    animation: profileEntrance 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+               float 6s ease-in-out 1.5s infinite !important;
+    opacity: 0;
+    border-radius: 50% 50% 50% 50% / 45% 45% 55% 55%;
+    box-shadow: 
+        0 20px 60px rgba(102, 126, 234, 0.3),
+        0 0 0 10px rgba(255, 255, 255, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.home .intro img:hover {
+    border-radius: 45% 55% 50% 50% / 50% 50% 45% 55%;
+    box-shadow: 
+        0 30px 80px rgba(102, 126, 234, 0.5),
+        0 0 0 15px rgba(255, 255, 255, 0.15),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(102, 126, 234, 0.6);
+    filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.4)) brightness(1.05);
+}
+
+/* Social Links Sequential Animation */
+.home .intro .social-links a {
+    opacity: 0;
+    animation: socialFadeIn 0.6s ease-out forwards;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.home .intro .social-links a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.home .intro .social-links a:hover::before {
+    opacity: 1;
+}
+
+.home .intro .social-links a:nth-child(1) { animation-delay: 2s; }
+.home .intro .social-links a:nth-child(2) { animation-delay: 2.1s; }
+.home .intro .social-links a:nth-child(3) { animation-delay: 2.2s; }
+.home .intro .social-links a:nth-child(4) { animation-delay: 2.3s; }
+.home .intro .social-links a:nth-child(5) { animation-delay: 2.4s; }
+
+/* Animation Keyframes */
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes underlineGrow {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes typewriter {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+@keyframes profileEntrance {
+    0% {
+        opacity: 0;
+        transform: translateX(-45%) scale(0.8) rotate(-10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-45%) scale(1) rotate(0deg);
+    }
+}
+
+@keyframes socialFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ============================================
+   ENHANCED GLASS MORPHISM ON HOVER
+   ============================================ */
+
+/* Glass Effect on Navigation Items */
+.aside .nav li a {
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aside .nav li a:hover,
+.aside .nav li a.active {
+    background: rgba(102, 126, 234, 0.12);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(102, 126, 234, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Glass Cards with Rounded Corners */
+.service .service-item .service-item-inner,
+.portfolio .portfolio-item-inner,
+.blog .blog-item-inner,
+.about .about-content .about-container {
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.service .service-item .service-item-inner:hover,
+.portfolio .portfolio-item-inner:hover,
+.blog .blog-item-inner:hover {
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-color: rgba(102, 126, 234, 0.3);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(250, 251, 253, 0.95) 100%
+    );
+}
+
+body.dark .service .service-item .service-item-inner:hover,
+body.dark .portfolio .portfolio-item-inner:hover,
+body.dark .blog .blog-item-inner:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(40, 40, 55, 0.9) 0%,
+        rgba(30, 30, 45, 0.9) 100%
+    );
+    border-color: rgba(102, 126, 234, 0.4);
+}
+
+/* Timeline Cards Glass Effect */
+.skills-education .about-content .timeline,
+.experience .about-content .timeline {
+    border-radius: 25px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.skills-education .about-content .timeline .timeline-item,
+.experience .about-content .timeline .timeline-item {
+    border-radius: 15px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skills-education .about-content .timeline .timeline-item:hover,
+.experience .about-content .timeline .timeline-item:hover {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.08) 0%,
+        rgba(118, 75, 162, 0.08) 100%
+    );
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(102, 126, 234, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Contact Items Glass Effect */
+.contact .contact-info-item {
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.contact .contact-info-item:hover {
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(250, 251, 253, 0.98) 100%
+    );
+}
+
+body.dark .contact .contact-info-item:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(40, 40, 55, 0.95) 0%,
+        rgba(30, 30, 45, 0.95) 100%
+    );
+}
+
+/* Section Title Glass Background */
+.section-title h2 {
+    position: relative;
+    padding: 15px 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    transition: all 0.4s ease;
+}
+
+.section-title h2:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+}
+
+/* Progress Bars Glass Container */
+.skills-education .about-content .skills .skill-item {
+    padding: 15px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.skills-education .about-content .skills .skill-item:hover {
+    background: rgba(102, 126, 234, 0.05);
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+}
+
+/* Button Enhanced Glass Effect */
+.btn {
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn:hover {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Portfolio Filter Glass Buttons */
+.portfolio .portfolio-filter button {
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio .portfolio-filter button:hover {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(102, 126, 234, 0.15);
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateY(-3px) scale(1.05);
+}
+
+.portfolio .portfolio-filter button.active {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Info Items Glass Effect */
+.about .about-content .personal-info .info-item p {
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(102, 126, 234, 0.05);
+}
+
+.about .about-content .personal-info .info-item p:hover {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.2);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+}
+
+/* Service Icons Glass Background */
+.service .service-item .service-item-inner .icon {
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.service .service-item .service-item-inner:hover .icon {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Smooth Transitions for All Glass Elements */
+* {
+    transition-property: backdrop-filter, -webkit-backdrop-filter, background, border, box-shadow, transform;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 991px) {
+    .home .intro .text-container p:nth-child(2)::before {
+        animation: none;
+    }
+    
+    @keyframes profileEntrance {
+        0% {
+            opacity: 0;
+            transform: translateX(-50%) scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+    }
+}

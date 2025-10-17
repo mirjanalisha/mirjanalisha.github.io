@@ -1,10 +1,22 @@
+/* Green Theme - Premium Enhancements Compatible */
+:root {
+    /* --primary-gradient: linear-gradient(135deg, #72b626 0%, #8bc34a 100%);
+    --secondary-gradient: linear-gradient(135deg, #8bc34a 0%, #72b626 100%); */
+    --primary-gradient: linear-gradient(135deg, #72b626 0%, #8bc34a 100%) !important;
+    --secondary-gradient: linear-gradient(135deg, #8bc34a 0%, #72b626 100%) !important;
+    --primary-color: #72b626 !important;
+    --primary-rgb: 255, 140, 0 !important;
+    --secondary-color: #8bc34a !important;
+    --secondary-rgb: 255, 165, 0 !important;
+}
+
 .aside .logo a::before{
     border-top: 4px solid #72b626;
     border-left: 4px solid #72b626;
 }
 .aside .logo a::after{
-    border-right: 4px solid #72b626;
-    border-bottom: 4px solid #72b626;
+    border-right: 4px solid #8bc34a;
+    border-bottom: 4px solid #8bc34a;
 }
 
 .contact .contact-info-item .icon .fa,

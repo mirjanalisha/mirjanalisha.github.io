@@ -1,10 +1,20 @@
+/* Orange Theme - Premium Enhancements Compatible */
+:root {
+    --primary-gradient: linear-gradient(135deg, #ff8c00 0%, #ffa500 100%) !important;
+    --secondary-gradient: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%) !important;
+    --primary-color: #ff8c00 !important;
+    --primary-rgb: 255, 140, 0 !important;
+    --secondary-color: #ffa500 !important;
+    --secondary-rgb: 255, 165, 0 !important;
+}
+
 .aside .logo a::before{
-    border-top: 4px solid #ff8c00; /*#fa5b0f;*/
-    border-left: 4px solid #ff8c00; /*#fa5b0f;*/
+    border-top: 4px solid #ff8c00;
+    border-left: 4px solid #ff8c00;
 }
 .aside .logo a::after{
-    border-right: 4px solid #ff8c00; /*#fa5b0f;*/
-    border-bottom: 4px solid #ff8c00; /*#fa5b0f;*/
+    border-right: 4px solid #ffa500;
+    border-bottom: 4px solid #ffa500;
 }
 
 .contact .contact-info-item .icon .fa,
@@ -21,7 +31,7 @@ body.dark .aside .nav li a:hover,
 body.dark .aside .nav li a.active,
 .aside .nav li a:hover,
 .aside .nav li a.active{
-    color: #ff8c00; /*#fa5b0f;*/
+    color: #ff8c00;
 }
 
 .blog .blog-item-inner .blog-img .blog-date,
@@ -36,10 +46,10 @@ body.dark .aside .nav li a.active,
 .aside .nav-toggler span::before,
 .aside .nav-toggler span::after,
 .home .intro .social-links a{
-    background-color: #ff8c00; /*#fa5b0f;*/
+    background-color: #ff8c00;
 }
 
 /* body.dark .portfolio .portfolio-filter button.active, */
 .portfolio .portfolio-filter button.active{
-    border-color: #ff8c00; /*#fa5b0f;*/
+    border-color: #ff8c00;
 }

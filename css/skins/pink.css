@@ -1,10 +1,20 @@
+/* Pink Theme - Premium Enhancements Compatible */
+:root {
+    --primary-gradient: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%) !important;
+    --secondary-gradient: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%) !important;
+    --primary-color: #ff1493 !important;
+    --primary-rgb: 255, 20, 147 !important;
+    --secondary-color: #ff69b4 !important;
+    --secondary-rgb: 255, 105, 180 !important;
+}
+
 .aside .logo a::before{
-    border-top: 4px solid #ff1493; /*#FF69B4; /* #ec1839;*/
-    border-left: 4px solid #ff1493; /*#FF69B4; /* #ec1839;*/
+    border-top: 4px solid #ff1493;
+    border-left: 4px solid #ff1493;
 }
 .aside .logo a::after{
-    border-right: 4px solid #ff1493; /*#FF69B4; /* #ec1839;*/
-    border-bottom: 4px solid #ff1493; /*#FF69B4; /* #ec1839;*/
+    border-right: 4px solid #ff69b4;
+    border-bottom: 4px solid #ff69b4;
 }
 
 .contact .contact-info-item .icon .fa,
@@ -21,7 +31,7 @@ body.dark .aside .nav li a:hover,
 body.dark .aside .nav li a.active,
 .aside .nav li a:hover,
 .aside .nav li a.active{
-    color: #ff1493; /*#FF69B4; /* #ec1839;*/
+    color: #ff1493;
 }
 
 .blog .blog-item-inner .blog-img .blog-date,
@@ -36,10 +46,10 @@ body.dark .aside .nav li a.active,
 .aside .nav-toggler span::before,
 .aside .nav-toggler span::after,
 .home .intro .social-links a{
-    background-color: #ff1493; /*#FF69B4; /* #ec1839;*/
+    background-color: #ff1493;
 }
 
 /* body.dark .portfolio .portfolio-filter button.active, */
 .portfolio .portfolio-filter button.active{
-    border-color: #ff1493; /*#FF69B4; /* #ec1839;*/
+    border-color: #ff1493;
 }

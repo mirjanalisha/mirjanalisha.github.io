@@ -1,10 +1,19 @@
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    --secondary-gradient: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+    --primary-color: #667eea !important;
+    --primary-rgb: 102, 126, 234 !important;
+    --secondary-color: #764ba2 !important;
+    --secondary-rgb: 118, 75, 162 !important;
+}
+
 .aside .logo a::before{
-    border-top: 4px solid #2196f3;
-    border-left: 4px solid #2196f3;
+    border-top: 4px solid #667eea;
+    border-left: 4px solid #667eea;
 }
 .aside .logo a::after{
-    border-right: 4px solid #2196f3;
-    border-bottom: 4px solid #2196f3;
+    border-right: 4px solid #764ba2;
+    border-bottom: 4px solid #764ba2;
 }
 
 .contact .contact-info-item .icon .fa,
@@ -21,7 +30,7 @@ body.dark .aside .nav li a:hover,
 body.dark .aside .nav li a.active,
 .aside .nav li a:hover,
 .aside .nav li a.active{
-    color: #2196f3;
+    color: #667eea;
 }
 
 .blog .blog-item-inner .blog-img .blog-date,
@@ -36,10 +45,10 @@ body.dark .aside .nav li a.active,
 .aside .nav-toggler span::before,
 .aside .nav-toggler span::after,
 .home .intro .social-links a{
-    background-color: #2196f3;
+    background-color: #667eea;
 }
 
 /* body.dark .portfolio .portfolio-filter button.active, */
 .portfolio .portfolio-filter button.active{
-    border-color: #2196f3;
+    border-color: #667eea;
 }
