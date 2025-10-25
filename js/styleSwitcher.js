@@ -15,18 +15,20 @@ function setActiveStyle(color) {
         }
     }
 }
- const navToggle=document.querySelector(".nav-toggler");
-// Toggle Style Switcher
-document.querySelector(".toggle-style-switcher").addEventListener("click", () => {
-    // console.log("hi");
-    document.querySelector(".style-switcher").classList.toggle("open");
-    if (navToggle.classList.contains("hidden")) {
-        navToggle.classList.remove("hidden");
-    }
-    else{
-        navToggle.classList.add("hidden");
-    }
-})
+const navToggle = document.querySelector(".nav-toggler");
+if (navToggle) {
+    navToggle.classList.remove("hidden");
+}
+
+const styleSwitcherToggle = document.querySelector(".toggle-style-switcher");
+if (styleSwitcherToggle) {
+    styleSwitcherToggle.addEventListener("click", () => {
+        const switcher = document.querySelector(".style-switcher");
+        if (switcher) {
+            switcher.classList.toggle("open");
+        }
+    });
+}
 
 // Body Skin Changing
 const bodySkin=document.querySelectorAll(".body-skin"),
