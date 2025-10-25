@@ -364,41 +364,81 @@ function initializeMobileNavigation() {
     const navTogglerBtn = document.querySelector(".nav-toggler");
     const aside = document.querySelector(".aside");
     const allSection = document.querySelectorAll(".section");
-    
+    const mainContent = document.querySelector(".main-content");
+
     if (!navTogglerBtn || !aside) return;
 
-    navTogglerBtn.addEventListener("click", asideSectionTogglerBtn);
+    function setMenuState(shouldOpen) {
+        aside.classList.toggle("open", shouldOpen);
+        navTogglerBtn.classList.toggle("open", shouldOpen);
+        if (mainContent) {
+            mainContent.classList.toggle("open", shouldOpen);
+        }
 
-    function asideSectionTogglerBtn() {
-        aside.classList.toggle("open");
-        navTogglerBtn.classList.toggle("open");
-        
-        for (let i = 0; i < allSection.length; i++) {
-            allSection[i].classList.toggle("open");
+        allSection.forEach(section => {
+            section.classList.toggle("open", shouldOpen);
+        });
+    }
+
+    function toggleMenu() {
+        const willOpen = !aside.classList.contains("open");
+        setMenuState(willOpen);
+    }
+
+    function closeMenu() {
+        if (aside.classList.contains("open")) {
+            setMenuState(false);
         }
     }
 
-    // Close mobile menu when clicking outside
+    navTogglerBtn.addEventListener("click", toggleMenu);
+
     document.addEventListener("click", function(event) {
         if (window.innerWidth < 1200 && aside.classList.contains("open")) {
             const clickInsideAside = aside.contains(event.target);
             const clickOnToggler = navTogglerBtn.contains(event.target);
-            
+
             if (!clickInsideAside && !clickOnToggler) {
-                asideSectionTogglerBtn();
+                closeMenu();
             }
         }
     });
 
-    // Close mobile menu with escape key
     document.addEventListener("keydown", function(event) {
-        if (event.key === "Escape" && aside.classList.contains("open")) {
-            asideSectionTogglerBtn();
+        if (event.key === "Escape") {
+            closeMenu();
         }
     });
 
-    // Expose function globally
-    window.asideSectionTogglerBtn = asideSectionTogglerBtn;
+    window.addEventListener("resize", function() {
+        if (window.innerWidth >= 1200) {
+            closeMenu();
+        }
+    });
+
+    window.asideSectionTogglerBtn = closeMenu;
+}
+
+// ====================================
+// PERSONAL INFO HELPERS
+// ====================================
+function updateAgeFromDOB() {
+    const ageTarget = document.querySelector('[data-dob-age]');
+    if (!ageTarget) return;
+
+    const dob = new Date('1997-03-20T00:00:00');
+    const today = new Date();
+
+    let age = today.getFullYear() - dob.getFullYear();
+    const hasHadBirthdayThisYear =
+        today.getMonth() > dob.getMonth() ||
+        (today.getMonth() === dob.getMonth() && today.getDate() >= dob.getDate());
+
+    if (!hasHadBirthdayThisYear) {
+        age -= 1;
+    }
+
+    ageTarget.textContent = age;
 }
 
 // ====================================
@@ -491,6 +531,12 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Scroll to top initialized");
     } catch (error) {
         console.error("Error initializing scroll to top:", error);
+    }
+    try {
+        updateAgeFromDOB();
+        console.log("Age updated from DOB");
+    } catch (error) {
+        console.error("Error updating age from DOB:", error);
     }
     try {
         initializeFAQ();
