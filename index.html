@@ -1,11 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 
 <head>
-  <title>Portfolio of Mirjan Ali Sha</title>
+  <title>Mirjan Ali Sha — GIS Engineer & Data Scientist | Portfolio</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--   <script src='https://kit.fontawesome.com/a076d05399.js'></script> -->
+  <meta name="description"
+    content="Portfolio of Mirjan Ali Sha — GIS Engineer & Data Scientist specializing in satellite data analysis, QGIS plugin development, geospatial ML pipelines, and Python package development.">
+  <meta name="author" content="Mirjan Ali Sha">
+  <meta name="keywords"
+    content="GIS Engineer, Data Scientist, QGIS Plugins, Python Packages, Remote Sensing, Geospatial, Machine Learning">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mirjanalisha.github.io/">
+  <meta property="og:title" content="Mirjan Ali Sha — GIS Engineer & Data Scientist">
+  <meta property="og:description"
+    content="Explore my portfolio of QGIS plugins, PyPI packages, geospatial ML projects, and satellite data pipelines.">
+  <meta property="og:image" content="https://mirjanalisha.github.io/images/image_1.png">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@mirjanalisha">
+  <meta name="twitter:title" content="Mirjan Ali Sha — GIS Engineer & Data Scientist">
+  <meta name="twitter:description"
+    content="Explore my portfolio of QGIS plugins, PyPI packages, geospatial ML projects, and satellite data pipelines.">
+  <meta name="twitter:image" content="https://mirjanalisha.github.io/images/image_1.png">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://mirjanalisha.github.io/">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mirjan Ali Sha",
+    "jobTitle": "GIS Engineer & Data Scientist",
+    "url": "https://mirjanalisha.github.io/",
+    "email": "mirjan.personal@gmail.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/mirjanalisha",
+      "https://twitter.com/mirjanalisha",
+      "https://github.com/Mirjan-Ali-Sha",
+      "https://www.datacamp.com/portfolio/mirjanalisha"
+    ],
+    "knowsAbout": ["GIS", "Remote Sensing", "Machine Learning", "Python", "QGIS", "Data Science"]
+  }
+  </script>
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <!-- Template css Files -->
   <link rel="stylesheet" href="css/style.css" type="text/css">
   <link rel="stylesheet" href="css/skins/blue.css" type="text/css">
@@ -26,22 +75,26 @@
 
   <!-- Contact CSS -->
   <link rel="stylesheet" href="css/contact.css">
-  
+
   <!-- Premium Enhancements CSS -->
   <link rel="stylesheet" href="css/premium-enhancements.css" type="text/css">
 
   <link rel="stylesheet" href="css/styleSwitcher.css" type="text/css">
   <link rel="icon" href="./images/about.png">
+  <!-- Preload hero image -->
+  <link rel="preload" href="./images/image_1.png" as="image">
 </head>
 
 <body>
+  <!-- Skip Navigation Link -->
+  <!-- <a href="#home" class="skip-nav">Skip to main content</a> -->
   <!-- Preloader -->
   <div class="preloader">
     <div class="loader"></div>
   </div>
   <!-- Preloader End -->
   <!-- Main Container -->
-  <div class="main-cotainer">
+  <div class="main-container">
     <!-- Aside -->
     <div class="aside">
       <!-- Nav Toggler Btn -->
@@ -56,28 +109,32 @@
         </div>
         <!-- Logo End -->
         <!-- Nav -->
-        <ul class="nav">
-          <li><a href="#home" class="active"><i class="fa fa-home"></i> Home </a></li>
-          <li><a href="#about"><i class="fa fa-user"></i> About </a></li>
-          <li><a href="#skills-education"><i class="fa fa-graduation-cap"></i> Skills & Education </a></li>
-          <li><a href="#experience"><i class="fa fa-briefcase"></i> Work Experiences </a></li>
-          <li><a href="#service"><i class="fa fa-list"></i> Services </a></li>
-          <li><a href="#portfolio"><i class="fa fa-code"></i> Other Projects </a></li>
-          <li><a href="#blog"><i class="fa fa-envelope"></i> Blog </a></li>
-          <li><a href="#contact"><i class="fa fa-comments"></i> Contact </a></li>
-          <li><a href="#faq"><i class="fa fa-comments"></i> FAQs </a></li>
-        </ul>
+        <nav aria-label="Main navigation">
+          <ul class="nav">
+            <li><a href="#home" class="active"><i class="fa fa-home"></i> Home </a></li>
+            <li><a href="#about"><i class="fa fa-user"></i> About </a></li>
+            <li><a href="#skills-education"><i class="fa fa-graduation-cap"></i> Skills & Education </a></li>
+            <li><a href="#experience"><i class="fa fa-briefcase"></i> Work Experiences </a></li>
+            <li><a href="#service"><i class="fa fa-list"></i> Services</a></li>
+            <li><a href="#portfolio"><i class="fa fa-code"></i> Other Projects </a></li>
+            <li><a href="#blog"><i class="fa fa-envelope"></i> Blog </a></li>
+            <li><a href="#contact"><i class="fa fa-comments"></i> Contact </a></li>
+            <li><a href="#faq"><i class="fa fa-comments"></i> FAQs </a></li>
+          </ul>
+        </nav>
         <!-- Nav End -->
         <!-- Copyright -->
         <div class="copyright-text">
-          &copy; 2020 Mirjan Ali Sha<a href="https://mirjanalisha.github.io/email-signatures/" target="_blank">.</a>
+          &copy; 2020-<span id="copyrightYear"></span> Mirjan Ali Sha<a
+            href="https://mirjanalisha.github.io/email-signatures/" target="_blank">.</a>
         </div>
+        <script>document.getElementById('copyrightYear').textContent = new Date().getFullYear();</script>
         <!-- Copyright End -->
       </div>
     </div>
     <!-- Aside End-->
     <!-- Main Content -->
-    <div class="main-content">
+    <main class="main-content" id="main-content">
       <!-- <div class="upper-nav">
         <ul>
           <li><a href="#home" class="active">Home</a></li>
@@ -89,32 +146,33 @@
       <section class="home section active" id="home">
         <div class="container">
           <div class="intro">
-<!--             <img src="./images/Profile.png" alt="profile" class="profile"> -->
-            <img src="./images/image_1.png" alt="profile" class="profile">
+            <!--             <img src="./images/Profile.png" alt="profile" class="profile"> -->
+            <img src="./images/image_1.png" alt="Mirjan Ali Sha - GIS Engineer and Data Scientist" class="profile"
+              width="928" height="923">
             <div class="text-container">
               <p>Hello,</p>
-              <p>I&#8217;M MIRJAN</p>
+              <h1 class="hero-name">I&#8217;M MIRJAN</h1>
               <p>M.Sc. in Remote Sensing and GIS <br>& IBM Data Science Professional Certificate</p>
             </div>
             <!-- <h1>Mirjan Ali Sha</h1>
             <p>M.Sc. in Remote Sensing and GIS</p> -->
             <div class="social-links">
               <a href="https://www.linkedin.com/in/mirjanalisha" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-linkedin-in"></i>
               </a>
               <a href="https://www.datacamp.com/portfolio/mirjanalisha" target="_blank" rel="noopener noreferrer">
-                  <i class="fa-solid fa-circle-user"></i>
+                <i class="fa-solid fa-circle-user"></i>
               </a>
               <a href="https://twitter.com/mirjanalisha" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-twitter"></i>
+                <i class="fab fa-twitter"></i>
               </a>
               <a href="https://www.facebook.com/mirjanali.sha" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-facebook-f"></i>
               </a>
               <a href="https://www.instagram.com/mirjanalisha/" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-instagram"></i>
+                <i class="fab fa-instagram"></i>
               </a>
-          </div>
+            </div>
           </div>
         </div>
       </section>
@@ -132,62 +190,75 @@
             <div class="about-content padd-15">
               <div class="row about-container">
                 <!--img-->
-                <img src="./images/about-image.png" />
+                <img src="./images/about-image.png" alt="Mirjan Ali Sha professional profile photo" width="271"
+                  height="322" loading="lazy">
                 <div class="about-text padd-15">
-                  <h3>Mirjan Ali Sha<span> [Personal Information]</span></h3>
-                  <p>GIS Engineer & Data Scientist</p>
-                  <p>Hi! My name is Mirjan Ali Sha. I have completed my M.Sc. in Remote Sensing & GIS and I have 4+
-                    years of
-                    working experience as GIS Engineer specializing in ML-GIS, Satellite Data Analysis, and Geospatial
-                    AI.
-                    Currently working with cutting-edge technologies including PySpark, Kubernetes, Google Earth Engine,
-                    and GenAI tools.
-                    I'm passionate about developing innovative GIS solutions and contributing to open-source geospatial
-                    community.
-                  </p>
-                </div>
-              </div>
-              <!-- Personal Information -->
-              <div class="row">
-                <div class="personal-info padd-15">
-                  <div class="row">
-                    <div class="info-item padd-15">
-                      <p>Degree : <span>Master of Science (M.Sc.)</span></p>
-                    </div>
-                    <div class="info-item padd-15">
-                      <p>City : <span>Bengaluru</span></p>
-                    </div>
-                    <div class="info-item padd-15">
-                      <p>Age : <span data-dob-age></span></p>
-                    </div>
-                    <div class="info-item padd-15">
-                      <a href="https://mirjanalisha.github.io/"><p>Website : <span>https://mirjanalisha.github.io/</span></p></a>
-                    </div>
-                    <div class="info-item padd-15">
-                      <p>Email : <span>mirjan.personal@gmail.com</span></p>
-                    </div>
-                    <div class="info-item padd-15">
-                      <p>Phone : <span>+91 xxxxxxxxxx</span></p>
-                    </div>
-                    <div class="info-item padd-15">
-                      <p>Experience : <span>4+ Years</span></p>
-                    </div>
-                    <div class="info-item padd-15">
-                      <p>Freelance : <span>N/A</span></p>
-                    </div>
+                  <div class="about-text padd-15">
+                    <h3>Mirjan Ali Sha<span> [Professional Profile]</span></h3>
+                    <p>GIS Engineer & Data Scientist</p>
+                    <p>I am a results-driven <strong>GIS Engineer and Data Scientist</strong> with over 5 years of
+                      expertise at the intersection of geospatial technology and Machine Learning. Currently, I
+                      specialize in the ML-GIS department at Nurture (AFS) Agtech, where I architect high-performance
+                      pipelines that transform raw satellite data into actionable insights for sustainable agriculture.
+                    </p>
+                    <p>My work focuses on building scalable infrastructure using <strong>PySpark, Kubernetes, and
+                        AWS</strong>, while leveraging <strong>n8n</strong> to develop secure, production-grade REST
+                      APIs and advanced <strong>AI Chat Agents</strong> for intelligent geospatial interaction. I am
+                      deeply committed to open-source innovation, having developed multiple PyPI packages and QGIS
+                      plugins that empower the global geospatial community.</p>
                   </div>
-                  <div class="row">
-                    <div class="buttons padd-15">
-                      <a href="https://forms.gle/C2Wta7zTjmzNEktv6" target="_blank" class="btn">Download CV</a>
-                     <a href="#contact" class="btn">Hire Me</a>
-<!--                       <a href="https://forms.gle/MRVewTZmxfM8W9i97" target="_blank" class="btn">Hire Me</a> -->
+                </div>
+                <!-- Personal Information -->
+                <div class="row">
+                  <div class="personal-info padd-15">
+                    <div class="row">
+                      <div class="info-item padd-15">
+                        <p>Degree : <span>Master of Science (M.Sc.)</span></p>
+                      </div>
+                      <div class="info-item padd-15">
+                        <p>City : <span>Bengaluru</span></p>
+                      </div>
+                      <div class="info-item padd-15">
+                        <p>Age : <span data-dob-age></span></p>
+                      </div>
+                      <div class="info-item padd-15">
+                        <a href="https://mirjanalisha.github.io/">
+                          <p>Website : <span>https://mirjanalisha.github.io/</span></p>
+                        </a>
+                      </div>
+                      <div class="info-item padd-15">
+                        <p>Email : <span>mirjan.personal@gmail.com</span></p>
+                      </div>
+                      <div class="info-item padd-15">
+                        <p>Phone : <span>+91 xxxxxxxxxx</span></p>
+                      </div>
+                      <div class="info-item padd-15">
+                        <p>Experience : <span>5+ Years</span></p>
+                      </div>
+                      <div class="info-item padd-15">
+                        <p>QGIS Plugins : <span>15+</span></p>
+                      </div>
+                      <div class="info-item padd-15">
+                        <p>PyPI Packages : <span>4</span></p>
+                      </div>
+                      <div class="info-item padd-15">
+                        <p>Total Tools Downloads : <span>100K+</span></p>
+                      </div>
+                      <!-- <div class="info-item padd-15">
+                        <p>Freelance : <span>N/A</span></p>
+                      </div> -->
+                    </div>
+                    <div class="row">
+                      <div class="buttons padd-15">
+                        <a href="https://forms.gle/C2Wta7zTjmzNEktv6" target="_blank" class="btn">Download CV</a>
+                        <a href="#contact" class="btn">Hire Me</a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
       </section>
 
       <!-- Skills & Education Section -->
@@ -203,55 +274,64 @@
               <!-- Skills -->
               <div class="row">
                 <h2 class="title padd-15">Technical Skills</h2>
-                <div class="skills padd-15">
-                  <div class="row">
-                    <div class="skill-item padd-15">
-                      <h5>ArcGIS & ArcGIS Pro</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                      </div>
+                <div class="skills-tags padd-15">
+                  <div class="skill-category">
+                    <h4 class="category-title"><i class="fas fa-globe-americas"></i> GIS & Remote Sensing</h4>
+                    <div class="tag-group">
+                      <span class="skill-tag">ArcGIS Pro</span>
+                      <span class="skill-tag">QGIS</span>
+                      <span class="skill-tag">Plugin Development</span>
+                      <span class="skill-tag">Google Earth Engine</span>
+                      <span class="skill-tag">PostGIS</span>
+                      <span class="skill-tag">GeoServer</span>
+                      <span class="skill-tag">Spatial Analysis</span>
+                      <span class="skill-tag">Satellite Data Processing</span>
                     </div>
-                    <div class="skill-item padd-15">
-                      <h5>QGIS & Plugin Development</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                      </div>
+                  </div>
+                  <div class="skill-category">
+                    <h4 class="category-title"><i class="fas fa-code"></i> Programming & Data</h4>
+                    <div class="tag-group">
+                      <span class="skill-tag">Python</span>
+                      <span class="skill-tag">JavaScript</span>
+                      <span class="skill-tag">PySpark</span>
+                      <span class="skill-tag">SQL</span>
+                      <span class="skill-tag">PostgreSQL</span>
+                      <span class="skill-tag">Flask</span>
+                      <span class="skill-tag">HTML/CSS</span>
                     </div>
-                    <div class="skill-item padd-15">
-                      <h5>Python & PySpark</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                      </div>
+                  </div>
+                  <div class="skill-category">
+                    <h4 class="category-title"><i class="fas fa-brain"></i> AI & Machine Learning</h4>
+                    <div class="tag-group">
+                      <span class="skill-tag">TensorFlow</span>
+                      <span class="skill-tag">Transformers</span>
+                      <span class="skill-tag">Ollama</span>
+                      <span class="skill-tag">OpenWebUI</span>
+                      <span class="skill-tag">Semantic Segmentation</span>
+                      <span class="skill-tag">Classification</span>
                     </div>
-                    <div class="skill-item padd-15">
-                      <h5>Google Earth Engine & JavaScript</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                      </div>
+                  </div>
+                  <div class="skill-category">
+                    <h4 class="category-title"><i class="fas fa-cloud"></i> Cloud & DevOps</h4>
+                    <div class="tag-group">
+                      <span class="skill-tag">AWS S3</span>
+                      <span class="skill-tag">AWS Athena</span>
+                      <span class="skill-tag">AWS ECR</span>
+                      <span class="skill-tag">Kubernetes</span>
+                      <span class="skill-tag">Docker</span>
+                      <span class="skill-tag">Jenkins</span>
+                      <span class="skill-tag">GitLab</span>
                     </div>
-                    <div class="skill-item padd-15">
-                      <h5>AWS S3, Athena, ECR & Kubernetes</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>PostgreSQL (PostGIS) & GeoServer</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>TensorFlow & Machine Learning</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>GenAI Tools (Transformers, Ollama, OpenWebUI)</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                      </div>
+                  </div>
+                  <div class="skill-category">
+                    <h4 class="category-title"><i class="fas fa-cogs"></i> Automation & Tools</h4>
+                    <div class="tag-group">
+                      <span class="skill-tag">n8n</span>
+                      <span class="skill-tag">REST APIs</span>
+                      <span class="skill-tag">AI Chat Agents</span>
+                      <span class="skill-tag">PyPI Packages</span>
+                      <span class="skill-tag">QGIS Plugins</span>
+                      <span class="skill-tag">Azure Databricks</span>
                     </div>
                   </div>
                 </div>
@@ -269,7 +349,8 @@
                           <div class="circle-dot"></div>
                           <h6 class="timeline-date"><i class="fa fa-calendar"></i> 2018-2020</h6>
                           <h4 class="timeline-title">M.Sc. in Remote Sensing and GIS</h4>
-                          <p class="timeline-text"><a href="http://www.vidyasagar.ac.in/" target="_blank">Vidyasagar University</a> -
+                          <p class="timeline-text"><a href="http://www.vidyasagar.ac.in/" target="_blank">Vidyasagar
+                              University</a> -
                             CGPA: 8.44.
                             Specialized in Remote Sensing Data Analysis, GIS Works, WebGIS, Geospatial Analysis, and R
                             Programming.</p>
@@ -281,9 +362,11 @@
                           <h6 class="timeline-date"><i class="fa fa-calendar"></i> 2019-2020</h6>
                           <h4 class="timeline-title">IBM Data Science Professional Certificate</h4>
                           <p class="timeline-text"><a
-                              href="https://www.coursera.org/account/accomplishments/professional-cert/N6LXBWWAUPLN" target="_blank">IBM
+                              href="https://www.coursera.org/account/accomplishments/professional-cert/N6LXBWWAUPLN"
+                              target="_blank">IBM
                               Skills Network (Coursera)</a> -
-                            Completed 9 comprehensive courses covering Python, Machine Learning, Data Visualization, and Statistical Analysis.</p>
+                            Completed 9 comprehensive courses covering Python, Machine Learning, Data Visualization, and
+                            Statistical Analysis.</p>
                         </div>
 
                         <!-- Timeline Item 3 -->
@@ -291,7 +374,9 @@
                           <div class="circle-dot"></div>
                           <h6 class="timeline-date"><i class="fa fa-calendar"></i> 2022-2023</h6>
                           <h4 class="timeline-title">Business Analytics Certification</h4>
-                          <p class="timeline-text"><a href="https://www.credential.net/2423eeb8-b800-4d30-8ca3-b66f6420bbc3#acc.oTJQ4jSA"  target="_blank">IIIT Bangalore (UpGrad)</a> - 6 months intensive program
+                          <p class="timeline-text"><a
+                              href="https://www.credential.net/2423eeb8-b800-4d30-8ca3-b66f6420bbc3#acc.oTJQ4jSA"
+                              target="_blank">IIIT Bangalore (UpGrad)</a> - 6 months intensive program
                             covering
                             Business Analytics, Data Mining, and Advanced Statistical Methods.</p>
                         </div>
@@ -313,1244 +398,1310 @@
           </div>
         </div>
       </section>
+      <!-- About Section End -->
 
-      <!--                 <h2 class="title padd-15">Skills</h2>
-                <div class="skills padd-15">
-                  <div class="row">
-                    <div class="skill-item padd-15">
-                      <h5>ArcGIS & ArcGIS Pro</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                        <!-- <div class="skill-percent">90%</div> --><!--
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>QGIS</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                        <!-- <div class="skill-percent">80%</div> --><!--
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>ENVI & ERDAS Imagine</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                        <!-- <div class="skill-percent">70%</div> --><!--
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>MapInfo</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                        <!-- <div class="skill-percent">60%</div> --><!--
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>AutoCAD Map/Civil 3D</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                        <!-- <div class="skill-percent">60%</div> --><!--
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>Google Earth Engine & JavaScript</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                        <!-- <div class="skill-percent">80%</div> --><!--
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>WebGIS <span>(OpenLayers, GeoServer, PostgreSQL, ArcGIS API etc.)</span></h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                        <!-- <div class="skill-percent">70%</div> --><!--
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>Python & R Programming*</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                        <!-- <div class="skill-percent">75%</div> --><!--
-                      </div>
-                    </div>
-                    < class="skill-item padd-15">
-                      <h5>SPSS, Excel</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                        <!-- <div class="skill-percent">75%</div> --><!--
-    </div>
-
-    <div class="skill-item padd-15">
-      <h5>Data Science with Python</h5>
-      <div class="progress">
-        <div class="progress-in" style="width: 100%"></div>
-        <!-- <div class="skill-percent">80%</div> --><!--
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>Web Design <span>(HTML,CSS,JavaScript,Bootstrap,PHP,Angular etc.)</span></h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 100%"></div>
-                        <!-- <div class="skill-percent">70%</div> --><!--
-                      </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>Notes: <span>* Skill percentage povided on my field GIS and Remote Sensing.</span></h5>
-                      <!-- <div class="progress">
-                        <div class="progress-in" style="width: 70%"></div>
-                        <div class="skill-percent">70%</div>
-                      </div> --><!--
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Personal Information End -->
-        <!-- Education and Experiences --><!--
+      <!-- Working Experience Section -->
+      <section class="experience section" id="experience">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>Working Experience</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="about-content padd-15">
               <div class="row">
-                <div class="education padd-15">
-                  <h3 class="title">Education</h3>
-                  <div class="row">
-                    <div class="timeline-box padd-15">
-                      <div class="timeline shadow-dark">
-                        <!-- Timeline Item 1 --><!--
-                        <div class="timeline-item">
-                          <div class="circle-dot"></div>
-                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> 2018-2020</h6>
-                          <h4 class="timeline-title">M.Sc. in Remote Sensing and GIS</h4>
-                          <p class="timeline-text"><a href="http://www.vidyasagar.ac.in/">Vidyasagar University Regular
-                              Course</a>. In this course I learned
-                            Remote Sensing Data Collection (Satellite Image, GPS & LAI Data etc.), GIS Works, WebGIS,
-                            Geospatial Analysis, R etc.</p>
-                        </div>
-                        <!-- Timeline Item 1 End -->
-        <!-- Timeline Item 2 --><!--
-                        <div class="timeline-item">
-                          <div class="circle-dot"></div>
-                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> 2015-2018</h6>
-                          <h4 class="timeline-title">B.A. (Hons.) in Geography</h4>
-                          <p class="timeline-text"><a href="https://www.buruniv.ac.in/">Burdwan University Regular
-                              Course</a>. In this course I learned
-                            about Geographical Features, Cartography, Physiography, Climatology, Hydrology, Surveying
-                            etc.</p>
-                        </div>
-                        <!-- Timeline Item 2 End -->
-        <!-- Timeline Item 3 --><!--
-                        <div class="timeline-item">
-                          <div class="circle-dot"></div>
-                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> 2015-2016</h6>
-                          <h4 class="timeline-title">Certificate in Computer Application (CCA)</h4>
-                          <p class="timeline-text"><a href="https://www.nycld.com/">National Youth Computer Literacy
-                              Drive (NYCLD)</a>. In this course I learned
-                            Basics of Computer, Internet, MS-Office (Word, Excel, PowerPoint, Access) etc.</p>
-                        </div>
-                        <!-- Timeline Item 3 End -->
-        <!-- Timeline Item 4 --><!--
-                        <div class="timeline-item">
-                          <div class="circle-dot"></div>
-                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> 2016-2018</h6>
-                          <h4 class="timeline-title">Computer Fundamentals with Specialization in Programming</h4>
-                          <p class="timeline-text"><a href="https://www.webeltechnology.com/">Webel Technology</a>. In
-                            this course I learned Computer Fundamentals, Computer
-                            Programming (C/C++, HTML, CSS, JavaScript etc.), MS-Office, Basic Accounting etc.</p>
-                        </div>
-                        <!-- Timeline Item 4 End --><!--
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 <div class="experiences padd-15">
-                  <h3 class="title">Online Courses
-                    <!--Experiences --><!--
-                  </h3>
                   <div class="row">
                     <div class="timeline-box padd-15">
                       <div class="timeline shadow-dark">
-                        <!-- Timeline Item 1 --><!--
+                        <!-- Timeline Item 1 -->
                         <div class="timeline-item">
                           <div class="circle-dot"></div>
-                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> 2019-2020</h6>
-                          <h4 class="timeline-title">Data Science with Python</h4>
-                          <p class="timeline-text"><a href="https://www.datacamp.com/profile/mirjanalisha">DataCamp
-                              Online Courses</a>. I learned more than 60 courses on Data
-                            Science with Python from this platform.</p>
+                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> May 2022 - Present</h6>
+                          <h4 class="timeline-title">GIS Engineer (ML-GIS Department)</h4>
+                          <h5 class="timeline-company">Nurture (AFS) Agtech Pvt. Ltd, Bangalore</h5>
+                          <p class="timeline-text">• Developing advanced geospatial solutions for Burn Detection,
+                            Tillage Detection, and Bailing Detection using satellite imagery<br>
+                            • Building end-to-end ML pipelines from raw MSI/SAR tile data to database insights using
+                            PySpark and cloud technologies<br>
+                            • Working with Big Data infrastructure: AWS S3, Athena Query, ECR, Jenkins, Kubernetes,
+                            Spinnaker, and Azure Databricks<br>
+                            • Implementing Carbon Credit sustainability projects using Python, Google Earth Engine,
+                            and QGIS<br>
+                            • Building production-grade REST-like API endpoints using <strong>n8n Webhooks</strong> and
+                            high-security
+                            automation workflows<br>
+                            • Developing and deploying specialized <strong>AI Chat Agents</strong> for intelligent
+                            geospatial data
+                            interaction<br>
+                            <strong>Tools:</strong> PySpark, AWS Suite, Kubernetes, Google Earth Engine, QGIS, n8n,
+                            Jenkins, GitLab, Docker
+                          </p>
                         </div>
-                        <!-- Timeline Item 1 End -->
-        <!-- Timeline Item 2 --><!--
+
+                        <!-- Timeline Item 2 -->
                         <div class="timeline-item">
                           <div class="circle-dot"></div>
-                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> 5th May 2020</h6>
-                          <h4 class="timeline-title">Data Scientist Nanodegree</h4>
-                          <p class="timeline-text"><a href="https://confirm.udacity.com/5QPSFUUU">Udacity Online
-                              Course</a></p>
+                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> Sep 2021 - Mar 2022</h6>
+                          <h4 class="timeline-title">GIS Engineer</h4>
+                          <h5 class="timeline-company">SkyMap Global Pvt. Ltd, Kolkata</h5>
+                          <p class="timeline-text">• Led Administrative Mapping Project involving village-level
+                            administrative layout creation<br>
+                            • Developed three-tier administrative boundary systems and managed large-scale database
+                            updates<br>
+                            • Implemented quality control processes for spatial data validation and accuracy
+                            assessment<br>
+                            <strong>Tools:</strong> ArcGIS, Spatial Database Management
+                          </p>
                         </div>
-                        <!-- Timeline Item 2 End -->
-        <!-- Timeline Item 3 --><!--
+
+                        <!-- Timeline Item 3 -->
                         <div class="timeline-item">
                           <div class="circle-dot"></div>
-                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> 2019-2020 [January 22, 2020]</h6>
-                          <h4 class="timeline-title">Machine Learning of Standford University</h4>
-                          <p class="timeline-text"><a
-                              href="https://www.coursera.org/account/accomplishments/records/M9EPJZ5X4ES6">Coursera
-                              Online Course</a></p>
+                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> Mar 2021 - Sep 2021</h6>
+                          <h4 class="timeline-title">GIS / CAD Engineer</h4>
+                          <h5 class="timeline-company">Aabsys IT Pvt. Ltd, Bhubaneswar</h5>
+                          <p class="timeline-text">• Executed Navigation Mapping Project for city-level road and
+                            administrative boundary extraction<br>
+                            • Developed automated validation systems using surveyed geotagged photos<br>
+                            • Created custom ArcGIS Python tools and ModelBuilder workflows to optimize team
+                            productivity<br>
+                            <strong>Tools:</strong> ArcGIS, AutoCAD Map 3D, Python Toolbox, ArcGIS ModelBuilder, Zoho
+                            Project Management
+                          </p>
                         </div>
-                        <!-- Timeline Item 3 End -->
-        <!-- Timeline Item 3 --><!--
+
+                        <!-- Timeline Item 4 -->
                         <div class="timeline-item">
                           <div class="circle-dot"></div>
-                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> 2019-2020 [September 11, 2020]</h6>
-                          <h4 class="timeline-title">IBM Data Science Professional Certificate</h4>
-                          <p class="timeline-text"><a
-                              href="https://www.coursera.org/account/accomplishments/professional-cert/N6LXBWWAUPLN">Coursera
-                              Online Course</a></p>
+                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> Jan 2020 - Aug 2020</h6>
+                          <h4 class="timeline-title">Research Scholar (Dissertation)</h4>
+                          <h5 class="timeline-company">Vidyasagar University, Medinipur</h5>
+                          <p class="timeline-text">• Conducted research on "Crop Identification and Yield Estimation
+                            Using Sentinel-1 & 2 on Google Earth Engine"<br>
+                            • Supervised by Dr. Dipanwita Dutta, Assistant Professor<br>
+                            • Developed machine learning models for agricultural monitoring using multi-spectral
+                            satellite data<br>
+                            <strong>Tools:</strong> Google Earth Engine, JavaScript, Statistical Analysis
+                          </p>
                         </div>
-                        <!-- Timeline Item 3 End -->
-        <!-- Timeline Item 3 --><!--
-                        <div class="timeline-item">
-                          <div class="circle-dot"></div>
-                          <h6 class="timeline-date"><i class="fa fa-calendar"></i> 2019-Present</h6>
-                          <h4 class="timeline-title">Geographic Information System of UCDevis University</h4>
-                          <p class="timeline-text"><a href="#">Coursera Online Course</a>. I completed 4 courses of 5
-                            courses and waiting for the next season to join next one.</p>
-                        </div>
-                        <!-- Timeline Item 3 End --><!--
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- Education and Experiences End --><!--
             </div>
           </div>
         </div>
       </section>
-      <!-- About Section End -->
 
-        <!-- Working Experience Section -->
-        <section class="experience section" id="experience">
-          <div class="container">
-            <div class="row">
-              <div class="section-title padd-15">
-                <h2>Working Experience</h2>
+      <!-- Services Section -->
+      <section class="service section" id="service">
+        <div class="container">
+          <div class="row">
+            <div class="section-title">
+              <h2>Services (Offered)</h2>
+            </div>
+          </div>
+          <div class="row">
+            <!-- Service Item 1 -->
+            <div class="service-item padd-15">
+              <div class="service-item-inner">
+                <div class="icon"><i class="fas fa-layer-group"></i></div>
+                <h4>Geospatial Analysis</h4>
+                <p>Advanced spatial data analysis using satellite imagery, drone data, and <strong>custom GIS plugin
+                    development for QGIS & ArcGIS</strong>. Specializing in agricultural monitoring, environmental
+                  analysis, and spatial modeling with automated GIS workflows.</p>
               </div>
             </div>
-            <div class="row">
-              <div class="about-content padd-15">
-                <div class="row">
-                  <div class="experiences padd-15">
-                    <div class="row">
-                      <div class="timeline-box padd-15">
-                        <div class="timeline shadow-dark">
-                          <!-- Timeline Item 1 -->
-                          <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h6 class="timeline-date"><i class="fa fa-calendar"></i> May 2022 - Present</h6>
-                            <h4 class="timeline-title">GIS Engineer (ML-GIS Department)</h4>
-                            <h5 class="timeline-company">Nurture (AFS) Agtech Pvt. Ltd, Bangalore</h5>
-                            <p class="timeline-text">• Developing advanced geospatial solutions for Burn Detection,
-                              Tillage Detection, and Bailing Detection using satellite imagery<br>
-                              • Building end-to-end ML pipelines from raw MSI/SAR tile data to database insights using
-                              PySpark and cloud technologies<br>
-                              • Working with Big Data infrastructure: AWS S3, Athena Query, ECR, Jenkins, Kubernetes,
-                              Spinnaker, and Azure Databricks<br>
-                              • Implementing Carbon Credit sustainability projects using Python, Google Earth Engine,
-                              and
-                              QGIS<br>
-                              <strong>Tools:</strong> PySpark, AWS Suite, Kubernetes, Google Earth Engine, QGIS,
-                              Jenkins, GitLab, Docker
-                            </p>
-                          </div>
 
-                          <!-- Timeline Item 2 -->
-                          <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h6 class="timeline-date"><i class="fa fa-calendar"></i> Sep 2021 - Mar 2022</h6>
-                            <h4 class="timeline-title">GIS Engineer</h4>
-                            <h5 class="timeline-company">SkyMap Global Pvt. Ltd, Kolkata</h5>
-                            <p class="timeline-text">• Led Administrative Mapping Project involving village-level
-                              administrative layout creation<br>
-                              • Developed three-tier administrative boundary systems and managed large-scale database
-                              updates<br>
-                              • Implemented quality control processes for spatial data validation and accuracy
-                              assessment<br>
-                              <strong>Tools:</strong> ArcGIS, Spatial Database Management
-                            </p>
-                          </div>
+            <!-- Service Item 2 -->
+            <div class="service-item padd-15">
+              <div class="service-item-inner">
+                <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                <h4>Websites and Web Apps Development</h4>
+                <p>Designing and developing modern, responsive web applications and interactive GIS dashboards.
+                  Specializing in integrating spatial data into web platforms for seamless visualization and interactive
+                  user experiences.</p>
+              </div>
+            </div>
 
-                          <!-- Timeline Item 3 -->
-                          <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h6 class="timeline-date"><i class="fa fa-calendar"></i> Mar 2021 - Sep 2021</h6>
-                            <h4 class="timeline-title">GIS / CAD Engineer</h4>
-                            <h5 class="timeline-company">Aabsys IT Pvt. Ltd, Bhubaneswar</h5>
-                            <p class="timeline-text">• Executed Navigation Mapping Project for city-level road and
-                              administrative boundary extraction<br>
-                              • Developed automated validation systems using surveyed geotagged photos<br>
-                              • Created custom ArcGIS Python tools and ModelBuilder workflows to optimize team
-                              productivity<br>
-                              <strong>Tools:</strong> ArcGIS, AutoCAD Map 3D, Python Toolbox, ArcGIS ModelBuilder, Zoho
-                              Project Management
-                            </p>
-                          </div>
+            <!-- Service Item 3 -->
+            <div class="service-item padd-15">
+              <div class="service-item-inner">
+                <div class="icon"><i class="fab fa-python"></i></div>
+                <h4>Python Package Development</h4>
+                <p>Developing custom <strong>Python packages and automated tools</strong> for geospatial data access,
+                  analysis, and processing. Published packages include open-geodata-api, astrokundali, and
+                  ai-research-planner available on PyPI with comprehensive documentation.</p>
+              </div>
+            </div>
 
-                          <!-- Timeline Item 4 -->
-                          <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h6 class="timeline-date"><i class="fa fa-calendar"></i> Jan 2020 - Aug 2020</h6>
-                            <h4 class="timeline-title">Research Scholar (Dissertation)</h4>
-                            <h5 class="timeline-company">Vidyasagar University, Medinipur</h5>
-                            <p class="timeline-text">• Conducted research on "Crop Identification and Yield Estimation
-                              Using Sentinel-1 & 2 on Google Earth Engine"<br>
-                              • Supervised by Dr. Dipanwita Dutta, Assistant Professor<br>
-                              • Developed machine learning models for agricultural monitoring using multi-spectral
-                              satellite data<br>
-                              <strong>Tools:</strong> Google Earth Engine, JavaScript, Statistical Analysis
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <!-- Service Item 4 -->
+            <div class="service-item padd-15">
+              <div class="service-item-inner">
+                <div class="icon"><i class="fas fa-satellite"></i></div>
+                <h4>Satellite Data Downloading Pipeline Development</h4>
+                <p>Building automated pipelines for satellite data acquisition, processing, and analysis using cloud
+                  infrastructure. Experience with Sentinel, Landsat, and commercial satellite data through Google
+                  Earth Engine, AWS, and Azure platforms.</p>
+              </div>
+            </div>
+
+            <!-- Service Item 5 -->
+            <div class="service-item padd-15">
+              <div class="service-item-inner">
+                <div class="icon"><i class="fas fa-robot"></i></div>
+                <h4>GenAI Development</h4>
+                <p>Developing AI-powered solutions using modern frameworks including Transformers, Hugging Face,
+                  Ollama, OpenWebUI, and MCP (Model Context Protocol). Specializing in geospatial AI applications and
+                  intelligent data analysis workflows.</p>
+              </div>
+            </div>
+
+            <!-- Service Item 6 -->
+            <div class="service-item padd-15">
+              <div class="service-item-inner">
+                <div class="icon"><i class="fas fa-snowflake"></i></div>
+                <h4>Data Science & AI Modeling</h4>
+                <p>Developing and training machine learning models for geospatial applications, agricultural
+                  monitoring, and environmental analysis. Using TensorFlow, PySpark, and cloud-based ML platforms for
+                  scalable AI solutions.</p>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+      <!-- Sevices Section End -->
 
-        <!-- Services Section -->
-        <section class="service section" id="service">
-          <div class="container">
-            <div class="row">
-              <div class="section-title">
-                <h2>Services</h2>
-              </div>
-            </div>
-            <div class="row">
-              <!-- Service Item 1 -->
-              <div class="service-item padd-15">
-                <div class="service-item-inner">
-                  <div class="icon"><i class="fas fa-layer-group"></i></div>
-                  <h4>Geospatial Analysis</h4>
-                  <p>Advanced spatial data analysis using satellite imagery, drone data, and GPS datasets. Specializing in
-                    agricultural monitoring, environmental analysis, and urban planning with WebGIS solutions using
-                    GeoServer, PostgreSQL (PostGIS), and cloud platforms.</p>
-                </div>
-              </div>
+      </section>
+      <!-- Services Section End -->
 
-              <!-- Service Item 2 -->
-              <div class="service-item padd-15">
-                <div class="service-item-inner">
-                  <div class="icon"><i class="fas fa-tools"></i></div>
-                  <h4>Small Tools or Plugin Development</h4>
-                  <p>Developing custom tools and plugins for ArcGIS, QGIS, and Google Earth Engine. Creating automated
-                    workflows using Python, JavaScript, and R for enhanced productivity in geospatial analysis and data
-                    processing.</p>
-                </div>
-              </div>
-
-              <!-- Service Item 3 -->
-              <div class="service-item padd-15">
-                <div class="service-item-inner">
-                  <div class="icon"><i class="fab fa-python"></i></div>
-                  <h4>Python Package Development</h4>
-                  <p>Creating and maintaining Python packages for geospatial data access, analysis, and automation.
-                    Published packages include open-geodata-api, astrokundali, and ai-research-planner available on PyPI
-                    with comprehensive documentation.</p>
-                </div>
-              </div>
-
-              <!-- Service Item 4 -->
-              <div class="service-item padd-15">
-                <div class="service-item-inner">
-                  <div class="icon"><i class="fas fa-satellite"></i></div>
-                  <h4>Satellite Data Downloading Pipeline Development</h4>
-                  <p>Building automated pipelines for satellite data acquisition, processing, and analysis using cloud
-                    infrastructure. Experience with Sentinel, Landsat, and commercial satellite data through Google
-                    Earth Engine, AWS, and Azure platforms.</p>
-                </div>
-              </div>
-
-              <!-- Service Item 5 -->
-              <div class="service-item padd-15">
-                <div class="service-item-inner">
-                  <div class="icon"><i class="fas fa-robot"></i></div>
-                  <h4>GenAI Development</h4>
-                  <p>Developing AI-powered solutions using modern frameworks including Transformers, Hugging Face,
-                    Ollama, OpenWebUI, and MCP (Model Context Protocol). Specializing in geospatial AI applications and
-                    intelligent data analysis workflows.</p>
-                </div>
-              </div>
-
-              <!-- Service Item 6 -->
-              <div class="service-item padd-15">
-                <div class="service-item-inner">
-                  <div class="icon"><i class="fa fa-snowflake-o"></i></div>
-                  <h4>Data Science & AI Modeling</h4>
-                  <p>Developing and training machine learning models for geospatial applications, agricultural
-                    monitoring, and environmental analysis. Using TensorFlow, PySpark, and cloud-based ML platforms for scalable AI solutions.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- Sevices Section End -->
-
-        <!-- Portfolio Section -->
-        <section class="portfolio section" id="portfolio">
-          <div class="container">
-            <div class="row">
-              <div class="section-title padd-15">
-                <h2>Other Projects</h2>
-                <p>Open Source Contributions & Professional Projects</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="portfolio-filter padd-15">
-                <button type="button" class="active" data-filter="all">All</button>
-                <button type="button" data-filter="python-packages">Python Packages</button>
-                <button type="button" data-filter="qgis-plugins">QGIS Plugins</button>
-                <button type="button" data-filter="ml-projects">ML Projects</button>
-                <button type="button" data-filter="web-apps">Web Apps</button>
-              </div>
-            </div>
-            <div class="row">
-              <!-- Python Packages -->
-              <div class="portfolio-item padd-15" data-category="python-packages">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/OGAPI.png" alt="open-geodata-api">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>open-geodata-api</h4>
-                    <p>PyPI Package for accessing global geodata</p>
-                    <div class="portfolio-links">
-                      <a href="https://pypi.org/project/open-geodata-api/" target="_blank">Goto PyPI Page</a> |
-                      <a href="https://open-geodata-api.readthedocs.io/" target="_blank">Docs</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio-item padd-15" data-category="python-packages">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/ai-research-planner.png" alt="ai-research-planner">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>ai-research-planner</h4>
-                    <p>AI-powered research planning tool (In Development)</p>
-                    <div class="portfolio-links">
-                      <a href="https://pypi.org/project/ai-research-planner/" target="_blank">Goto PyPI Page</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio-item padd-15" data-category="python-packages">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/AstroKundali.png" alt="astrokundali"></div>
-                  <div class="portfolio-info">
-                    <h4>astrokundali</h4>
-                    <p>Vedic Astrology calculations in Python</p>
-                    <div class="portfolio-links">
-                      <a href="https://pypi.org/project/astrokundali/" target="_blank">Goto PyPI Page</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- QGIS Plugins -->
-              <div class="portfolio-item padd-15" data-category="qgis-plugins">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/QGIS_Plugin_Clear_Null_Geometry.png" alt="clear-null-geometry">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>Clear Null Geometry</h4>
-                    <p>Cleans invalid geometries in QGIS</p>
-                    <div class="portfolio-links">
-                      <a href="https://plugins.qgis.org/plugins/clear_null_geometry/" target="_blank">Goto QGIS Plugin Page</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio-item padd-15" data-category="qgis-plugins">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/QGIS_Plugin_CRS_Finder.png" alt="crs-finder"></div>
-                  <div class="portfolio-info">
-                    <h4>CRS Finder</h4>
-                    <p>Coordinate Reference System search tool</p>
-                    <div class="portfolio-links">
-                      <a href="https://plugins.qgis.org/plugins/crs_finder/" target="_blank">Goto QGIS Plugin Page</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio-item padd-15" data-category="qgis-plugins">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/QGIS_Plugin_Export_2KML.png" alt="export2kml"></div>
-                  <div class="portfolio-info">
-                    <h4>Export 2KML</h4>
-                    <p>Enhanced KML export functionality</p>
-                    <div class="portfolio-links">
-                      <a href="https://plugins.qgis.org/plugins/export2kml/" target="_blank">Goto QGIS Plugin Page</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio-item padd-15" data-category="qgis-plugins">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/QGIS_Plugin_XYZ_Coordinate_Tool.png" alt="XYZ/MGRS Coordinate Tool">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>XYZ/MGRS Coordinate Tool</h4>
-                    <p>Interactive coordinate capture tool for XYZ tile coordinates and MGRS grid references with navigation and visualization capabilities</p>
-                    <div class="portfolio-links">
-                      <a href="https://plugins.qgis.org/plugins/xyz_coordinate_tool/" target="_blank">Goto QGIS Plugin Page</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio-item padd-15" data-category="qgis-plugins">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/QGIS_Plugin_CSV_Geometry_Export.png" alt="CSV Geometry Export">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>CSV Geometry Export</h4>
-                    <p>Export vector layers as CSV files with geometry and customizable column names.</p>
-                    <div class="portfolio-links">
-                      <a href="https://plugins.qgis.org/plugins/csv_geometry_export/" target="_blank">Goto QGIS Plugin Page</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio-item padd-15" data-category="qgis-plugins">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/QGIS_Plugin_Band_Stacker.png" alt="band-stacker"></div>
-                  <div class="portfolio-info">
-                    <h4>Band Stacker</h4>
-                    <p>QGIS Plugin for raster band operations</p>
-                    <div class="portfolio-links">
-                      <a href="https://plugins.qgis.org/plugins/band_stacker/" target="_blank">Goto QGIS Plugin Page</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio-item padd-15" data-category="qgis-plugins">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/QGIS_Plugin_Mosaic_Tool.png" alt="mosaic-tool"></div>
-                  <div class="portfolio-info">
-                    <h4>Mosaic Tool</h4>
-                    <p>Advanced raster mosaicking plugin</p>
-                    <div class="portfolio-links">
-                      <a href="https://plugins.qgis.org/plugins/mosaic_tool/" target="_blank">Goto QGIS Plugin Page</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio-item padd-15" data-category="qgis-plugins">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/QGIS_Plugin_Supervised_Classification.png" alt="supervised-classifier">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>Supervised Classifier</h4>
-                    <p>Machine learning classification plugin</p>
-                    <div class="portfolio-links">
-                      <a href="https://plugins.qgis.org/plugins/supervised_classifier/" target="_blank">Goto QGIS Plugin Page</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio-item padd-15" data-category="qgis-plugins">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/QGIS_Plugin_Unsupervised_Classification.png"
-                      alt="unsupervised-classifier">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>Unsupervised Classifier</h4>
-                    <p>Automated clustering for raster data</p>
-                    <div class="portfolio-links">
-                      <a href="https://plugins.qgis.org/plugins/unsupervised_classifier/" target="_blank">Goto QGIS Plugin Page</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-                <!-- ML Projects -->
-              <div class="portfolio-item padd-15" data-category="ml-projects">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/Semantic_Segmentation_Aerial_Imagery_Dubai.png" alt="Semantic_Segmentation_Aerial_Imagery_Dubai">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>Semantic Segmentation of Aerial Imagery</h4>
-                    <p>Semantic Segmentation Aerial Imagery Dubai. Aerial Image Classification (U-Net)</p>
-                    <div class="portfolio-links">
-                      <a href="https://github.com/Mirjan-Ali-Sha/Satellite-Image-Classification" target="_blank">Look into the Repo</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-
-                <!-- Web Apps -->
-              <div class="portfolio-item padd-15" data-category="web-apps">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/Candy_Glossy.jpg" alt="Candy Glossy">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>Candy Glossy (Candy Crush)</h4>
-                    <p>Release Your Stress without any Ads</p>
-                    <div class="portfolio-links">
-                      <a href="https://mirjan-ali-sha.github.io/candycrush/" target="_blank">Play The Game</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="portfolio-item padd-15" data-category="web-apps">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/Ludo.jpg" alt="Ludo">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>Ludo Game</h4>
-                    <p>Enjoy Your free time togather</p>
-                    <div class="portfolio-links">
-                      <a href="https://mirjan-ali-sha.github.io/ludo/" target="_blank">Play The Game</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="portfolio-item padd-15" data-category="web-apps">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/Fruit_Slicer.jpg" alt="Fruit Slicer">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>Fruit Slicer Game</h4>
-                    <p>A Relaxing, fruity escape</p>
-                    <div class="portfolio-links">
-                      <a href="https://mirjan-ali-sha.github.io/fruitslicer/" target="_blank">Play The Game</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-              <div class="portfolio-item padd-15" data-category="web-apps">
-                <div class="portfolio-item-inner shadow-dark">
-                  <div class="portfolio-img"><img src="./images/portfolio/TracePuzzle.jpg" alt="TracePuzzle">
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>TracePuzzle Game</h4>
-                    <p>One line is all you have</p>
-                    <div class="portfolio-links">
-                      <a href="https://mirjan-ali-sha.github.io/tracepuzzle/" target="_blank">Play The Game</a>
-                    </div>
-                    <div class="icon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Portfolio Section -->
-        <!--       <section class="portfolio section" id="portfolio">
+      <!-- Portfolio Section -->
+      <section class="portfolio section" id="portfolio">
         <div class="container">
           <div class="row">
             <div class="section-title padd-15">
-              <h2>Portfolio</h2> <p color="#ff0000">** This Section is not Updated</p>
+              <h2>Other Projects</h2>
+              <p>Open Source Contributions & Professional Projects</p>
             </div>
           </div>
           <div class="row">
             <div class="portfolio-filter padd-15">
               <button type="button" class="active" data-filter="all">All</button>
-              <button type="button" data-filter="gis-works">GIS Works</button>
-              <button type="button" data-filter="webgis">WebGIS</button>
-              <button type="button" data-filter="web-design">Web Design</button>
+              <button type="button" data-filter="python-packages">Python Packages</button>
+              <button type="button" data-filter="qgis-plugins">QGIS Plugins</button>
+              <button type="button" data-filter="ml-projects">ML Projects</button>
+              <button type="button" data-filter="web-apps">Websites & Web Apps</button>
             </div>
           </div>
           <div class="row">
-            <!--you can use 'portfolio-items' as a class-->
-        <!-- Portfolio Item --><!--
-            <div class="portfolio-item padd-15" data-category="web-design">
+            <!-- Python Packages -->
+            <div class="portfolio-item padd-15" data-category="python-packages">
               <div class="portfolio-item-inner shadow-dark">
-                <div class="portfolio-img"><img src="./images/portfolio/Templ.jpg" alt="portfolio"></div>
+                <div class="portfolio-img"><img src="./images/portfolio/pypi/OGAPI.png" alt="open-geodata-api">
+                </div>
                 <div class="portfolio-info">
-                  <h4>Web Design</h4>
+                  <h4>open-geodata-api</h4>
+                  <p>PyPI Package for accessing global geodata</p>
+                  <div class="portfolio-links">
+                    <a href="https://pypi.org/project/open-geodata-api/" target="_blank">Goto PyPI Page</a> |
+                    <a href="https://open-geodata-api.readthedocs.io/" target="_blank">Docs</a>
+                  </div>
                   <div class="icon"><i class="fa fa-search"></i></div>
                 </div>
               </div>
             </div>
-            <!-- Portfolio Item End -->
-        <!-- Portfolio Item --><!--
-            <div class="portfolio-item padd-15" data-category="gis-works">
-              <div class="portfolio-item-inner">
-                <div class="portfolio-img"><img src="./images/portfolio/Templ.jpg" alt="portfolio"></div>
+
+            <div class="portfolio-item padd-15" data-category="python-packages">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img"><img src="./images/portfolio/pypi/PyClassStruct.png" alt="PyClassStruct">
+                </div>
                 <div class="portfolio-info">
-                  <h4>GIS Works</h4>
+                  <h4>PyClassStruct</h4>
+                  <p>A powerful CLI tool that converts simple Python scripts to well-organized class-based structures.
+                  </p>
+                  <div class="portfolio-links">
+                    <a href="https://pypi.org/project/pyclassstruct/" target="_blank">Goto PyPI Page</a>
+                  </div>
                   <div class="icon"><i class="fa fa-search"></i></div>
                 </div>
               </div>
             </div>
-            <!-- Portfolio Item End -->
-        <!-- Portfolio Item --><!--
-            <div class="portfolio-item padd-15" data-category="web-design">
-              <div class="portfolio-item-inner">
-                <div class="portfolio-img"><img src="./images/portfolio/Templ.jpg" alt="portfolio"></div>
+
+            <div class="portfolio-item padd-15" data-category="python-packages">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img"><img src="./images/portfolio/pypi/ai-research-planner.png"
+                    alt="ai-research-planner">
+                </div>
                 <div class="portfolio-info">
-                  <h4>Web Design</h4>
+                  <h4>ai-research-planner</h4>
+                  <p>AI-powered research planning tool (In Development)</p>
+                  <div class="portfolio-links">
+                    <a href="https://pypi.org/project/ai-research-planner/" target="_blank">Goto PyPI Page</a>
+                  </div>
                   <div class="icon"><i class="fa fa-search"></i></div>
                 </div>
               </div>
             </div>
-            <!-- Portfolio Item End -->
-        <!-- Portfolio Item --><!--
-            <div class="portfolio-item padd-15" data-category="webgis">
-              <div class="portfolio-item-inner">
-                <div class="portfolio-img"><img src="./images/portfolio/Templ.jpg" alt="portfolio"></div>
+
+            <div class="portfolio-item padd-15" data-category="python-packages">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img"><img src="./images/portfolio/pypi/AstroKundali.png" alt="astrokundali"></div>
                 <div class="portfolio-info">
-                  <h4>WebGIS</h4>
+                  <h4>astrokundali</h4>
+                  <p>Vedic Astrology calculations in Python</p>
+                  <div class="portfolio-links">
+                    <a href="https://pypi.org/project/astrokundali/" target="_blank">Goto PyPI Page</a>
+                  </div>
                   <div class="icon"><i class="fa fa-search"></i></div>
                 </div>
               </div>
             </div>
-            <!-- Portfolio Item End -->
-        <!-- Portfolio Item --><!--
-            <div class="portfolio-item padd-15" data-category="gis-works">
-              <div class="portfolio-item-inner">
-                <div class="portfolio-img"><img src="./images/portfolio/Templ.jpg" alt="portfolio"></div>
+
+            <!-- QGIS Plugins -->
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Cleans invalid or null geometries from vector layers in QGIS. Essential for data cleaning and pre-processing tasks."
+              data-link="https://plugins.qgis.org/plugins/clear_null_geometry/" data-downloads="10,296"
+              data-rating="4.8" data-date="Nov 2023">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/clear-null-geometry.png" alt="clear-null-geometry">
+                </div>
                 <div class="portfolio-info">
-                  <h4>GIS Works</h4>
+                  <h4>Clear Null Geometry</h4>
+                  <p>Cleans invalid geometries in QGIS</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/clear_null_geometry/" target="_blank">Goto QGIS Plugin
+                      Page</a>
+                  </div>
                   <div class="icon"><i class="fa fa-search"></i></div>
                 </div>
               </div>
             </div>
-            <!-- Portfolio Item End -->
-        <!-- Portfolio Item --><!--
-            <div class="portfolio-item padd-15" data-category="web-design">
-              <div class="portfolio-item-inner">
-                <div class="portfolio-img"><img src="./images/portfolio/Templ.jpg" alt="portfolio"></div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Professional coordinate reference system finder. Allows users to search and identify the correct CRS for their geospatial data projects."
+              data-link="https://plugins.qgis.org/plugins/crs_finder/" data-downloads="5,805" data-rating="4.7"
+              data-date="Jan 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/crs-finder.png" alt="crs-finder">
+                </div>
                 <div class="portfolio-info">
-                  <h4>Web Design</h4>
+                  <h4>CRS Finder</h4>
+                  <p>Coordinate Reference System search tool</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/crs_finder/" target="_blank">Goto QGIS Plugin Page</a>
+                  </div>
                   <div class="icon"><i class="fa fa-search"></i></div>
                 </div>
               </div>
             </div>
-            <!-- Portfolio Item End --><!--
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Streamlined KML/KMZ export tool for QGIS. Provides advanced options for styling and attribute preservation during the export process."
+              data-link="https://plugins.qgis.org/plugins/export2kml/" data-downloads="18,465" data-rating="4.9"
+              data-date="Mar 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/export-2kml.png" alt="export2kml">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Export 2KML</h4>
+                  <p>Enhanced KML export functionality</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/export2kml/" target="_blank">Goto QGIS Plugin Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Interactive coordinate capture tool for XYZ tile coordinates and MGRS grid references. Features seamless navigation and real-time visualization."
+              data-link="https://plugins.qgis.org/plugins/xyz_coordinate_tool/" data-downloads="3,210" data-rating="4.6"
+              data-date="Feb 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/xyz-coordinate-tool.png" alt="XYZ/MGRS Coordinate Tool">
+                </div>
+                <div class="portfolio-info">
+                  <h4>XYZ/MGRS Coordinate Tool</h4>
+                  <p>Interactive coordinate capture tool for XYZ tile coordinates and MGRS grid references with
+                    navigation and visualization capabilities</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/xyz_coordinate_tool/" target="_blank">Goto QGIS Plugin
+                      Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Export vector layers directly to CSV format with full geometry support. Includes customizable column mapping and projection options."
+              data-link="https://plugins.qgis.org/plugins/csv_geometry_export/" data-downloads="12,500"
+              data-rating="4.8" data-date="Oct 2023">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/csv-geometry-export.png" alt="CSV Geometry Export">
+                </div>
+                <div class="portfolio-info">
+                  <h4>CSV Geometry Export</h4>
+                  <p>Export vector layers as CSV files with geometry and customizable column names.</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/csv_geometry_export/" target="_blank">Goto QGIS Plugin
+                      Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Comprehensive CSV import tool supporting multiple coordinate formats. Part of the MAS Vector Processing collection."
+              data-link="https://plugins.qgis.org/plugins/csv_geometry_import/" data-downloads="7,850" data-rating="4.7"
+              data-date="Dec 2023">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/csv-geometry-import.png" alt="CSV Importer">
+                </div>
+                <div class="portfolio-info">
+                  <h4>CSV Geometry Import</h4>
+                  <p>Import CSV files with various geometry formats directly into QGIS. Part of MAS Vector Processing
+                    tools.</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/csv_geometry_import/" target="_blank">Goto QGIS Plugin
+                      Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Advanced raster band stacking and extraction tool. Supports multi-spectral imagery processing with batch capabilities."
+              data-link="https://plugins.qgis.org/plugins/band_stacker/" data-downloads="4,120" data-rating="4.5"
+              data-date="Feb 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/band-stacker.png" alt="band-stacker">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Band Stacker</h4>
+                  <p>QGIS Plugin for raster band operations</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/band_stacker/" target="_blank">Goto QGIS Plugin Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Professional-grade raster mosaicking tool. Features seamless edge blending, color matching, and support for large-scale datasets."
+              data-link="https://plugins.qgis.org/plugins/mosaic_tool/" data-downloads="6,450" data-rating="4.8"
+              data-date="Mar 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/mosaic-tool.png" alt="mosaic-tool">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Mosaic Tool</h4>
+                  <p>Advanced raster mosaicking plugin</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/mosaic_tool/" target="_blank">Goto QGIS Plugin Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Advanced Map Downloader for QGIS. Supports multiple tile servers, georeferencing, and batch downloads for offline GIS use."
+              data-link="https://plugins.qgis.org/plugins/advanced_map_downloader/" data-downloads="9,820"
+              data-rating="4.7" data-date="Apr 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/advance-map-download.png" alt="Advanced Map Downloader">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Advanced Map Downloader</h4>
+                  <p>Download maps with multiple coordinate input types and georeferenced output formats. Part of MAS
+                    Raster Processing tools.</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/advanced_map_downloader/" target="_blank">Goto QGIS Plugin
+                      Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Enriched attribute table for QGIS with advanced row/column selection, filtering, and rapid data exploration features."
+              data-link="https://plugins.qgis.org/plugins/advanced_selection_table/" data-downloads="35,120"
+              data-rating="4.9" data-date="May 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/advance-selection-table.png" alt="Advanced Selection Table">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Advanced Selection Table</h4>
+                  <p>Professional attribute table with two-tier selection for advanced feature filtering and editing</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/advanced_selection_table/" target="_blank">Goto QGIS
+                      Plugin Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Machine learning-based supervised classification for satellite imagery within QGIS. Supports Random Forest and SVM algorithms."
+              data-link="https://plugins.qgis.org/plugins/supervised_classifier/" data-downloads="11,400"
+              data-rating="4.6" data-date="Jun 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/supervised-classifier.png" alt="supervised-classifier">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Supervised Classifier</h4>
+                  <p>Machine learning classification plugin for satellite imagery</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/supervised_classifier/" target="_blank">Goto QGIS Plugin
+                      Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Unsupervised classification tool for QGIS. Implements K-Means clustering for rapid land cover mapping and spectral analysis."
+              data-link="https://plugins.qgis.org/plugins/unsupervised_classifier/" data-downloads="8,900"
+              data-rating="4.4" data-date="Jul 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/unsupervised-classifier.png" alt="unsupervised-classifier">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Unsupervised Classifier</h4>
+                  <p>Automated clustering and classification for raster data</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/unsupervised_classifier/" target="_blank">Goto QGIS Plugin
+                      Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="A massive toolkit featuring 45+ geospatial analysis tools for QGIS. Covers hydrological analysis, DEM processing, and vector statistics."
+              data-link="https://plugins.qgis.org/plugins/mas_spatial_analysis_tool/" data-downloads="22,600"
+              data-rating="4.9" data-date="Aug 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/mas-geospatial-analysis.png" alt="MAS Geospatial Analysis">
+                </div>
+                <div class="portfolio-info">
+                  <h4>MAS Geospatial Analysis</h4>
+                  <p>Comprehensive DEM analysis toolkit with 45+ hydrological and geomorphometric tools</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/mas_spatial_analysis_tool/" target="_blank">Goto QGIS
+                      Plugin Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Interact with STAC (SpatioTemporal Asset Catalog) datasets directly in QGIS. Browse, filter, and load satellite imagery from global catalogs like Sentinel and Landsat."
+              data-link="https://plugins.qgis.org/plugins/open_geodata_browser/" data-downloads="15,750"
+              data-rating="4.8" data-date="Sep 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/open-geospatial-browser.png" alt="STAC Browser">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Open Geodata Browser</h4>
+                  <p>Browse and download satellite imagery from STAC-compliant catalogs</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/open_geodata_browser/" target="_blank">Goto QGIS Plugin
+                      Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="qgis-plugins"
+              data-description="Advanced Raster Calculator for QGIS. Features a professional-grade expression builder, support for complex conditional logic, and multi-band operations."
+              data-link="https://plugins.qgis.org/plugins/raster_calculator/" data-downloads="14,200" data-rating="4.7"
+              data-date="Oct 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/qgis-plugins/raster-calculator.png" alt="Raster Calculator">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Raster Calculator</h4>
+                  <p>Powerful map algebra raster calculator with professional-grade expression support</p>
+                  <div class="portfolio-links">
+                    <a href="https://plugins.qgis.org/plugins/raster_calculator/" target="_blank">Goto QGIS Plugin
+                      Page</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ML Projects -->
+            <div class="portfolio-item padd-15" data-category="ml-projects"
+              data-description="Advanced semantic segmentation of aerial imagery using U-Net architecture. achieving state-of-the-art results on the Dubai satellite dataset for urban land cover mapping."
+              data-link="https://github.com/Mirjan-Ali-Sha/Satellite-Image-Classification" data-downloads="1,450"
+              data-rating="N/A" data-date="Oct 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/Semantic_Segmentation_Aerial_Imagery_Dubai.png"
+                    alt="Semantic_Segmentation_Aerial_Imagery_Dubai">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Semantic Segmentation of Aerial Imagery</h4>
+                  <p>Aerial Image Classification using U-Net on Dubai dataset</p>
+                  <div class="portfolio-links">
+                    <a href="https://github.com/Mirjan-Ali-Sha/Satellite-Image-Classification" target="_blank">Look into
+                      the Repo</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Web Apps -->
+            <div class="portfolio-item padd-15" data-category="web-apps"
+              data-description="A Progressive Web App (PWA) displaying the Hijri (Islamic) calendar alongside the Gregorian calendar, featuring prayer times, Qibla direction, and location detection."
+              data-link="https://mirjan-ali-sha.github.io/islamic-calendar/" data-downloads="N/A" data-rating="N/A"
+              data-date="Feb 2025">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/web-apps/IslamicCalendar.png" alt="IslamicCalendar">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Islamic Calendar</h4>
+                  <p>A Progressive Web App (PWA) displaying the Hijri (Islamic) calendar alongside the Gregorian
+                    calendar, featuring prayer times, Qibla direction, and location detection.</p>
+                  <div class="portfolio-links">
+                    <a href="https://mirjan-ali-sha.github.io/islamic-calendar/" target="_blank">Install the App</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="web-apps"
+              data-description="FarmVision is a lightweight, responsive web application for monitoring agricultural fields using satellite imagery and vegetation indices. It features a Python Flask backend that connects to a PostgreSQL database and serves raw GeoTIFF imagery directly to a modern, pure HTML/CSS/JS frontend."
+              data-link="https://farmvision.onrender.com/" data-downloads="N/A" data-rating="N/A"
+              data-date="Feb - Mar 2026">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/web-apps/FarmVision.png" alt="Candy Glossy">
+                </div>
+                <div class="portfolio-info">
+                  <h4>FarmVision — Satellite Crop Analytics</h4>
+                  <p>FarmVision is a lightweight, responsive web application for monitoring agricultural fields using
+                    satellite imagery and vegetation indices.</p>
+                  <div class="portfolio-links">
+                    <a href="https://farmvision.onrender.com/" target="_blank">Open the site</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="web-apps"
+              data-description="C-Scanner is a responsive web application for monitoring carbon sequestration projects using satellite imagery and vegetation indices. It features a Python Flask backend connected to PostgreSQL and serves raw GeoTIFF imagery to a modern, pure HTML/CSS/JS frontend."
+              data-link="javascript:void(0)" data-downloads="N/A" data-rating="N/A" data-date="Feb - Mar 2026">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/web-apps/C-Scanner.png"
+                    alt="C-Scanner Satellite Land Analytics Platform">
+                </div>
+                <div class="portfolio-info">
+                  <h4>C-Scanner — Satellite Land Analytics Platform</h4>
+                  <p>C-Scanner is a responsive web application for monitoring carbon sequestration projects using
+                    satellite imagery and vegetation indices.</p>
+                  <div class="portfolio-links">
+                    <span class="coming-soon-badge">🚧 Coming Soon</span>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="web-apps"
+              data-description="A premium, glossy Candy Crush clone built with vanilla JavaScript. Focuses on smooth animations and satisfying game mechanics without the distraction of ads."
+              data-link="https://mirjan-ali-sha.github.io/candycrush/" data-downloads="N/A" data-rating="N/A"
+              data-date="Nov 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/web-apps/Candy_Glossy.png" alt="Candy Glossy">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Candy Glossy (Candy Crush)</h4>
+                  <p>Release Your Stress without any Ads</p>
+                  <div class="portfolio-links">
+                    <a href="https://mirjan-ali-sha.github.io/candycrush/" target="_blank">Play The Game</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="web-apps"
+              data-description="Multiplayer Ludo game implemented in the browser. Features real-time state management and intuitive UI for a classic gaming experience."
+              data-link="https://mirjan-ali-sha.github.io/ludo/" data-downloads="N/A" data-rating="N/A"
+              data-date="Dec 2024">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/web-apps/Ludo.png" alt="Ludo">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Ludo Game</h4>
+                  <p>Enjoy Your free time together</p>
+                  <div class="portfolio-links">
+                    <a href="https://mirjan-ali-sha.github.io/ludo/" target="_blank">Play The Game</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="web-apps"
+              data-description="A minimalist puzzle game where you must trace a pattern in a single continuous line. Includes multiple levels of increasing difficulty."
+              data-link="https://mirjan-ali-sha.github.io/tracepuzzle/" data-downloads="N/A" data-rating="N/A"
+              data-date="Feb 2025">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/web-apps/TracePuzzle.png" alt="TracePuzzle">
+                </div>
+                <div class="portfolio-info">
+                  <h4>TracePuzzle Game</h4>
+                  <p>One line is all you have</p>
+                  <div class="portfolio-links">
+                    <a href="https://mirjan-ali-sha.github.io/tracepuzzle/" target="_blank">Play The Game</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="web-apps"
+              data-description="Interactive fruit slicing game inspired by Fruit Ninja. Built with high-performance canvas rendering and satisfying slash effects."
+              data-link="https://mirjan-ali-sha.github.io/fruitslicer/" data-downloads="N/A" data-rating="N/A"
+              data-date="Jan 2025">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/web-apps/Fruit_Slicer.png" alt="Fruit Slicer">
+                </div>
+                <div class="portfolio-info">
+                  <h4>Fruit Slicer Game</h4>
+                  <p>A Relaxing, fruity escape</p>
+                  <div class="portfolio-links">
+                    <a href="https://mirjan-ali-sha.github.io/fruitslicer/" target="_blank">Play The Game</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section> -->
-        <!-- Portfolio Section End -->
-        <!-- Latest Blog Section -->
-        <section id="blog" class="blog section">
-            <div class="container">
-                <div class="row">
-                    <div class="section-title padd-15">
-                        <h2>Latest Blog</h2>
-                    </div>
-                </div>
-                
-                <!-- Featured Blogs (6 cards) -->
-                <div class="row">
-                    <div class="blog-featured padd-15">
-                        <h3 class="featured-title">Featured Articles</h3>
-                        <div class="blog-grid">
-                            <!-- Blog Item 1 -->
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner">
-                                    <div class="blog-img">
-                                        <img src="images/blog/gis-python-automation.png" alt="GIS Python Automation">
-                                        <div class="blog-date">
-                                            <span class="date">18 Jan 2025</span>
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title">GIS Python Automation: From Manual to Automated Workflows</h4>
-                                        <p class="blog-description">Explore how Python automation transforms traditional GIS workflows, reducing processing time and increasing accuracy in geospatial analysis.</p>
-                                        <div class="blog-meta">
-                                            <span class="read-time">8 min read</span>
-                                            <span class="blog-tags">
-                                                <span class="tag">Python</span>
-                                                <span class="tag">GIS</span>
-                                                <span class="tag">Automation</span>
-                                            </span>
-                                        </div>
-                                        <button class="read-more-btn" data-markdown="blogs/gis-python-automation.md">
-                                            Read More <i class="fa fa-arrow-right"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-        
-                            <!-- Blog Item 2 -->
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner">
-                                    <div class="blog-img">
-                                        <img src="images/blog/satellite-data-processing.png" alt="Satellite Data Processing">
-                                        <div class="blog-date">
-                                            <span class="date">12 Jan 2025</span>
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title">Advanced Satellite Data Processing with Cloud Computing</h4>
-                                        <p class="blog-description">Learn how to leverage cloud platforms for processing large-scale satellite imagery efficiently using modern tools and techniques.</p>
-                                        <div class="blog-meta">
-                                            <span class="read-time">12 min read</span>
-                                            <span class="blog-tags">
-                                                <span class="tag">Satellite</span>
-                                                <span class="tag">Cloud</span>
-                                                <span class="tag">BigData</span>
-                                            </span>
-                                        </div>
-                                        <button class="read-more-btn" data-markdown="blogs/satellite-data-processing.md">
-                                            Read More <i class="fa fa-arrow-right"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-        
-                            <!-- Blog Item 3 -->
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner">
-                                    <div class="blog-img">
-                                        <img src="images/blog/machine-learning-geospatial.png" alt="ML in Geospatial">
-                                        <div class="blog-date">
-                                            <span class="date">5 Jan 2025</span>
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title">Machine Learning Applications in Geospatial Analysis</h4>
-                                        <p class="blog-description">Discover how machine learning algorithms enhance geospatial analysis, from object detection to predictive modeling.</p>
-                                        <div class="blog-meta">
-                                            <span class="read-time">10 min read</span>
-                                            <span class="blog-tags">
-                                                <span class="tag">ML</span>
-                                                <span class="tag">Geospatial</span>
-                                                <span class="tag">AI</span>
-                                            </span>
-                                        </div>
-                                        <button class="read-more-btn" data-markdown="blogs/machine-learning-geospatial.md">
-                                            Read More <i class="fa fa-arrow-right"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-        
-                            <!-- Blog Item 4 -->
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner">
-                                    <div class="blog-img">
-                                        <img src="images/blog/qgis-plugin-development.png" alt="QGIS Plugin Development">
-                                        <div class="blog-date">
-                                            <span class="date">28 Dec 2024</span>
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title">Building Professional QGIS Plugins: A Complete Guide</h4>
-                                        <p class="blog-description">Step-by-step guide to developing, testing, and publishing QGIS plugins that solve real-world geospatial problems.</p>
-                                        <div class="blog-meta">
-                                            <span class="read-time">15 min read</span>
-                                            <span class="blog-tags">
-                                                <span class="tag">QGIS</span>
-                                                <span class="tag">Plugin</span>
-                                                <span class="tag">Development</span>
-                                            </span>
-                                        </div>
-                                        <button class="read-more-btn" data-markdown="blogs/qgis-plugin-development.md">
-                                            Read More <i class="fa fa-arrow-right"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        
-                <!-- More Articles Section -->
-                <div class="row">
-                    <div class="blog-list padd-15">
-                        <h3 class="list-title">More Articles</h3>
-                        <div class="blog-archive">
-                            <div class="archive-item" data-markdown="blogs/docker-gis-development.md">
-                                <div class="archive-info">
-                                    <h5>Docker for GIS Development: Containerizing Geospatial Applications</h5>
-                                    <div class="archive-meta">
-                                        <span class="date">15 Dec 2024</span>
-                                        <span class="read-time">9 min read</span>
-                                        <span class="tags">Docker, GIS, DevOps</span>
-                                    </div>
-                                </div>
-                                <button class="archive-read-btn">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-        
-                            <div class="archive-item" data-markdown="blogs/spatial-databases-postgis.md">
-                                <div class="archive-info">
-                                    <h5>Contributing to Open Source: My Journey and Lessons Learned</h5>
-                                    <div class="archive-meta">
-                                        <span class="date">8 Dec 2024</span>
-                                        <span class="read-time">7 min read</span>
-                                        <span class="tags">OpenSource, Community, Career</span>
-                                    </div>
-                                </div>
-                                <button class="archive-read-btn">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-        
-                            <div class="archive-item" data-markdown="blogs/spatial-databases-postgis.md">
-                                <div class="archive-info">
-                                    <h5>Remote Sensing Applications in Climate Change Monitoring</h5>
-                                    <div class="archive-meta">
-                                        <span class="date">7 Dec 2024</span>
-                                        <span class="read-time">11 min read</span>
-                                        <span class="tags">Climate, Satellite, Environment</span>
-                                    </div>
-                                </div>
-                                <button class="archive-read-btn">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-        
-                            <div class="archive-item" data-markdown="blogs/spatial-databases-postgis.md">
-                                <div class="archive-info">
-                                    <h5>Mastering Spatial Databases with PostGIS</h5>
-                                    <div class="archive-meta">
-                                        <span class="date">24 Nov 2024</span>
-                                        <span class="read-time">13 min read</span>
-                                        <span class="tags">PostGIS, Database, SQL</span>
-                                    </div>
-                                </div>
-                                <button class="archive-read-btn">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-        
-                            <div class="archive-item" data-markdown="blogs/python-packaging-best-practices.md">
-                                <div class="archive-info">
-                                    <h5>Python Packaging Best Practices for Geospatial Libraries</h5>
-                                    <div class="archive-meta">
-                                        <span class="date">16 Nov 2024</span>
-                                        <span class="read-time">8 min read</span>
-                                        <span class="tags">Python, Packaging, PyPI</span>
-                                    </div>
-                                </div>
-                                <button class="archive-read-btn">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-        
-                            <div class="archive-item" data-markdown="blogs/gis-career-guidance.md">
-                                <div class="archive-info">
-                                    <h5>GIS Career Guidance: From Student to Professional</h5>
-                                    <div class="archive-meta">
-                                        <span class="date">10 Nov 2024</span>
-                                        <span class="read-time">12 min read</span>
-                                        <span class="tags">Career, GIS, Education</span>
-                                    </div>
-                                </div>
-                                <button class="archive-read-btn">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-        
-                            <div class="archive-item" data-markdown="blogs/webgis-modern-frameworks.md">
-                                <div class="archive-info">
-                                    <h5>WebGIS Development with Modern JavaScript Frameworks</h5>
-                                    <div class="archive-meta">
-                                        <span class="date">3 Nov 2024</span>
-                                        <span class="read-time">10 min read</span>
-                                        <span class="tags">WebGIS, JavaScript, React</span>
-                                    </div>
-                                </div>
-                                <button class="archive-read-btn">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Latest Blog Section End -->
-        <!-- Blog Modal for Expanded Content -->
-        <div class="blog-modal" id="blogModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Loading...</h2>
-                    <span class="modal-close">&times;</span>
-                </div>
-                <div class="modal-body">
-                    <div class="loading-spinner">
-                        <div class="spinner"></div>
-                        <p>Loading article...</p>
-                    </div>
-                    <div class="blog-content"></div>
-                </div>
-            </div>
-        </div>
-      
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-          <div class="contact-container">
-            <div class="contact-header">
-              <h2>Get In Touch</h2>
-              <p>Let's discuss your next GIS project or data analysis needs</p>
-            </div>
+      </section>
+      <!-- Portfolio Section End -->
 
-            <div class="contact-content">
-              <!-- Compact Contact Information -->
-              <div class="contact-info-wrapper">
-                <div class="contact-info">
-                  <!-- Copy-to-Clipboard Email -->
-                  <div class="contact-item contact-copy" data-copy-text="mirjan.personal@gmail.com">
-                    <div class="contact-icon">
-                      <i class="fas fa-envelope"></i>
+      <!-- Latest Blog Section -->
+      <section id="blog" class="blog section">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>Latest Blog</h2>
+            </div>
+          </div>
+
+          <!-- Featured Blogs (6 cards) -->
+          <div class="row">
+            <div class="blog-featured padd-15">
+              <h3 class="featured-title">Featured Articles</h3>
+              <div class="blog-grid">
+                <!-- Blog Item 1 -->
+                <div class="blog-item padd-15">
+                  <div class="blog-item-inner">
+                    <div class="blog-img">
+                      <img src="images/blog/gis-python-automation.png" alt="GIS Python Automation">
+                      <div class="blog-date">
+                        <span class="date">18 Jan 2025</span>
+                      </div>
                     </div>
-                    <div class="contact-details">
-                      <h3>Email</h3>
-                      <p>mirjan.personal@gmail.com</p>
-                    </div>
-                    <div class="copy-indicator">
-                      <i class="fas fa-copy"></i>
+                    <div class="blog-info">
+                      <h4 class="blog-title">GIS Python Automation: From Manual to Automated Workflows</h4>
+                      <p class="blog-description">Explore how Python automation transforms traditional GIS workflows,
+                        reducing processing time and increasing accuracy in geospatial analysis.</p>
+                      <div class="blog-meta">
+                        <span class="read-time">8 min read</span>
+                        <span class="blog-tags">
+                          <span class="tag">Python</span>
+                          <span class="tag">GIS</span>
+                          <span class="tag">Automation</span>
+                        </span>
+                      </div>
+                      <button class="read-more-btn" data-markdown="blogs/gis-python-automation.md">
+                        Read More <i class="fa fa-arrow-right"></i>
+                      </button>
                     </div>
                   </div>
+                </div>
 
-                  <!-- Clickable LinkedIn -->
-                  <a href="https://www.linkedin.com/in/mirjanalisha/" target="_blank" rel="noopener noreferrer"
-                    class="contact-item contact-link">
-                    <div class="contact-icon">
-                      <i class="fab fa-linkedin"></i>
+                <!-- Blog Item 2 -->
+                <div class="blog-item padd-15">
+                  <div class="blog-item-inner">
+                    <div class="blog-img">
+                      <img src="images/blog/satellite-data-processing.png" alt="Satellite Data Processing">
+                      <div class="blog-date">
+                        <span class="date">12 Jan 2025</span>
+                      </div>
                     </div>
-                    <div class="contact-details">
-                      <h3>LinkedIn</h3>
-                      <p>Connect professionally</p>
+                    <div class="blog-info">
+                      <h4 class="blog-title">Advanced Satellite Data Processing with Cloud Computing</h4>
+                      <p class="blog-description">Learn how to leverage cloud platforms for processing large-scale
+                        satellite imagery efficiently using modern tools and techniques.</p>
+                      <div class="blog-meta">
+                        <span class="read-time">12 min read</span>
+                        <span class="blog-tags">
+                          <span class="tag">Satellite</span>
+                          <span class="tag">Cloud</span>
+                          <span class="tag">BigData</span>
+                        </span>
+                      </div>
+                      <button class="read-more-btn" data-markdown="blogs/satellite-data-processing.md">
+                        Read More <i class="fa fa-arrow-right"></i>
+                      </button>
                     </div>
-                    <div class="link-indicator">
-                      <i class="fas fa-external-link-alt"></i>
-                    </div>
-                  </a>
+                  </div>
+                </div>
 
-                  <!-- Clickable Location -->
-                  <a href="https://www.google.com/maps/place/Bengaluru,+Karnataka,+India" target="_blank"
-                    rel="noopener noreferrer" class="contact-item contact-link">
-                    <div class="contact-icon">
-                      <i class="fas fa-map-marker-alt"></i>
+                <!-- Blog Item 3 -->
+                <div class="blog-item padd-15">
+                  <div class="blog-item-inner">
+                    <div class="blog-img">
+                      <img src="images/blog/machine-learning-geospatial.png" alt="ML in Geospatial">
+                      <div class="blog-date">
+                        <span class="date">5 Jan 2025</span>
+                      </div>
                     </div>
-                    <div class="contact-details">
-                      <h3>Location</h3>
-                      <p>Bengaluru, India</p>
+                    <div class="blog-info">
+                      <h4 class="blog-title">Machine Learning Applications in Geospatial Analysis</h4>
+                      <p class="blog-description">Discover how machine learning algorithms enhance geospatial analysis,
+                        from object detection to predictive modeling.</p>
+                      <div class="blog-meta">
+                        <span class="read-time">10 min read</span>
+                        <span class="blog-tags">
+                          <span class="tag">ML</span>
+                          <span class="tag">Geospatial</span>
+                          <span class="tag">AI</span>
+                        </span>
+                      </div>
+                      <button class="read-more-btn" data-markdown="blogs/machine-learning-geospatial.md">
+                        Read More <i class="fa fa-arrow-right"></i>
+                      </button>
                     </div>
-                    <div class="link-indicator">
-                      <i class="fas fa-external-link-alt"></i>
+                  </div>
+                </div>
+
+                <!-- Blog Item 4 -->
+                <div class="blog-item padd-15">
+                  <div class="blog-item-inner">
+                    <div class="blog-img">
+                      <img src="images/blog/qgis-plugin-development.png" alt="QGIS Plugin Development">
+                      <div class="blog-date">
+                        <span class="date">28 Dec 2024</span>
+                      </div>
                     </div>
-                  </a>
+                    <div class="blog-info">
+                      <h4 class="blog-title">Building Professional QGIS Plugins: A Complete Guide</h4>
+                      <p class="blog-description">Step-by-step guide to developing, testing, and publishing QGIS plugins
+                        that solve real-world geospatial problems.</p>
+                      <div class="blog-meta">
+                        <span class="read-time">15 min read</span>
+                        <span class="blog-tags">
+                          <span class="tag">QGIS</span>
+                          <span class="tag">Plugin</span>
+                          <span class="tag">Development</span>
+                        </span>
+                      </div>
+                      <button class="read-more-btn" data-markdown="blogs/qgis-plugin-development.md">
+                        Read More <i class="fa fa-arrow-right"></i>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
 
-              <!-- Interactive Contact Form -->
-              <div class="contact-form-wrapper">
-                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-                  <!-- Web3Forms Access Key - Replace with your actual key -->
-                  <input type="hidden" name="access_key" value="18909221-c276-4d4a-bd99-68c3b0a0b250">
-
-                  <!-- Honeypot Spam Protection -->
-                  <input type="checkbox" name="botcheck" id="botcheck" style="display: none;">
-
-                  <!-- Form Fields -->
-                  <div class="form-group">
-                    <label for="contactName">Full Name *</label>
-                    <input type="text" id="contactName" name="name" required class="form-input">
-                    <span class="error-message" id="nameError"></span>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="contactEmail">Email Address *</label>
-                    <input type="email" id="contactEmail" name="email" required class="form-input">
-                    <span class="error-message" id="emailError"></span>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="contactPhone">Phone Number</label>
-                    <input type="tel" id="contactPhone" name="phone" class="form-input">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="contactSubject">Subject *</label>
-                    <select id="contactSubject" name="subject" required class="form-select">
-                      <option value="">Select a topic</option>
-                      <option value="GIS Analysis">GIS Analysis Project</option>
-                      <option value="Data Science">Data Science Consultation</option>
-                      <option value="Remote Sensing">Remote Sensing Analysis</option>
-                      <option value="Web Development">Web Development</option>
-                      <option value="Career Opportunity">Career Opportunity</option>
-                      <option value="General Inquiry">General Inquiry</option>
-                    </select>
-                    <span class="error-message" id="subjectError"></span>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="contactMessage">Message *</label>
-                    <textarea id="contactMessage" name="message" rows="5" required class="form-textarea"
-                      placeholder="Tell me about your project or inquiry..."></textarea>
-                    <span class="error-message" id="messageError"></span>
-                    <div class="character-count">
-                      <span id="charCount">0</span> / 500 characters
+          <!-- More Articles Section -->
+          <div class="row">
+            <div class="blog-list padd-15">
+              <h3 class="list-title">More Articles</h3>
+              <div class="blog-archive">
+                <div class="archive-item" data-markdown="blogs/docker-gis-development.md">
+                  <div class="archive-info">
+                    <h5>Docker for GIS Development: Containerizing Geospatial Applications</h5>
+                    <div class="archive-meta">
+                      <span class="date">15 Dec 2024</span>
+                      <span class="read-time">9 min read</span>
+                      <span class="tags">Docker, GIS, DevOps</span>
                     </div>
                   </div>
-
-                  <button type="submit" id="submitBtn" class="submit-btn">
-                    <span class="btn-text">Send Message</span>
-                    <span class="btn-loading" style="display: none;">
-                      <i class="fas fa-spinner fa-spin"></i> Sending...
-                    </span>
+                  <button class="archive-read-btn">
+                    <i class="fa fa-plus"></i>
                   </button>
-                </form>
+                </div>
 
-                <!-- Success/Error Messages -->
-                <div id="formMessages" class="form-messages"></div>
+                <div class="archive-item" data-markdown="blogs/open-source-contribution.md">
+                  <div class="archive-info">
+                    <h5>Contributing to Open Source: My Journey and Lessons Learned</h5>
+                    <div class="archive-meta">
+                      <span class="date">8 Dec 2024</span>
+                      <span class="read-time">7 min read</span>
+                      <span class="tags">OpenSource, Community, Career</span>
+                    </div>
+                  </div>
+                  <button class="archive-read-btn">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+
+                <div class="archive-item" data-markdown="blogs/remote-sensing-climate.md">
+                  <div class="archive-info">
+                    <h5>Remote Sensing Applications in Climate Change Monitoring</h5>
+                    <div class="archive-meta">
+                      <span class="date">7 Dec 2024</span>
+                      <span class="read-time">11 min read</span>
+                      <span class="tags">Climate, Satellite, Environment</span>
+                    </div>
+                  </div>
+                  <button class="archive-read-btn">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+
+                <div class="archive-item" data-markdown="blogs/spatial-databases-postgis.md">
+                  <div class="archive-info">
+                    <h5>Mastering Spatial Databases with PostGIS</h5>
+                    <div class="archive-meta">
+                      <span class="date">24 Nov 2024</span>
+                      <span class="read-time">13 min read</span>
+                      <span class="tags">PostGIS, Database, SQL</span>
+                    </div>
+                  </div>
+                  <button class="archive-read-btn">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+
+                <div class="archive-item" data-markdown="blogs/python-packaging-best-practices.md">
+                  <div class="archive-info">
+                    <h5>Python Packaging Best Practices for Geospatial Libraries</h5>
+                    <div class="archive-meta">
+                      <span class="date">16 Nov 2024</span>
+                      <span class="read-time">8 min read</span>
+                      <span class="tags">Python, Packaging, PyPI</span>
+                    </div>
+                  </div>
+                  <button class="archive-read-btn">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+
+                <div class="archive-item" data-markdown="blogs/gis-career-guidance.md">
+                  <div class="archive-info">
+                    <h5>GIS Career Guidance: From Student to Professional</h5>
+                    <div class="archive-meta">
+                      <span class="date">10 Nov 2024</span>
+                      <span class="read-time">12 min read</span>
+                      <span class="tags">Career, GIS, Education</span>
+                    </div>
+                  </div>
+                  <button class="archive-read-btn">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+
+                <div class="archive-item" data-markdown="blogs/webgis-modern-frameworks.md">
+                  <div class="archive-info">
+                    <h5>WebGIS Development with Modern JavaScript Frameworks</h5>
+                    <div class="archive-meta">
+                      <span class="date">3 Nov 2024</span>
+                      <span class="read-time">10 min read</span>
+                      <span class="tags">WebGIS, JavaScript, React</span>
+                    </div>
+                  </div>
+                  <button class="archive-read-btn">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </section>
-
-        <!-- Contact Section End -->
-        <!-- FAQ Section -->
-        <section id="faq" class="faq section">
-            <div class="container">
-                <div class="row">
-                    <div class="section-title padd-15">
-                        <h2>Frequently Asked Questions</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="faq-content padd-15">
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>Why did you create this website? <span class="faq-toggle">+</span></h4>
-                            </div>
-                            <div class="faq-answer">
-                                <p>This website serves as a comprehensive showcase of my professional journey, technical skills, and open-source contributions in the geospatial and data science domains. It provides potential employers, collaborators, and the community with easy access to my work, projects, and expertise. I believe in transparency and sharing knowledge, which is why I've made my projects and learning journey accessible to everyone.</p>
-                            </div>
-                        </div>
-        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>Why Astrokundali (Astrology)? <span class="faq-toggle">+</span></h4>
-                            </div>
-                            <div class="faq-answer">
-                                <p>The AstroKundali project was one of my early Python learning adventures, specifically designed to master Object-Oriented Programming concepts. It represents my willingness to explore completely different subjects and cultures. From a technical perspective, it helped me understand complex mathematical calculations, astronomical algorithms, and cultural data structures. This project demonstrates that I'm not afraid to step outside my comfort zone and learn from diverse knowledge systems.</p>
-                            </div>
-                        </div>
-        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>Do you consider yourself an Astrologer? <span class="faq-toggle">+</span></h4>
-                            </div>
-                            <div class="faq-answer">
-                                <p><strong>Absolutely not.</strong> I am a Data Scientist and GIS Engineer who developed a technical tool for generating astrological charts. My approach to the AstroKundali project was purely from a software development and cultural learning perspective. I focused on the mathematical and algorithmic aspects of chart generation rather than interpretations or predictions. I respect the cultural significance of astrology while maintaining my scientific approach to problem-solving.</p>
-                            </div>
-                        </div>
-        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>Do you make fun of different cultures or astrology believers? <span class="faq-toggle">+</span></h4>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Never. I have deep respect for all cultures and belief systems. Astrology, in its original form, was more about understanding personality patterns and human behavior rather than blind adherence to rituals or remedies. Many ancient civilizations used astronomical observations for practical purposes like agriculture and navigation. My project focuses on the technical and mathematical aspects of chart generation, treating it as a fascinating intersection of astronomy, mathematics, and cultural heritage. I believe in approaching different knowledge systems with curiosity and respect, not mockery.</p>
-                            </div>
-                        </div>
-        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>What drives your passion for open-source contributions? <span class="faq-toggle">+</span></h4>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Open-source development aligns with my belief in democratizing technology and knowledge sharing. Through my PyPI packages and QGIS plugins, I aim to solve real-world problems and make geospatial tools more accessible to researchers, students, and professionals. Each contribution represents a learning opportunity and a way to give back to the community that has supported my growth. I believe that sharing knowledge multiplies its value.</p>
-                            </div>
-                        </div>
-        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>How do you balance technical innovation with cultural sensitivity? <span class="faq-toggle">+</span></h4>
-                            </div>
-                            <div class="faq-answer">
-                                <p>I approach every project with respect for the cultural context it operates in. Whether working with traditional knowledge systems like astrology or modern satellite data analysis, I maintain a learner's mindset. I focus on understanding the underlying principles, mathematical foundations, and practical applications rather than making judgments about belief systems. This approach has enriched my perspective and made me a more well-rounded developer and data scientist.</p>
-                            </div>
-                        </div>
-        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>What's your approach to learning new technologies and domains? <span class="faq-toggle">+</span></h4>
-                            </div>
-                            <div class="faq-answer">
-                                <p>I believe in hands-on learning through practical projects. Whether it's mastering PySpark for satellite data processing or understanding Swiss Ephemeris for astronomical calculations, I dive deep into the subject matter. I combine theoretical knowledge with practical implementation, often creating tools or packages that solve real problems. This approach has helped me successfully transition between different domains while maintaining technical depth.</p>
-                            </div>
-                        </div>
-        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>How do you ensure quality in your open-source projects? <span class="faq-toggle">+</span></h4>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Quality is paramount in all my projects. I follow best practices including comprehensive documentation, unit testing, version control, and continuous integration. Each PyPI package and QGIS plugin undergoes thorough testing before release. I actively maintain my projects, respond to user feedback, and continuously improve based on real-world usage patterns. User experience and reliability are my top priorities.</p>
-                            </div>
-                        </div>
-        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h4>What's next in your professional journey? <span class="faq-toggle">+</span></h4>
-                            </div>
-                            <div class="faq-answer">
-                                <p>I'm excited about the intersection of AI and geospatial technologies. My current focus includes developing more sophisticated satellite data processing pipelines, exploring generative AI applications in geospatial analysis, and contributing to climate change solutions through technology. I'm also working on expanding my open-source contributions and potentially pursuing research opportunities in environmental monitoring and sustainable development.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </div>
+      </section>
+      <!-- Latest Blog Section End -->
+      <!-- Blog Modal for Expanded Content -->
+      <div class="blog-modal" id="blogModal" role="dialog" aria-modal="true" aria-labelledby="blogModalTitle">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="blogModalTitle">Loading...</h2>
+            <button class="modal-close" aria-label="Close blog article">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="loading-spinner">
+              <div class="spinner"></div>
+              <p>Loading article...</p>
             </div>
-        </section>
-        <!-- FAQ Section End -->
-
+            <div class="blog-content"></div>
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- Main Content End-->
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact-section">
+        <div class="contact-container">
+          <div class="contact-header">
+            <h2>Get In Touch</h2>
+            <p>Let's discuss your next GIS project or data analysis needs</p>
+          </div>
+
+          <div class="contact-content">
+            <!-- Compact Contact Information -->
+            <div class="contact-info-wrapper">
+              <div class="contact-info">
+                <!-- Copy-to-Clipboard Email -->
+                <div class="contact-item contact-copy" data-copy-text="mirjan.personal@gmail.com">
+                  <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="contact-details">
+                    <h3>Email</h3>
+                    <p>mirjan.personal@gmail.com</p>
+                  </div>
+                  <div class="copy-indicator">
+                    <i class="fas fa-copy"></i>
+                  </div>
+                </div>
+
+                <!-- Clickable LinkedIn -->
+                <a href="https://www.linkedin.com/in/mirjanalisha/" target="_blank" rel="noopener noreferrer"
+                  class="contact-item contact-link">
+                  <div class="contact-icon">
+                    <i class="fab fa-linkedin"></i>
+                  </div>
+                  <div class="contact-details">
+                    <h3>LinkedIn</h3>
+                    <p>Connect professionally</p>
+                  </div>
+                  <div class="link-indicator">
+                    <i class="fas fa-external-link-alt"></i>
+                  </div>
+                </a>
+
+                <!-- Clickable Location -->
+                <a href="https://www.google.com/maps/place/Bengaluru,+Karnataka,+India" target="_blank"
+                  rel="noopener noreferrer" class="contact-item contact-link">
+                  <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="contact-details">
+                    <h3>Location</h3>
+                    <p>Bengaluru, India</p>
+                  </div>
+                  <div class="link-indicator">
+                    <i class="fas fa-external-link-alt"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Interactive Contact Form -->
+            <div class="contact-form-wrapper">
+              <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                <!-- Web3Forms Access Key - Replace with your actual key -->
+                <input type="hidden" name="access_key" value="18909221-c276-4d4a-bd99-68c3b0a0b250">
+
+                <!-- Honeypot Spam Protection -->
+                <input type="checkbox" name="botcheck" id="botcheck" style="display: none;">
+
+                <!-- Form Fields -->
+                <div class="form-group">
+                  <label for="contactName">Full Name *</label>
+                  <input type="text" id="contactName" name="name" required class="form-input">
+                  <span class="error-message" id="nameError"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="contactEmail">Email Address *</label>
+                  <input type="email" id="contactEmail" name="email" required class="form-input">
+                  <span class="error-message" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="contactPhone">Phone Number</label>
+                  <input type="tel" id="contactPhone" name="phone" class="form-input">
+                </div>
+
+                <div class="form-group">
+                  <label for="contactSubject">Subject *</label>
+                  <select id="contactSubject" name="subject" required class="form-select">
+                    <option value="">Select a topic</option>
+                    <option value="GIS Analysis">GIS Analysis Project</option>
+                    <option value="Data Science">Data Science Consultation</option>
+                    <option value="Remote Sensing">Remote Sensing Analysis</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Career Opportunity">Career Opportunity</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                  </select>
+                  <span class="error-message" id="subjectError"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="contactMessage">Message *</label>
+                  <textarea id="contactMessage" name="message" rows="5" required class="form-textarea"
+                    placeholder="Tell me about your project or inquiry..."></textarea>
+                  <span class="error-message" id="messageError"></span>
+                  <div class="character-count">
+                    <span id="charCount">0</span> / 500 characters
+                  </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="submit-btn">
+                  <span class="btn-text">Send Message</span>
+                  <span class="btn-loading" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i> Sending...
+                  </span>
+                </button>
+              </form>
+
+              <!-- Success/Error Messages -->
+              <div id="formMessages" class="form-messages"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section End -->
+      <!-- FAQ Section -->
+      <section id="faq" class="faq section">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>Frequently Asked Questions</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="faq-content padd-15">
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h4>Why did you create this website? <span class="faq-toggle">+</span></h4>
+                </div>
+                <div class="faq-answer">
+                  <p>This website serves as a comprehensive showcase of my professional journey, technical skills, and
+                    open-source contributions in the geospatial and data science domains. It provides potential
+                    employers, collaborators, and the community with easy access to my work, projects, and expertise. I
+                    believe in transparency and sharing knowledge, which is why I've made my projects and learning
+                    journey accessible to everyone.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h4>What drives your passion for open-source contributions? <span class="faq-toggle">+</span></h4>
+                </div>
+                <div class="faq-answer">
+                  <p>Open-source development aligns with my belief in democratizing technology and knowledge sharing.
+                    Through my PyPI packages and QGIS plugins, I aim to solve real-world problems and make geospatial
+                    tools more accessible to researchers, students, and professionals. Each contribution represents a
+                    learning opportunity and a way to give back to the community that has supported my growth. I believe
+                    that sharing knowledge multiplies its value.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h4>How do you balance technical innovation with cultural sensitivity? <span
+                      class="faq-toggle">+</span></h4>
+                </div>
+                <div class="faq-answer">
+                  <p>I approach every project with respect for the cultural context it operates in. Whether working with
+                    traditional knowledge systems like astrology or modern satellite data analysis, I maintain a
+                    learner's mindset. I focus on understanding the underlying principles, mathematical foundations, and
+                    practical applications rather than making judgments about belief systems. This approach has enriched
+                    my perspective and made me a more well-rounded developer and data scientist.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h4>What's your approach to learning new technologies and domains? <span class="faq-toggle">+</span>
+                  </h4>
+                </div>
+                <div class="faq-answer">
+                  <p>I believe in hands-on learning through practical projects. Whether it's mastering PySpark for
+                    satellite data processing or understanding Swiss Ephemeris for astronomical calculations, I dive
+                    deep into the subject matter. I combine theoretical knowledge with practical implementation, often
+                    creating tools or packages that solve real problems. This approach has helped me successfully
+                    transition between different domains while maintaining technical depth.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h4>How do you ensure quality in your open-source projects? <span class="faq-toggle">+</span></h4>
+                </div>
+                <div class="faq-answer">
+                  <p>Quality is paramount in all my projects. I follow best practices including comprehensive
+                    documentation, unit testing, version control, and continuous integration. Each PyPI package and QGIS
+                    plugin undergoes thorough testing before release. I actively maintain my projects, respond to user
+                    feedback, and continuously improve based on real-world usage patterns. User experience and
+                    reliability are my top priorities.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h4>What's next in your professional journey? <span class="faq-toggle">+</span></h4>
+                </div>
+                <div class="faq-answer">
+                  <p>I'm excited about the intersection of AI and geospatial technologies. My current focus includes
+                    developing more sophisticated satellite data processing pipelines, exploring generative AI
+                    applications in geospatial analysis, and contributing to climate change solutions through
+                    technology. I'm also working on expanding my open-source contributions and potentially pursuing
+                    research opportunities in environmental monitoring and sustainable development.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h4>Why Astrokundali (Astrology)? <span class="faq-toggle">+</span></h4>
+                </div>
+                <div class="faq-answer">
+                  <p>The AstroKundali project was one of my early Python learning adventures, specifically designed to
+                    master Object-Oriented Programming concepts. It represents my willingness to explore completely
+                    different subjects and cultures. From a technical perspective, it helped me understand complex
+                    mathematical calculations, astronomical algorithms, and cultural data structures. This project
+                    demonstrates that I'm not afraid to step outside my comfort zone and learn from diverse knowledge
+                    systems.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h4>Do you consider yourself an Astrologer? <span class="faq-toggle">+</span></h4>
+                </div>
+                <div class="faq-answer">
+                  <p><strong>Absolutely not.</strong> I am a Data Scientist and GIS Engineer who developed a technical
+                    tool for generating astrological charts. My approach to the AstroKundali project was purely from a
+                    software development and cultural learning perspective. I focused on the mathematical and
+                    algorithmic aspects of chart generation rather than interpretations or predictions. I respect the
+                    cultural significance of astrology while maintaining my scientific approach to problem-solving.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h4>Do you make fun of different cultures or astrology believers? <span class="faq-toggle">+</span>
+                  </h4>
+                </div>
+                <div class="faq-answer">
+                  <p>Never. I have deep respect for all cultures and belief systems. Astrology, in its original form,
+                    was more about understanding personality patterns and human behavior rather than blind adherence to
+                    rituals or remedies. Many ancient civilizations used astronomical observations for practical
+                    purposes like agriculture and navigation. My project focuses on the technical and mathematical
+                    aspects of chart generation, treating it as a fascinating intersection of astronomy, mathematics,
+                    and cultural heritage. I believe in approaching different knowledge systems with curiosity and
+                    respect, not mockery.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- FAQ Section End -->
+
+    </main>
+  </div>
+  <!-- Main Content End-->
   </div>
   <!-- Main Container End -->
 
   <!-- Lightbox -->
-  <div class="lightbox">
-    <div class="lightbox-content">
-      <div class="lightbox-close">&times;
-        <!--<i class="fa fa-close"></i> -->
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="lightbox-overlay"></div>
+    <div class="lightbox-container">
+      <div class="lightbox-content">
+        <div class="lightbox-header">
+          <div class="lightbox-header-left">
+            <div class="lightbox-icon-wrapper">
+              <img src="" class="lightbox-icon" alt="Project Icon">
+            </div>
+            <div class="lightbox-title-section">
+              <h3 class="lightbox-title">Project Title</h3>
+              <p class="lightbox-author">by Mirjan Ali Sha</p>
+            </div>
+          </div>
+          <button class="lightbox-close" aria-label="Close project viewer">&times;</button>
+        </div>
+        <div class="lightbox-body">
+          <p class="lightbox-description">Project description goes here...</p>
+          <div class="lightbox-iframe-wrapper">
+            <div class="iframe-loading">
+              <i class="fas fa-spinner fa-spin"></i>
+              <span>Loading Project...</span>
+            </div>
+            <iframe src="" class="lightbox-iframe" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="lightbox-footer">
+          <div class="lightbox-meta">
+            <div class="meta-item"><i class="far fa-calendar-alt"></i> <span class="project-date">2024</span></div>
+            <div class="meta-item rating-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span class="rating-text">(4.8)</span>
+            </div>
+          </div>
+          <div class="lightbox-actions">
+            <a href="#" class="btn-download" target="_blank">
+              <i class="fas fa-download"></i> <span class="btn-text">Download</span>
+            </a>
+            <div class="download-stats">
+              <i class="fas fa-users"></i> <span class="download-count">1,234</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <img src="./images/portfolio/1.jpg" class="lightbox-img">
-      <div class="lightbox-caption">
-        <div class="caption-text"></div>
-        <div class="caption-counter"></div>
-      </div>
+      <div class="lightbox-counter">1 of 20</div>
     </div>
     <div class="lightbox-controls">
-      <div class="prev-item" onclick="prevItem()"><i class="fa fa-angle-left"></i></div>
-      <div class="next-item" onclick="nextItem()"><i class="fa fa-angle-right"></i></div>
+      <button class="prev-item" onclick="prevItem()" aria-label="Previous project"><i
+          class="fa fa-angle-left"></i></button>
+      <button class="next-item" onclick="nextItem()" aria-label="Next project"><i
+          class="fa fa-angle-right"></i></button>
     </div>
   </div>
   <!-- Lightbox End -->
@@ -1573,44 +1724,21 @@
     <h5>Body Skin</h5>
     <label><input type="radio" name="body-style" value="light" class="body-skin" checked="true">Light </label>
     <label><input type="radio" name="body-style" value="dark" class="body-skin">Dark</label>
+    <!-- ROYAL GOLDEN THEME SUPPORT: START -->
+    <label><input type="radio" name="body-style" value="royal-golden" class="body-skin">Royal</label>
+    <!-- ROYAL GOLDEN THEME SUPPORT: END -->
   </div>
   <!-- Live Style Switcher -Demo Only End -->
   <!-- Template JavaScript -->
   <script src="./js/script.js"></script>
   <!-- Live Style Switcher JavaScript -->
   <script src="./js/styleSwitcher.js"></script>
-  <script>
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzojJ1EQKGxoV2iv3Fr9_IZZ3ydm8Ad4nT5kF2yiK7NmiHTmdCw/exec'
-
-    const form = document.forms['contact-me']
-
-
-
-    form.addEventListener('submit', e => {
-
-      e.preventDefault()
-
-      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-
-        .then(response => alert("Thanks for Contacting me..! I Will Contact You Soon..."))
-
-        .catch(error => console.error('Error!', error.message))
-
-    })
-
-  </script>
-
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <!-- Add your contact JavaScript -->
   <script src="js/contact.js"></script>
+  <!-- Achievements & GitHub Stats -->
+  <script src="js/stats.js"></script>
 </body>
 
 </html>
-
-

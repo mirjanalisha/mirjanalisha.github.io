@@ -126,12 +126,20 @@ function initializeLightbox() {
     
     if (!lightbox || portfolioItems.length === 0) return;
     
-    const lightboxImg = lightbox.querySelector(".lightbox-img");
+    const lightboxIcon = lightbox.querySelector(".lightbox-icon");
+    const lightboxTitle = lightbox.querySelector(".lightbox-title");
+    const lightboxDescription = lightbox.querySelector(".lightbox-description");
+    const lightboxCounter = lightbox.querySelector(".lightbox-counter");
+    const lightboxBtn = lightbox.querySelector(".btn-download");
+    const btnText = lightboxBtn ? lightboxBtn.querySelector(".btn-text") : null;
+    const lightboxRating = lightbox.querySelector(".rating-stars");
+    const lightboxDate = lightbox.querySelector(".project-date");
+    const lightboxDownloads = lightbox.querySelector(".download-count");
     const lightboxClose = lightbox.querySelector(".lightbox-close");
-    const lightboxText = lightbox.querySelector(".caption-text");
-    const lightboxCounter = lightbox.querySelector(".caption-counter");
-    const totalPortfolioItems = portfolioItems.length;
+    const lightboxOverlay = lightbox.querySelector(".lightbox-overlay");
+    const lightboxIframe = lightbox.querySelector(".lightbox-iframe");
     
+    const totalPortfolioItems = portfolioItems.length;
     let itemIndex = 0;
 
     // Add click event to portfolio items
@@ -145,52 +153,114 @@ function initializeLightbox() {
 
     // Lightbox navigation functions
     function nextItem() {
-        if (itemIndex === totalPortfolioItems - 1) {
-            itemIndex = 0;
-        } else {
-            itemIndex++;
-        }
+        itemIndex = (itemIndex + 1) % totalPortfolioItems;
         changeItem();
     }
 
     function prevItem() {
-        if (itemIndex === 0) {
-            itemIndex = totalPortfolioItems - 1;
-        } else {
-            itemIndex--;
-        }
+        itemIndex = (itemIndex - 1 + totalPortfolioItems) % totalPortfolioItems;
         changeItem();
     }
 
     function toggleLightbox() {
-        lightbox.classList.toggle("open");
+        const isOpen = lightbox.classList.toggle("open");
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+            // Clear iframe src when closing to stop music/video
+            if (lightboxIframe) {
+                lightboxIframe.src = "";
+            }
+            lightbox.classList.remove("expanded", "loading");
+        }
     }
 
     function changeItem() {
-        const imgElement = portfolioItems[itemIndex].querySelector(".portfolio-img img");
-        const titleElement = portfolioItems[itemIndex].querySelector("h4");
+        const item = portfolioItems[itemIndex];
+        const imgElement = item.querySelector(".portfolio-img img");
+        const titleElement = item.querySelector("h4");
+        const category = item.getAttribute("data-category");
         
-        if (imgElement && lightboxImg) {
-            const imgSrc = imgElement.getAttribute("src");
-            lightboxImg.src = imgSrc;
+        // Extract data attributes
+        const description = item.getAttribute("data-description") || "No description available.";
+        const link = item.getAttribute("data-link") || "#";
+        const downloads = item.getAttribute("data-downloads") || "0";
+        const rating = parseFloat(item.getAttribute("data-rating")) || 0;
+        const date = item.getAttribute("data-date") || "2024";
+
+        // Handle iFrame (Web Apps)
+        if (category === "web-apps") {
+            lightbox.classList.add("expanded", "loading");
+            if (lightboxIframe) {
+                lightboxIframe.src = link;
+                lightboxIframe.onload = () => {
+                    lightbox.classList.remove("loading");
+                };
+            }
+            if (btnText) btnText.textContent = "Visit Website";
+        } else {
+            lightbox.classList.remove("expanded", "loading");
+            if (lightboxIframe) lightboxIframe.src = "";
+            if (btnText) btnText.textContent = "Download";
+        }
+
+        // Update modal content
+        if (imgElement && lightboxIcon) {
+            lightboxIcon.src = imgElement.getAttribute("src");
         }
         
-        if (titleElement && lightboxText) {
-            lightboxText.innerHTML = titleElement.innerHTML;
+        if (titleElement && lightboxTitle) {
+            lightboxTitle.textContent = titleElement.textContent;
+        }
+        
+        if (lightboxDescription) {
+            lightboxDescription.textContent = description;
+        }
+        
+        if (lightboxBtn) {
+            lightboxBtn.href = link;
+        }
+        
+        if (lightboxDate) {
+            lightboxDate.textContent = date;
+        }
+        
+        if (lightboxDownloads) {
+            lightboxDownloads.textContent = downloads;
         }
         
         if (lightboxCounter) {
-            lightboxCounter.innerHTML = (itemIndex + 1) + " of " + totalPortfolioItems;
+            lightboxCounter.textContent = (itemIndex + 1) + " of " + totalPortfolioItems;
+        }
+
+        // Render Rating Stars
+        if (lightboxRating) {
+            let starsHtml = "";
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    starsHtml += '<i class="fas fa-star"></i>';
+                } else if (i === fullStars && hasHalfStar) {
+                    starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    starsHtml += '<i class="far fa-star"></i>';
+                }
+            }
+            starsHtml += ` <span class="rating-text">(${rating})</span>`;
+            lightboxRating.innerHTML = starsHtml;
         }
     }
 
     // Close lightbox functionality
-    if (lightbox) {
-        lightbox.addEventListener("click", function (event) {
-            if (event.target === lightboxClose || event.target === lightbox) {
-                toggleLightbox();
-            }
-        });
+    if (lightboxClose) {
+        lightboxClose.addEventListener("click", toggleLightbox);
+    }
+    
+    if (lightboxOverlay) {
+        lightboxOverlay.addEventListener("click", toggleLightbox);
     }
 
     // Add keyboard navigation
@@ -206,7 +276,7 @@ function initializeLightbox() {
         }
     });
 
-    // Expose navigation functions globally if needed
+    // Expose navigation functions globally
     window.nextItem = nextItem;
     window.prevItem = prevItem;
 }
@@ -551,6 +621,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("Error initializing blog section:", error);
     }
     
+    
     console.log("All components initialized successfully");
 });
 
@@ -745,7 +816,19 @@ function initializeBlogSection() {
             })
             .catch(error => {
                 console.error('Error loading markdown:', error);
-                blogContent.innerHTML = '<p>Error loading article content. Please try again later.</p>';
+                let errorMessage = 'Error loading article content. Please try again later.';
+                
+                if (window.location.protocol === 'file:') {
+                    errorMessage = `
+                        <div class="local-file-error">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p><strong>Local File Access Blocked:</strong> Browsers block loading external content when opening files directly via <code>file://</code>.</p>
+                            <p>To view the blog content locally, please use a local web server like <strong>VS Code Live Server</strong> or run <code>npx serve</code> in your project directory.</p>
+                        </div>
+                    `;
+                }
+                
+                blogContent.innerHTML = errorMessage;
                 loadingSpinner.style.display = 'none';
                 blogContent.style.display = 'block';
                 blogContent.classList.add('loaded');
@@ -791,7 +874,13 @@ function initializeBlogSection() {
             })
             .catch(error => {
                 console.error('Error loading markdown:', error);
-                inlineContentDiv.innerHTML = '<p>Error loading article content.</p>';
+                let errorMessage = 'Error loading article content.';
+                
+                if (window.location.protocol === 'file:') {
+                    errorMessage = '<p style="color: #d9534f; font-size: 0.9em;"><strong>Error:</strong> Local file access blocked. Please use a local web server.</p>';
+                }
+                
+                inlineContentDiv.innerHTML = errorMessage;
                 inlineLoading.style.display = 'none';
                 inlineContentDiv.style.display = 'block';
             });
@@ -905,11 +994,34 @@ const inlineContentCSS = `
         background: #333333;
         border-color: #393939;
     }
+    
+    /* Local file error styling */
+    .local-file-error {
+        text-align: center;
+        padding: 40px 20px;
+        color: #504e70;
+    }
+    
+    .local-file-error i {
+        font-size: 3em;
+        color: #ffcc00;
+        margin-bottom: 20px;
+    }
+    
+    .local-file-error p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+    
+    .local-file-error code {
+        background: #e8dfec;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: monospace;
+    }
 `;
 
 // Add inline content styles
 const inlineStyleSheet = document.createElement('style');
 inlineStyleSheet.textContent = inlineContentCSS;
 document.head.appendChild(inlineStyleSheet);
-
-

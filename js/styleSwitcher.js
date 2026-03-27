@@ -1,11 +1,9 @@
 // Variables
 const links=document.querySelectorAll(".alternate-style"),
-      // console.log(links);
       totalLinks=links.length;
 
-// Style Switching
+// Style Switching with localStorage persistence
 function setActiveStyle(color) {
-    // console.log(color)
     for (let i = 0; i < totalLinks; i++) {
         if (color === links[i].getAttribute("title")) {
             links[i].removeAttribute("disabled");
@@ -14,7 +12,10 @@ function setActiveStyle(color) {
             links[i].setAttribute("disabled", "true");
         }
     }
+    // Save color preference
+    try { localStorage.setItem('portfolio-theme-color', color); } catch(e) {}
 }
+
 const navToggle = document.querySelector(".nav-toggler");
 if (navToggle) {
     navToggle.classList.remove("hidden");
@@ -30,20 +31,53 @@ if (styleSwitcherToggle) {
     });
 }
 
-// Body Skin Changing
+// Body Skin Changing with localStorage persistence
 const bodySkin=document.querySelectorAll(".body-skin"),
       totalBodySkin=bodySkin.length;
     for (let i = 0; i < totalBodySkin; i++) {
         bodySkin[i].addEventListener("change", function(){
-            // console.log(this);
+            /* ROYAL GOLDEN THEME SUPPORT: START */
             if (this.value === "dark") {
-                // document.body.classList.add("dark");
                 document.body.className="dark";
             }
+            else if (this.value === "royal-golden") {
+                document.body.className="royal-golden";
+            }
             else{
-                // document.body.classList.remove("dark");
                 document.body.className=""
             }
+            /* ROYAL GOLDEN THEME SUPPORT: END */
+            // Save dark/light/royal preference
+            try { localStorage.setItem('portfolio-theme-mode', this.value); } catch(e) {}
         });
-        
     }
+
+// Restore saved theme on page load
+(function restoreTheme() {
+    try {
+        const savedColor = localStorage.getItem('portfolio-theme-color');
+        const savedMode = localStorage.getItem('portfolio-theme-mode');
+        
+        if (savedColor) {
+            setActiveStyle(savedColor);
+        }
+        
+        /* ROYAL GOLDEN THEME SUPPORT: START */
+        if (savedMode === 'dark') {
+            document.body.className = 'dark';
+            const darkRadio = document.querySelector('.body-skin[value="dark"]');
+            if (darkRadio) darkRadio.checked = true;
+        } else if (savedMode === 'royal-golden') {
+            document.body.className = 'royal-golden';
+            const royalRadio = document.querySelector('.body-skin[value="royal-golden"]');
+            if (royalRadio) royalRadio.checked = true;
+        } else if (savedMode === 'light') {
+            document.body.className = '';
+            const lightRadio = document.querySelector('.body-skin[value="light"]');
+            if (lightRadio) lightRadio.checked = true;
+        }
+        /* ROYAL GOLDEN THEME SUPPORT: END */
+    } catch(e) {
+        // localStorage not available, silently ignore
+    }
+})();

@@ -1,5 +1,4 @@
-/*Font Awesome Free Icon*/
-@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+/* Google fonts */
 /*Google fonts*/
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Rubik:500,700,900&display=swap');
@@ -11,6 +10,38 @@ body{
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
+}
+
+/* Skip Navigation (Accessibility - visible only on keyboard focus) */
+.skip-nav {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    background: #667eea;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 200;
+}
+.skip-nav:focus {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: auto;
+    height: auto;
+    padding: 12px 24px;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 *{
     margin: 0;
@@ -25,7 +56,7 @@ body{
 input, textarea, select{
     font-family: 'Montserrat', sans-serif;
 }
-.main-cotainer {
+.main-container {
     max-width: 100%;
 }
 
@@ -401,12 +432,14 @@ input, textarea, select{
     font-size:22px;
 }
 
-.home .intro .text-container p:nth-child(2){
+.home .intro .text-container .hero-name {
     font-family:calibri;
     font-weight:bold;
     letter-spacing:1px;
     color:#1a1a1a;
     font-size:60px;
+    margin: 45px 0px 25px;
+    line-height: 1;
 }
 
 .home .intro .text-container p:nth-child(3){
@@ -462,16 +495,18 @@ input, textarea, select{
 
 .about .about-content .about-container{
     width:95%;
-    height:350px;
+    min-height: 450px;
+    height: auto;
     background-color:#ffffff;
     border-radius:20px;
     box-shadow:2px 2px 12px rgba(0,0,0,0.2);
     display: flex;
-    margin: -7%  auto 20px auto;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    padding: 40px 20px;
     position: relative;
-    justify-content:space-evenly;
-    align-items: center;
-    top: 30px;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 
 .about .about-content .about-container img{
@@ -545,12 +580,14 @@ input, textarea, select{
 }
 
 .about .about-content .personal-info .buttons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
     margin-top: 30px;
 }
 
 .about .about-content .personal-info .buttons .btn{
-    margin-right: 15px;
-    margin-top: 10px;
+    margin: 0;
 }
 
 /* Skills & Education Section */
@@ -1299,6 +1336,7 @@ input, textarea, select{
     margin-bottom: 15px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -1925,7 +1963,7 @@ body.dark .blog-content h6 {
     }
     
     .about .about-content .about-container{
-        height:450px;
+        height: auto;
     }
 }
 
@@ -1951,31 +1989,31 @@ body.dark .blog-content h6 {
     }
     
     .about .about-content .about-container{
-        height:500px;
+        height: auto;
     }
 }
 
 @media(max-width: 500px){
     .about .about-content .about-container{
-        height:600px;
+        height: auto;
     }
 }
 
 @media(max-width: 450px){
     .about .about-content .about-container{
-        height:950px;
+        height: auto;
     }
 }
 
 @media(max-width: 386px){
     .about .about-content .about-container{
-        height:1100px;
+        height: auto;
     }
 }
 
 @media(max-width: 370px){
     .about .about-content .about-container{
-        height:1200px;
+        height: auto;
     }
     
     .skills-education .about-content .timeline .timeline-date,
@@ -2029,13 +2067,13 @@ body.dark .blog-content h6 {
 
 @media(max-width: 340px){
     .about .about-content .about-container{
-        height:1550px;
+        height: auto;
     }
 }
 
 @media(max-width: 320px){
     .about .about-content .about-container{
-        height:1700px;
+        height: auto;
     }
 }
 
@@ -2113,6 +2151,15 @@ body.dark .shadow-dark{
 }
 
 /* FAQ Section Styles */
+.about .about-content .about-container{
+    flex: 0 0 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: fit-content;
+    padding: 30px;
+    border: 1px solid #d4d4e3;
+    border-radius: 10px;
+}
 .faq .faq-content {
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
