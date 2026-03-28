@@ -2,12 +2,74 @@
 // PRELOADER FUNCTIONALITY
 // ====================================
 window.addEventListener("load", function(){
-    const preloader = document.querySelector(".preloader");
-    if (preloader) {
-        preloader.classList.add("opacity-0");
-        setTimeout(function(){
-            preloader.style.display = "none";
-        }, 1000);
+    try {
+        if (typeof gsap !== "undefined") {
+            gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+            // Preloader Animation
+            var timeline = gsap.timeline();
+            timeline.to(".mil-preloader-animation", { opacity: 1 });
+            timeline.fromTo(".mil-animation-1 .mil-h3", { y: "30px", opacity: 0 }, { y: "0px", opacity: 1, stagger: 0.4 });
+            timeline.to(".mil-animation-1 .mil-h3", { opacity: 0, y: '-30' }, "+=.3");
+            timeline.fromTo(".mil-reveal-box", { opacity: 0 }, { opacity: 1, x: '-30', duration: 0.1 });
+            timeline.to(".mil-reveal-box", { width: "100%", x: 0, duration: 0.45 }, "+=.1");
+            timeline.to(".mil-reveal-box", { right: "0" });
+            timeline.to(".mil-reveal-box", { width: "0%", duration: 0.3 });
+            timeline.fromTo(".mil-animation-2 .mil-h3", { opacity: 0 }, { opacity: 1 }, "-=.5");
+            timeline.to(".mil-animation-2 .mil-h3", { opacity: 0, y: '-30', duration: 0.6 }, "+=.5");
+            timeline.to(".mil-preloader", { 
+                opacity: 0, 
+                ease: 'sine', 
+                duration: 0.8,
+                onComplete: function () {
+                    var preloader = document.querySelector('.mil-preloader');
+                    if(preloader) {
+                        preloader.classList.add("mil-hidden");
+                        preloader.style.display = "none";
+                        // add transition out of body
+                        document.body.style.overflow = "auto";
+                    }
+                }
+            }, "+=.2");
+
+            document.body.style.overflow = "hidden"; // lock scroll until preloader done
+
+            // Append 3D elements
+            const dodecahedron = document.querySelector(".mil-dodecahedron");
+            const animations = document.querySelectorAll(".mil-animation");
+            if(dodecahedron && animations.length) {
+                animations.forEach(anim => {
+                    anim.appendChild(dodecahedron.cloneNode(true));
+                });
+            }
+
+            // Home Page Parallax/Scale Animation
+            const scaleImage = document.querySelectorAll(".mil-scale");
+            scaleImage.forEach((section) => {
+                var value1 = section.getAttribute("data-value-1") || 1;
+                var value2 = section.getAttribute("data-value-2") || 1;
+                gsap.fromTo(section, 
+                    { scale: value1 }, 
+                    { scale: value2, ease: 'sine', scrollTrigger: { trigger: "#home", scrub: true } }
+                );
+            });
+        } else {
+            fallbackPreloader();
+        }
+    } catch (e) {
+        console.error("GSAP Animation error: ", e);
+        fallbackPreloader();
+    }
+
+    function fallbackPreloader() {
+        // Fallback
+        const preloader = document.querySelector(".preloader") || document.querySelector(".mil-preloader");
+        if (preloader) {
+            preloader.classList.add("opacity-0");
+            setTimeout(function(){
+                preloader.style.display = "none";
+            }, 1000);
+        }
     }
 });
 
