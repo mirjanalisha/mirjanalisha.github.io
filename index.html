@@ -10,6 +10,10 @@
   <meta name="author" content="Mirjan Ali Sha">
   <meta name="keywords"
     content="GIS Engineer, Data Scientist, QGIS Plugins, Python Packages, Remote Sensing, Geospatial, Machine Learning">
+  <!-- PWA Metadata -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#fcf9ff">
+  <link rel="apple-touch-icon" href="images/icon.png">
 
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website">
@@ -641,7 +645,8 @@
                 <div class="icon"><i class="fab fa-python"></i></div>
                 <h4>Python Package Development</h4>
                 <p>Developing custom <strong>Python packages and automated tools</strong> for geospatial data access,
-                  analysis, and processing. Published packages include open-geodata-api, astrokundali, and
+                  analysis, and processing. Published packages include open-geodata-api, PyClassStruct, astrokundali,
+                  and
                   ai-research-planner available on PyPI with comprehensive documentation.</p>
               </div>
             </div>
@@ -771,8 +776,8 @@
             <!-- QGIS Plugins -->
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Cleans invalid or null geometries from vector layers in QGIS. Essential for data cleaning and pre-processing tasks."
-              data-link="https://plugins.qgis.org/plugins/clear_null_geometry/" data-downloads="10,296"
-              data-rating="4.8" data-date="Nov 2023">
+              data-link="https://plugins.qgis.org/plugins/clear_null_geometry/" data-downloads="10K+" data-rating="4.8"
+              data-date="Nov 2023">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
                   <img src="./images/portfolio/qgis-plugins/clear-null-geometry.png" alt="clear-null-geometry">
@@ -791,7 +796,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Professional coordinate reference system finder. Allows users to search and identify the correct CRS for their geospatial data projects."
-              data-link="https://plugins.qgis.org/plugins/crs_finder/" data-downloads="5,805" data-rating="4.7"
+              data-link="https://plugins.qgis.org/plugins/crs_finder/" data-downloads="1.5K+" data-rating="4.7"
               data-date="Jan 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -810,7 +815,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Streamlined KML/KMZ export tool for QGIS. Provides advanced options for styling and attribute preservation during the export process."
-              data-link="https://plugins.qgis.org/plugins/export2kml/" data-downloads="18,465" data-rating="4.9"
+              data-link="https://plugins.qgis.org/plugins/export2kml/" data-downloads="18.5K+" data-rating="4.9"
               data-date="Mar 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -829,7 +834,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Interactive coordinate capture tool for XYZ tile coordinates and MGRS grid references. Features seamless navigation and real-time visualization."
-              data-link="https://plugins.qgis.org/plugins/xyz_coordinate_tool/" data-downloads="3,210" data-rating="4.6"
+              data-link="https://plugins.qgis.org/plugins/xyz_coordinate_tool/" data-downloads="6K+" data-rating="4.6"
               data-date="Feb 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -850,8 +855,8 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Export vector layers directly to CSV format with full geometry support. Includes customizable column mapping and projection options."
-              data-link="https://plugins.qgis.org/plugins/csv_geometry_export/" data-downloads="12,500"
-              data-rating="4.8" data-date="Oct 2023">
+              data-link="https://plugins.qgis.org/plugins/csv_geometry_export/" data-downloads="4K+" data-rating="4.8"
+              data-date="Oct 2023">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
                   <img src="./images/portfolio/qgis-plugins/csv-geometry-export.png" alt="CSV Geometry Export">
@@ -870,7 +875,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Comprehensive CSV import tool supporting multiple coordinate formats. Part of the MAS Vector Processing collection."
-              data-link="https://plugins.qgis.org/plugins/csv_geometry_import/" data-downloads="7,850" data-rating="4.7"
+              data-link="https://plugins.qgis.org/plugins/csv_geometry_import/" data-downloads="2K+" data-rating="4.7"
               data-date="Dec 2023">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -891,7 +896,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Advanced raster band stacking and extraction tool. Supports multi-spectral imagery processing with batch capabilities."
-              data-link="https://plugins.qgis.org/plugins/band_stacker/" data-downloads="4,120" data-rating="4.5"
+              data-link="https://plugins.qgis.org/plugins/band_stacker/" data-downloads="6K+" data-rating="4.5"
               data-date="Feb 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -910,7 +915,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Professional-grade raster mosaicking tool. Features seamless edge blending, color matching, and support for large-scale datasets."
-              data-link="https://plugins.qgis.org/plugins/mosaic_tool/" data-downloads="6,450" data-rating="4.8"
+              data-link="https://plugins.qgis.org/plugins/mosaic_tool/" data-downloads="3K+" data-rating="4.8"
               data-date="Mar 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -929,7 +934,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Advanced Map Downloader for QGIS. Supports multiple tile servers, georeferencing, and batch downloads for offline GIS use."
-              data-link="https://plugins.qgis.org/plugins/advanced_map_downloader/" data-downloads="9,820"
+              data-link="https://plugins.qgis.org/plugins/advanced_map_downloader/" data-downloads="3.5K+"
               data-rating="4.7" data-date="Apr 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -950,7 +955,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Enriched attribute table for QGIS with advanced row/column selection, filtering, and rapid data exploration features."
-              data-link="https://plugins.qgis.org/plugins/advanced_selection_table/" data-downloads="35,120"
+              data-link="https://plugins.qgis.org/plugins/advanced_selection_table/" data-downloads="1K+"
               data-rating="4.9" data-date="May 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -970,7 +975,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Machine learning-based supervised classification for satellite imagery within QGIS. Supports Random Forest and SVM algorithms."
-              data-link="https://plugins.qgis.org/plugins/supervised_classifier/" data-downloads="11,400"
+              data-link="https://plugins.qgis.org/plugins/supervised_classifier/" data-downloads="11.5K+"
               data-rating="4.6" data-date="Jun 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -990,7 +995,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Unsupervised classification tool for QGIS. Implements K-Means clustering for rapid land cover mapping and spectral analysis."
-              data-link="https://plugins.qgis.org/plugins/unsupervised_classifier/" data-downloads="8,900"
+              data-link="https://plugins.qgis.org/plugins/unsupervised_classifier/" data-downloads="17.5K+"
               data-rating="4.4" data-date="Jul 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -1010,7 +1015,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="A massive toolkit featuring 45+ geospatial analysis tools for QGIS. Covers hydrological analysis, DEM processing, and vector statistics."
-              data-link="https://plugins.qgis.org/plugins/mas_spatial_analysis_tool/" data-downloads="22,600"
+              data-link="https://plugins.qgis.org/plugins/mas_spatial_analysis_tool/" data-downloads="1.5K+"
               data-rating="4.9" data-date="Aug 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -1030,8 +1035,8 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Interact with STAC (SpatioTemporal Asset Catalog) datasets directly in QGIS. Browse, filter, and load satellite imagery from global catalogs like Sentinel and Landsat."
-              data-link="https://plugins.qgis.org/plugins/open_geodata_browser/" data-downloads="15,750"
-              data-rating="4.8" data-date="Sep 2024">
+              data-link="https://plugins.qgis.org/plugins/open_geodata_browser/" data-downloads="3K+" data-rating="4.8"
+              data-date="Sep 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
                   <img src="./images/portfolio/qgis-plugins/open-geospatial-browser.png" alt="STAC Browser">
@@ -1050,7 +1055,7 @@
 
             <div class="portfolio-item padd-15" data-category="qgis-plugins"
               data-description="Advanced Raster Calculator for QGIS. Features a professional-grade expression builder, support for complex conditional logic, and multi-band operations."
-              data-link="https://plugins.qgis.org/plugins/raster_calculator/" data-downloads="14,200" data-rating="4.7"
+              data-link="https://plugins.qgis.org/plugins/raster_calculator/" data-downloads="1K+" data-rating="4.7"
               data-date="Oct 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -1071,7 +1076,7 @@
             <!-- ML Projects -->
             <div class="portfolio-item padd-15" data-category="ml-projects"
               data-description="Advanced semantic segmentation of aerial imagery using U-Net architecture. achieving state-of-the-art results on the Dubai satellite dataset for urban land cover mapping."
-              data-link="https://github.com/Mirjan-Ali-Sha/Satellite-Image-Classification" data-downloads="1,450"
+              data-link="https://github.com/Mirjan-Ali-Sha/Satellite-Image-Classification" data-downloads="N/A"
               data-rating="N/A" data-date="Oct 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
@@ -1852,6 +1857,20 @@
   <script src="js/contact.js"></script>
   <!-- Achievements & GitHub Stats -->
   <script src="js/stats.js"></script>
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+  </script>
 </body>
 
 </html>

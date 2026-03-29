@@ -403,7 +403,7 @@ function initializeNavigation() {
                 setTimeout(() => {
                     const scrollOffset = getScrollOffset();
                     smoothScrollToSection(targetElement, scrollOffset);
-                }, 100); // Small delay to ensure section is visible
+                }, 350); // Wait 350ms to ensure 300ms CSS transition finishes before calculating offsetTop
             }
         }
     }

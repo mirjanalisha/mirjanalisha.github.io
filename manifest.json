@@ -1,0 +1,22 @@
+{
+  "name": "Mirjan's Portfolio",
+  "short_name": "Portfolio",
+  "description": "Portfolio of Mirjan Ali Sha — GIS Engineer & Data Scientist",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fcf9ff",
+  "theme_color": "#fcf9ff",
+  "icons": [
+    {
+      "src": "./images/icon.png",
+      "sizes": "261x312",
+      "type": "image/png"
+    },
+    {
+      "src": "./images/icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

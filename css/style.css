@@ -938,6 +938,7 @@ input, textarea, select{
 }
 
 .portfolio .portfolio-item{
+    -ms-flex: 0 0 33.33%;
     flex: 0 0 33.33%;
     max-width: 33.33%;
     margin-bottom: 30px;
@@ -1836,7 +1837,8 @@ body.dark .blog-content h6 {
     .aside .nav-toggler{
         display: -ms-flexbox;
         display: flex;
-        left: 30px;
+        position: absolute;
+        left: 300px;
     }
     
     .aside .nav-toggler.open{
@@ -1861,7 +1863,7 @@ body.dark .blog-content h6 {
     }
     
     .section .container{
-        padding: 70px;
+        padding: 70px 15px;
     }
     
     .home .intro img{
@@ -1912,7 +1914,7 @@ body.dark .blog-content h6 {
     }
     
     .about .about-content .about-text{
-        width: 90%;
+        width: 100%;
     } 
     
     .about .about-content .about-container img{
@@ -1956,6 +1958,8 @@ body.dark .blog-content h6 {
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
         max-width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
     }
     
     .portfolio .portfolio-filter button{
@@ -1964,6 +1968,17 @@ body.dark .blog-content h6 {
     
     .about .about-content .about-container{
         height: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .section .container {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .blog .blog-info {
+        padding: 15px; /* Decrease internal padding so text can stretch wider */
     }
 }
 
@@ -1974,6 +1989,14 @@ body.dark .blog-content h6 {
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
         max-width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .skills-education .about-content .timeline,
+    .experience .about-content .timeline {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 
@@ -2044,25 +2067,17 @@ body.dark .blog-content h6 {
     
     .contact .contact-form .form-item .form-control{
         width: 100%;
-        height: 35px;
+        height: 45px;
         border: 1px solid #d4d4e3;
-        border-radius: 10px;
-        padding: 3px 2px;
-        font-size: 11px;
+        border-radius: 20px;
+        padding: 10px 15px;
+        font-size: 14px;
     }
     
     .contact .contact-form .btn{
         padding: 0 8px;
     }
     
-    .skills-education .about-content .timeline,
-    .experience .about-content .timeline{
-        -ms-flex: 0 0 100%;
-        flex: 0 0 100%;
-        max-width: 100%;
-        display: contents;
-        margin-left: 0;
-    }
 }
 
 @media(max-width: 340px){
@@ -2283,5 +2298,12 @@ body.dark .faq .faq-answer strong {
     
     .faq .faq-answer p {
         font-size: 14px;
+    }
+}
+
+/* Stop extreme justification on very small screens to avoid large empty text gaps */
+@media(max-width: 575px){
+    body, p, .about-text p, .timeline-text, .service-item-inner p, .blog-item-inner p {
+        text-align: left !important;
     }
 }
