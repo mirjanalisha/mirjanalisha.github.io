@@ -16,6 +16,7 @@
         initializeFormValidation();
         initializeCharacterCounter();
         initializeThemeIntegration();
+        initializeFormSubmission(); // Add submission handler with rate limiting
         console.log('Contact enhancements loaded successfully');
     });
 
@@ -273,6 +274,106 @@
         const errorElement = document.getElementById(field.id.replace('contact', '') + 'Error');
         if (errorElement) {
             errorElement.style.display = 'none';
+        }
+    }
+
+    // ====================================
+    // CONTACT FORM SUBMISSION & RATE LIMITING
+    // ====================================
+    
+    function initializeFormSubmission() {
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        if (!contactForm || !submitBtn) return;
+
+        // Check initial cooldown
+        updateSubmitButtonState();
+
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Check rate limit
+            if (window.RateLimiter && window.RateLimiter.isOnCooldown('contact')) {
+                const remaining = window.RateLimiter.getRemainingTime('contact');
+                showToast(`Please wait ${window.RateLimiter.formatTime(remaining)} before sending another message.`, 'error');
+                return;
+            }
+
+            // Show loading state
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            
+            if (btnText && btnLoading) {
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'inline-flex';
+                submitBtn.disabled = true;
+            }
+
+            // Prepare data
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showToast('Message sent successfully!', 'success');
+                    contactForm.reset();
+                    // Set 30 minute cooldown (1800 seconds)
+                    if (window.RateLimiter) {
+                        window.RateLimiter.setCooldown('contact', 1800);
+                        updateSubmitButtonState();
+                    }
+                } else {
+                    showToast('Something went wrong. Please try again later.', 'error');
+                }
+            } catch (error) {
+                showToast('Network error. Please check your connection.', 'error');
+            } finally {
+                // Restore button state if not on cooldown
+                if (!window.RateLimiter || !window.RateLimiter.isOnCooldown('contact')) {
+                    if (btnText && btnLoading) {
+                        btnText.style.display = 'inline-block';
+                        btnLoading.style.display = 'none';
+                        submitBtn.disabled = false;
+                    }
+                }
+            }
+        });
+
+        function updateSubmitButtonState() {
+            if (window.RateLimiter && window.RateLimiter.isOnCooldown('contact')) {
+                const btnText = submitBtn.querySelector('.btn-text');
+                const btnLoading = submitBtn.querySelector('.btn-loading');
+                
+                submitBtn.disabled = true;
+                if (btnLoading) btnLoading.style.display = 'none';
+                
+                const timer = setInterval(() => {
+                    const remaining = window.RateLimiter.getRemainingTime('contact');
+                    if (remaining > 0) {
+                        if (btnText) {
+                            btnText.style.display = 'inline-block';
+                            btnText.textContent = `Wait (${window.RateLimiter.formatTime(remaining)})`;
+                        }
+                    } else {
+                        clearInterval(timer);
+                        submitBtn.disabled = false;
+                        if (btnText) btnText.textContent = 'Send Message';
+                    }
+                }, 1000);
+            }
         }
     }
 

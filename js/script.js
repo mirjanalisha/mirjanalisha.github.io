@@ -395,6 +395,15 @@ function initializeNavigation() {
         const href = element.getAttribute("href");
         if (href) {
             const target = href.split("#")[1];
+            
+            // FAQ Lock Check
+            if (target === 'faq' && typeof isFaqUnlocked === 'function' && !isFaqUnlocked()) {
+                if (typeof openFaqModal === 'function') {
+                    openFaqModal();
+                }
+                return; // Stop navigation if locked
+            }
+
             const targetElement = document.querySelector("#" + target);
             if (targetElement) {
                 targetElement.classList.add("active");

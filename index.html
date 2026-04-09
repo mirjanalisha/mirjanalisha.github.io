@@ -83,6 +83,9 @@
   <!-- Premium Enhancements CSS -->
   <link rel="stylesheet" href="css/premium-enhancements.css" type="text/css">
 
+  <!-- FAQ Lock CSS -->
+  <link rel="stylesheet" href="css/faq-lock.css">
+
   <link rel="stylesheet" href="css/styleSwitcher.css" type="text/css">
   <link rel="icon" href="./images/about.png">
   <!-- Preload hero image -->
@@ -1634,7 +1637,7 @@
 
       <!-- Contact Section End -->
       <!-- FAQ Section -->
-      <section id="faq" class="faq section">
+      <section id="faq" class="faq section faq-section">
         <div class="container">
           <div class="row">
             <div class="section-title padd-15">
@@ -1777,6 +1780,57 @@
   </div>
   <!-- Main Container End -->
 
+  <!-- FAQ Unlock Modal -->
+  <div id="faqUnlockModal" class="faq-modal">
+    <div class="faq-modal-overlay"></div>
+    <div class="faq-modal-container shadow-dark">
+      <div class="faq-modal-header">
+        <i class="fas fa-lock"></i>
+        <h3>Unlock FAQs</h3>
+      </div>
+      <div class="faq-modal-body">
+        <p>This section is locked to ensure quality engagement. Please provide your details to unlock the Frequently Asked Questions.</p>
+        <form id="faqUnlockForm" class="faq-unlock-form">
+          <!-- Web3Forms Config -->
+          <input type="hidden" name="access_key" value="18909221-c276-4d4a-bd99-68c3b0a0b250">
+          <input type="hidden" name="subject" value="New FAQ Unlock Request">
+          <input type="hidden" name="from_name" value="Portfolio FAQ Unlock">
+          
+          <div class="form-group">
+            <label for="faqUnlockName">Full Name *</label>
+            <input type="text" id="faqUnlockName" name="name" required class="form-input" placeholder="Enter your full name">
+          </div>
+          
+          <div class="form-group">
+            <label for="faqUnlockEmail">Email Address *</label>
+            <input type="email" id="faqUnlockEmail" name="email" required class="form-input" placeholder="your@email.com">
+            <span class="error-msg" id="faqEmailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="faqUnlockRole">Your Professional Role *</label>
+            <select id="faqUnlockRole" name="role" required class="form-input">
+              <option value="" disabled selected>Select your role</option>
+              <option value="Student">Student</option>
+              <option value="Professional">Professional / Engineer</option>
+              <option value="Recruiter">Recruiter / Manager</option>
+              <option value="Researcher">Researcher</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          
+          <div class="faq-modal-footer">
+            <button type="button" id="btnCancelFaq" class="btn btn-cancel">Cancel</button>
+            <button type="submit" id="btnUnlockFaq" class="btn btn-unlock">
+               <span class="btn-text">Unlock FAQs</span>
+               <span class="btn-loading" style="display: none;"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Lightbox -->
   <div class="lightbox" role="dialog" aria-modal="true" aria-label="Project details">
     <div class="lightbox-overlay"></div>
@@ -1872,6 +1926,10 @@
 
   <!-- Add your contact JavaScript -->
   <script src="js/contact.js"></script>
+  <!-- Rate Limiter Utility -->
+  <script src="js/rate-limiter.js"></script>
+  <!-- FAQ Lock Logic -->
+  <script src="js/faq-lock.js"></script>
   <!-- Achievements & GitHub Stats -->
   <script src="js/stats.js"></script>
   <!-- Service Worker Registration -->

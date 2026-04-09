@@ -1,0 +1,248 @@
+/* ====================================
+   FAQ LOCK & MODAL STYLES
+   ===================================== */
+
+/* FAQ Section Blur/Lock State */
+.faq-section.locked .faq-content {
+    filter: blur(8px);
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.6;
+    transition: all 0.5s ease;
+}
+
+.faq-section {
+    position: relative;
+}
+
+/* Modal Styling */
+.faq-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.faq-modal.open {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.faq-modal-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(48, 46, 77, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+body.dark .faq-modal-overlay {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.faq-modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    background: #fdf9ff;
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid #e8dfec;
+    z-index: 1101;
+    transform: translateY(0);
+    animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+body.dark .faq-modal-container {
+    background: #2b2c2f;
+    border-color: #393939;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+body.royal-golden .faq-modal-container {
+    background: #1a1a1a;
+    border-color: #2a2a2a;
+}
+
+.faq-modal-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.faq-modal-header i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.faq-modal-header h3 {
+    font-size: 1.8rem;
+    color: #302e4d;
+    margin: 0;
+}
+
+body.dark .faq-modal-header h3 { color: #ffffff; }
+body.royal-golden .faq-modal-header h3 { color: #d4af37; }
+
+.faq-modal-body p {
+    color: #504e70;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+body.dark .faq-modal-body p { color: rgba(255, 255, 255, 0.7); }
+body.royal-golden .faq-modal-body p { color: #bfa15f; }
+
+/* Form Aesthetics matching contact.css */
+.faq-unlock-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.faq-modal .form-group label {
+    font-weight: 600;
+    color: #302e4d;
+    font-size: 0.95rem;
+}
+
+body.dark .faq-modal .form-group label { color: #ffffff; }
+body.royal-golden .faq-modal .form-group label { color: #d4af37; }
+
+.faq-modal .form-input,
+.faq-modal .form-select {
+    padding: 12px 15px;
+    border: 1px solid #d4d4e3;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #ffffff;
+    color: #504e70;
+    width: 100%;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+body.dark .faq-modal .form-input,
+body.dark .faq-modal .form-select {
+    background: #222222;
+    border-color: #393939;
+    color: #e4e6ea;
+}
+
+body.royal-golden .faq-modal .form-input,
+body.royal-golden .faq-modal .form-select {
+    background: #111111;
+    border-color: #2a2a2a;
+    color: #bfa15f;
+}
+
+.faq-modal .form-input:focus,
+.faq-modal .form-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+.faq-modal-footer {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.faq-modal-footer .btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-unlock:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-unlock {
+    background: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-unlock:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cancel {
+    background: #e4e6ea;
+    color: #302e4d;
+}
+
+body.dark .btn-cancel {
+    background: #393939;
+    color: #ffffff;
+}
+
+body.royal-golden .btn-cancel {
+    background: #2a2a2a;
+    color: #d4af37;
+}
+
+.btn-cancel:hover {
+    background: #d4d4e3;
+}
+
+body.dark .btn-cancel:hover {
+    background: #444444;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.error-msg {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 575px) {
+    .faq-modal-container {
+        padding: 25px 20px;
+    }
+    .faq-modal-header h3 {
+        font-size: 1.5rem;
+    }
+}
