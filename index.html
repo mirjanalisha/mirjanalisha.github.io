@@ -1934,10 +1934,25 @@
         <div class="lightbox-body">
           <p class="lightbox-description">Project description goes here...</p>
           <div class="lightbox-iframe-wrapper">
+            <!-- Loading Indicator -->
             <div class="iframe-loading">
-              <i class="fas fa-spinner fa-spin"></i>
-              <span>Loading Project...</span>
+              <div class="loader-content">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span class="loading-text">Connecting to Live Preview...</span>
+              </div>
+              <!-- Failure UI (Hidden by default) -->
+              <div class="iframe-failure" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Live preview unavailable for this source.</p>
+                <button class="btn btn-fallback-img">Show Project Image</button>
+              </div>
             </div>
+            
+            <!-- Fallback Image Container (Hidden by default) -->
+            <div class="lightbox-fallback-img-container" style="display: none;">
+               <img src="" class="lightbox-fallback-img" alt="Project Screenshot">
+            </div>
+
             <iframe src="" class="lightbox-iframe" allowfullscreen></iframe>
           </div>
         </div>

@@ -2307,3 +2307,136 @@ body.dark .faq .faq-answer strong {
         text-align: left !important;
     }
 }
+
+/* Robust Lightbox Fallback & Dynamic Height Styles */
+.lightbox.expanded .lightbox-body {
+    background: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+}
+
+.lightbox.expanded .lightbox-iframe-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    background: transparent !important; 
+    border-radius: 0;
+    overflow: hidden;
+    display: flex !important;
+    flex-direction: column;
+    box-shadow: none;
+    margin: 0 !important;
+    min-height: 0;
+}
+
+.lightbox.expanded .lightbox-iframe {
+    width: 100%;
+    flex: 1;
+    border: none;
+    background: transparent !important;
+    display: block;
+}
+
+.lightbox.fallback-active .lightbox-iframe {
+    display: none !important;
+    height: 0;
+}
+
+.iframe-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.4s ease;
+}
+
+.loader-content {
+    text-align: center;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+.loader-content i {
+    font-size: 3rem;
+    color: #667eea;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+}
+
+.loading-text {
+    display: block;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.iframe-failure {
+    text-align: center;
+    padding: 30px;
+    color: #fff;
+}
+
+.iframe-failure i {
+    font-size: 4rem;
+    color: #ff4b5c;
+    margin-bottom: 20px;
+}
+
+.iframe-failure p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.btn-fallback-img {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 12px 30px;
+    font-size: 15px;
+    border-radius: 50px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.lightbox-fallback-img-container {
+    width: 100%;
+    flex: 1;
+    display: none; /* Controlled by JS */
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    position: relative;
+    z-index: 5;
+}
+
+.lightbox-fallback-img {
+    width: 100% !important;
+    height: auto !important; 
+    max-width: 100% !important;
+    max-height: 85vh !important;
+    object-fit: contain !important; 
+    border-radius: 4px;
+    padding: 0 !important; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+/* Dark mode adjustments */
+body.dark .loading-text,
+body.dark .iframe-failure p {
+    color: #fff;
+}

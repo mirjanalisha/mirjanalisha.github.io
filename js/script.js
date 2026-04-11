@@ -188,6 +188,7 @@ function initializeLightbox() {
     
     if (!lightbox || portfolioItems.length === 0) return;
     
+    // Core Lightbox Elements
     const lightboxIcon = lightbox.querySelector(".lightbox-icon");
     const lightboxTitle = lightbox.querySelector(".lightbox-title");
     const lightboxDescription = lightbox.querySelector(".lightbox-description");
@@ -199,17 +200,27 @@ function initializeLightbox() {
     const lightboxDownloads = lightbox.querySelector(".download-count");
     const lightboxClose = lightbox.querySelector(".lightbox-close");
     const lightboxOverlay = lightbox.querySelector(".lightbox-overlay");
+    
+    // Robust Loading Elements
     const lightboxIframe = lightbox.querySelector(".lightbox-iframe");
+    const iframeWrapper = lightbox.querySelector(".lightbox-iframe-wrapper");
+    const iframeLoading = lightbox.querySelector(".iframe-loading");
+    const loaderContent = lightbox.querySelector(".loader-content");
+    const iframeFailure = lightbox.querySelector(".iframe-failure");
+    const fallbackContainer = lightbox.querySelector(".lightbox-fallback-img-container");
+    const fallbackImg = lightbox.querySelector(".lightbox-fallback-img");
+    const btnFallback = lightbox.querySelector(".btn-fallback-img");
     
     const totalPortfolioItems = portfolioItems.length;
     let itemIndex = 0;
+    let loadingTimeout = null;
 
     // Add click event to portfolio items
     for (let i = 0; i < totalPortfolioItems; i++) {
         portfolioItems[i].addEventListener("click", function () {
             itemIndex = i;
             changeItem();
-            toggleLightbox();
+            openLightbox();
         });
     }
 
@@ -224,18 +235,81 @@ function initializeLightbox() {
         changeItem();
     }
 
-    function toggleLightbox() {
-        const isOpen = lightbox.classList.toggle("open");
-        if (isOpen) {
+    function openLightbox() {
+        if (!lightbox.classList.contains("open")) {
+            lightbox.classList.add("open");
             document.body.style.overflow = "hidden";
-        } else {
+            // Push history state so back button closes lightbox instead of exiting app
+            history.pushState({ lightboxOpen: true }, "", window.location.href);
+        }
+    }
+
+    function closeLightbox() {
+        if (lightbox.classList.contains("open")) {
+            lightbox.classList.remove("open");
             document.body.style.overflow = "auto";
-            // Clear iframe src when closing to stop music/video
-            if (lightboxIframe) {
-                lightboxIframe.src = "";
-            }
+            resetIframeState();
             lightbox.classList.remove("expanded", "loading");
         }
+    }
+
+    function handleManualClose() {
+        if (history.state && history.state.lightboxOpen) {
+            history.back(); // Triggers popstate which calls closeLightbox
+        } else {
+            closeLightbox();
+        }
+    }
+
+    // Handle browser back button or swipe gesture
+    window.addEventListener("popstate", function(event) {
+        if (lightbox.classList.contains("open") && (!event.state || !event.state.lightboxOpen)) {
+            closeLightbox();
+        }
+    });
+
+    function resetIframeState() {
+        if (loadingTimeout) clearTimeout(loadingTimeout);
+        if (lightboxIframe) {
+            lightboxIframe.src = "";
+            lightboxIframe.style.display = "none";
+        }
+        if (iframeLoading) iframeLoading.style.display = "flex";
+        if (loaderContent) loaderContent.style.display = "block";
+        if (iframeFailure) iframeFailure.style.display = "none";
+        if (fallbackContainer) fallbackContainer.style.display = "none";
+        lightbox.classList.remove("fallback-active");
+        if (lightboxIframe) lightboxIframe.style.height = ""; // Reset custom height
+    }
+
+    /**
+     * Heuristic to check if a project link is embeddable.
+     * Returns true if likely embeddable, false if known problematic (like raw github repos).
+     */
+    function isEmbeddable(url) {
+        if (!url || url === "#" || url === "" || url.toLowerCase().includes("javascript:void(0)")) return false;
+        
+        // GitHub repos generally block iframes, but GitHub Pages items (io) are fine
+        if (url.includes("github.com") && !url.includes(".io")) {
+            return false;
+        }
+        
+        // Other problematic services can be added here
+        return true;
+    }
+
+    function showFallback() {
+        if (loadingTimeout) clearTimeout(loadingTimeout);
+        if (loaderContent) loaderContent.style.display = "none";
+        if (iframeFailure) iframeFailure.style.display = "block";
+        if (lightboxIframe) lightboxIframe.style.display = "none";
+    }
+
+    function activateFallbackImg() {
+        if (iframeLoading) iframeLoading.style.display = "none";
+        if (fallbackContainer) fallbackContainer.style.display = "flex";
+        if (lightboxIframe) lightboxIframe.style.display = "none";
+        lightbox.classList.add("fallback-active");
     }
 
     function changeItem() {
@@ -250,24 +324,59 @@ function initializeLightbox() {
         const downloads = item.getAttribute("data-downloads") || "0";
         const rating = parseFloat(item.getAttribute("data-rating")) || 0;
         const date = item.getAttribute("data-date") || "2024";
+        const previewHeight = item.getAttribute("data-preview-height");
+        const iframe = lightbox.querySelector(".lightbox-iframe");
 
-        // Handle iFrame (Web Apps)
+        // Clear previous state
+        resetIframeState();
+
+        if (iframe && previewHeight) {
+            iframe.style.height = previewHeight;
+        }
+
+        // Handle Project Preview (Web Apps)
         if (category === "web-apps") {
             lightbox.classList.add("expanded", "loading");
-            if (lightboxIframe) {
-                lightboxIframe.src = link;
-                lightboxIframe.onload = () => {
-                    lightbox.classList.remove("loading");
-                };
+            
+            // Set fallback image source
+            if (imgElement && fallbackImg) {
+                fallbackImg.src = imgElement.getAttribute("src");
             }
+
+            const canEmbed = isEmbeddable(link);
+            
+            if (canEmbed && lightboxIframe) {
+                // Try loading in iframe
+                lightboxIframe.src = link;
+                lightboxIframe.style.display = "block";
+                
+                // Set safety timeout (7 seconds)
+                loadingTimeout = setTimeout(() => {
+                    if (lightbox.classList.contains("loading")) {
+                        console.warn("Iframe load took too long, showing fallback UI");
+                        showFallback();
+                    }
+                }, 7000);
+
+                lightboxIframe.onload = () => {
+                    clearTimeout(loadingTimeout);
+                    lightbox.classList.remove("loading");
+                    if (iframeLoading) iframeLoading.style.display = "none";
+                };
+            } else {
+                // Not embeddable or no link -> show image immediately
+                console.log("URL not embeddable or missing, using image fallback.");
+                setTimeout(activateFallbackImg, 300); // Small delay for visual transition
+            }
+            
             if (btnText) btnText.textContent = "Visit Website";
         } else {
+            // Non-web-apps show description only
             lightbox.classList.remove("expanded", "loading");
-            if (lightboxIframe) lightboxIframe.src = "";
             if (btnText) btnText.textContent = "Download";
         }
 
-        // Update modal content
+        // Update basic modal content
         if (imgElement && lightboxIcon) {
             lightboxIcon.src = imgElement.getAttribute("src");
         }
@@ -316,13 +425,18 @@ function initializeLightbox() {
         }
     }
 
+    // Manual Fallback Trigger
+    if (btnFallback) {
+        btnFallback.addEventListener("click", activateFallbackImg);
+    }
+
     // Close lightbox functionality
     if (lightboxClose) {
-        lightboxClose.addEventListener("click", toggleLightbox);
+        lightboxClose.addEventListener("click", handleManualClose);
     }
     
     if (lightboxOverlay) {
-        lightboxOverlay.addEventListener("click", toggleLightbox);
+        lightboxOverlay.addEventListener("click", handleManualClose);
     }
 
     // Add keyboard navigation
@@ -333,7 +447,7 @@ function initializeLightbox() {
             } else if (event.key === "ArrowLeft") {
                 prevItem();
             } else if (event.key === "Escape") {
-                toggleLightbox();
+                handleManualClose();
             }
         }
     });

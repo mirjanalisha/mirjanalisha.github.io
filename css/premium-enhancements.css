@@ -1611,7 +1611,7 @@ body.dark .contact .contact-info-item:hover {
     transition: all 0.3s ease;
     backdrop-filter: blur(8px);
     cursor: default !important;
-    padding: 20px !important;
+    padding: 10px !important;
 }
 
 .lightbox.open {
@@ -1875,19 +1875,20 @@ body.dark .contact .contact-info-item:hover {
 
 /* Expanded Modal for Web Apps */
 .lightbox.expanded .lightbox-container {
-    max-width: 100vw;
-    width: 100vw;
-    height: 100vh;
+    max-width: 98vw;
+    width: 98vw;
+    height: 93vh;
     padding: 0;
     overflow: hidden;
-    border-radius: 0;
-    box-shadow: none;
+    border-radius: 16px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    margin: auto;
 }
 
 .lightbox.expanded .lightbox-content {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
 }
 
 .lightbox.expanded .lightbox-header {
@@ -1899,6 +1900,7 @@ body.dark .contact .contact-info-item:hover {
     align-items: center;
     justify-content: space-between;
     height: 35px;
+    margin-bottom: 0 !important;
 }
 
 .lightbox-header-left {
@@ -1909,10 +1911,13 @@ body.dark .contact .contact-info-item:hover {
 
 .lightbox.expanded .lightbox-body {
     flex: 1;
-    padding: 0;
+    padding: 0 !important;
+    margin: 0 !important;
     overflow: hidden;
     position: relative;
-    background: #000;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
 }
 
 .lightbox.expanded .lightbox-footer {
@@ -1923,7 +1928,8 @@ body.dark .contact .contact-info-item:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 35px;
+    height: 32px;
+    margin-top: 0 !important;
 }
 
 /* Compact Elements in Expanded Mode */
@@ -2004,11 +2010,13 @@ body.dark .contact .contact-info-item:hover {
     width: 100%;
     height: 100%;
     position: relative;
-    display: none; 
+    display: none;
+    flex: 1;
 }
 
 .lightbox.expanded .lightbox-iframe-wrapper {
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Hide standard components in expanded mode if needed */
@@ -2018,7 +2026,7 @@ body.dark .contact .contact-info-item:hover {
 
 .lightbox-iframe {
     width: 100%;
-    height: 100%;
+    flex: 1;
     border: none;
     display: block;
 }
@@ -2062,8 +2070,11 @@ body.dark .contact .contact-info-item:hover {
 
 /* Responsive Fixes for Expanded Modal */
 @media (max-width: 1024px) {
-    .lightbox.expanded .lightbox-content {
-        height: 70vh;
+    .lightbox.expanded .lightbox-container {
+        width: 99vw;
+        max-width: 99vw;
+        height: 90vh;
+        border-radius: 12px;
     }
 }
 
