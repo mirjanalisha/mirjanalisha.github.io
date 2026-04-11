@@ -238,7 +238,12 @@
           &copy; 2020-<span id="copyrightYear"></span> Mirjan Ali Sha<a
             href="https://mirjanalisha.github.io/email-signatures/" target="_blank">.</a>
         </div>
-        <script>document.getElementById('copyrightYear').textContent = new Date().getFullYear();</script>
+        <div class="site-version" id="siteVersion" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px; opacity: 0.7;">
+          v<span class="version-number"></span>
+        </div>
+        <script>
+          document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+        </script>
         <!-- Copyright End -->
       </div>
     </div>
@@ -1142,7 +1147,7 @@
               data-date="Feb - Mar 2026">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
-                  <img src="./images/portfolio/web-apps/FarmVision.png" alt="Candy Glossy">
+                  <img src="./images/portfolio/web-apps/FarmVision.png" alt="FarmVision">
                 </div>
                 <div class="portfolio-info">
                   <h4>FarmVision — Satellite Crop Analytics</h4>
@@ -1182,7 +1187,7 @@
               data-date="Nov 2024">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
-                  <img src="./images/portfolio/web-apps/Candy_Glossy.png" alt="Candy Glossy">
+                  <img src="./images/portfolio/web-apps/CandyGlossy.png" alt="Candy Glossy">
                 </div>
                 <div class="portfolio-info">
                   <h4>Candy Glossy (Candy Crush)</h4>
@@ -1239,7 +1244,7 @@
               data-date="Jan 2025">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
-                  <img src="./images/portfolio/web-apps/Fruit_Slicer.png" alt="Fruit Slicer">
+                  <img src="./images/portfolio/web-apps/FruitSlicer.png" alt="Fruit Slicer">
                 </div>
                 <div class="portfolio-info">
                   <h4>Fruit Slicer Game</h4>
@@ -1253,12 +1258,31 @@
             </div>
 
             <div class="portfolio-item padd-15" data-category="web-apps"
+              data-description="PixelSarpent is a modern, high-performance take on the classic Snake game. Features smooth pixel-art graphics, responsive controls, and a retro-inspired aesthetic. Built with optimized canvas rendering for seamless browser gameplay."
+              data-link="https://mirjan-ali-sha.github.io/snakegame/" data-downloads="N/A" data-rating="N/A"
+              data-date="March 2026">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="./images/portfolio/web-apps/PixelSarpent.png" alt="PixelSarpent">
+                </div>
+                <div class="portfolio-info">
+                  <h4>PixelSarpent (Snake Game)</h4>
+                  <p>Smooth, retro-inspired pixel art Snake experience</p>
+                  <div class="portfolio-links">
+                    <a href="https://mirjan-ali-sha.github.io/snakegame/" target="_blank">Play The Game</a>
+                  </div>
+                  <div class="icon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item padd-15" data-category="web-apps"
               data-description="PiP Anywhere is a powerful browser extension with an inbuilt lightweight Ads Blocker that enables Picture-in-Picture (PiP) mode for any video source across the web. It provides a seamless floating video experience with custom controls, allowing users to multitask efficiently while watching their favorite content."
               data-link="https://github.com/Mirjan-Ali-Sha/pip-extension" data-downloads="N/A" data-rating="N/A"
               data-date="Feb 2026">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
-                  <img src="./images/portfolio/web-apps/pip_anywhere.png" alt="PiP Anywhere">
+                  <img src="./images/portfolio/web-apps/PIPAnywhere.png" alt="PiP Anywhere">
                 </div>
                 <div class="portfolio-info">
                   <h4>PiP Anywhere — Universal Picture-in-Picture</h4>
@@ -1991,17 +2015,40 @@
   <script src="js/faq-lock.js"></script>
   <!-- Achievements & GitHub Stats -->
   <script src="js/stats.js"></script>
-  <!-- Service Worker Registration -->
+  <!-- App Configuration & Service Worker Registration -->
   <script>
+    // ╔══════════════════════════════════════════════════════╗
+    // ║  APP_CONFIG — The Single Source of Truth             ║
+    // ╚══════════════════════════════════════════════════════╝
+    window.APP_CONFIG = {
+      VERSION: '1.0.2'
+    };
+
+    // Update footer version display
+    document.querySelectorAll('.version-number').forEach(el => el.textContent = window.APP_CONFIG.VERSION);
+
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
+        // Register the Service Worker (dynamic version link)
+        navigator.serviceWorker.register(`./sw.js?v=${window.APP_CONFIG.VERSION}`)
           .then(registration => {
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            console.log('SW: Registration successful with scope: ', registration.scope);
+            
+            // Check for updates on every page load
+            registration.update();
           })
           .catch(err => {
-            console.log('ServiceWorker registration failed: ', err);
+            console.log('SW: Registration failed: ', err);
           });
+      });
+
+      // Automatically reload when a new version takes over (silent update)
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+        refreshing = true;
+        console.log('SW: New version detected. Reloading to apply changes...');
+        window.location.reload();
       });
     }
   </script>
