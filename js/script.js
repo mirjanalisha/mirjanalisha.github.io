@@ -239,13 +239,17 @@ function initializeLightbox() {
         if (!lightbox.classList.contains("open")) {
             lightbox.classList.add("open");
             document.body.style.overflow = "hidden";
+            
             // Push history state so back button closes lightbox instead of exiting app
-            history.pushState({ lightboxOpen: true }, "", window.location.href);
+            // We use a timestamp to ensure this state is unique even if the URL is the same
+            const state = { lightboxOpen: true, timestamp: Date.now() };
+            history.pushState(state, "", window.location.href);
         }
     }
 
     function closeLightbox() {
         if (lightbox.classList.contains("open")) {
+            console.log("Closing lightbox UI...");
             lightbox.classList.remove("open");
             document.body.style.overflow = "auto";
             resetIframeState();
@@ -254,10 +258,16 @@ function initializeLightbox() {
     }
 
     function handleManualClose() {
-        if (history.state && history.state.lightboxOpen) {
-            history.back(); // Triggers popstate which calls closeLightbox
-        } else {
+        if (lightbox.classList.contains("open")) {
+            // Close the UI IMMEDIATELY so the user sees instant feedback
+            // This bypasses any delay or blocking caused by the iframe history
             closeLightbox();
+
+            // Then clean up the history in the background if necessary
+            if (history.state && history.state.lightboxOpen) {
+                console.log("Lightbox closed manually, cleaning up history state...");
+                history.back();
+            }
         }
     }
 
@@ -745,6 +755,14 @@ function initializeScrollToTop() {
 // ====================================
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DOM Content Loaded - Initializing components...");
+
+    // Clean up any stale history state from previous reloads/sessions
+    // If the browser thinks we have an open lightbox but the page is just loading,
+    // we reset the state to prevent double-push bugs.
+    if (history.state && history.state.lightboxOpen) {
+        console.log("Cleaning up stale lightbox history state...");
+        history.replaceState(null, "", window.location.href);
+    }
     
     try {
         initializePortfolioFilter();
