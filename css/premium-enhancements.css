@@ -1829,6 +1829,21 @@ body.dark .contact .contact-info-item:hover {
     z-index: 2200;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    will-change: transform, opacity;
+}
+
+.lightbox.expanded .lightbox-controls div {
+    backdrop-filter: none !important;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-overlay {
+    will-change: opacity;
+}
+
+.lightbox.expanded .lightbox-overlay {
+    backdrop-filter: none !important;
+    background: rgba(0, 0, 0, 0.85) !important;
 }
 
 .lightbox-controls div:hover {
@@ -1881,8 +1896,9 @@ body.dark .contact .contact-info-item:hover {
     padding: 0;
     overflow: hidden;
     border-radius: 16px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     margin: auto;
+    will-change: transform, width, height;
 }
 
 .lightbox.expanded .lightbox-content {
@@ -2029,6 +2045,7 @@ body.dark .contact .contact-info-item:hover {
     flex: 1;
     border: none;
     display: block;
+    will-change: transform;
 }
 
 /* iFrame Loading Spinner */
