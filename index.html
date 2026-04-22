@@ -86,6 +86,9 @@
   <!-- FAQ Lock CSS -->
   <link rel="stylesheet" href="css/faq-lock.css">
 
+  <!-- CV Download Modal CSS -->
+  <link rel="stylesheet" href="css/cv-modal.css">
+
   <link rel="stylesheet" href="css/styleSwitcher.css" type="text/css">
   <link rel="icon" href="./images/about.png">
   <!-- Preload hero image -->
@@ -1681,6 +1684,12 @@
       <!-- Contact Section End -->
       <!-- FAQ Section -->
       <section id="faq" class="faq section faq-section">
+        <div class="faq-lock-overlay">
+          <div class="faq-lock-message">
+            <i class="fas fa-lock"></i>
+            <p>Please click on FAQs Option from Navigation and Unlock the section</p>
+          </div>
+        </div>
         <div class="container">
           <div class="row">
             <div class="section-title padd-15">
@@ -1891,6 +1900,12 @@
           </div>
 
           <div class="form-group">
+            <label for="faqUnlockPhone">Phone Number (Optional)</label>
+            <input type="tel" id="faqUnlockPhone" name="phone" class="form-input" placeholder="+91 XXX XXX XXXX">
+            <span class="error-msg" id="faqPhoneError"></span>
+          </div>
+
+          <div class="form-group">
             <label for="faqUnlockRole">Your Professional Role *</label>
             <select id="faqUnlockRole" name="role" required class="form-input">
               <option value="" disabled selected>Select your role</option>
@@ -1903,10 +1918,65 @@
           </div>
           
           <div class="faq-modal-footer">
-            <button type="button" id="btnCancelFaq" class="btn btn-cancel">Cancel</button>
+            <button type="button" id="btnCancelFaq" class="btn btn-cancel"><i class="fas fa-times"></i> Cancel</button>
             <button type="submit" id="btnUnlockFaq" class="btn btn-unlock">
-               <span class="btn-text">Unlock FAQs</span>
+               <span class="btn-text"><i class="fas fa-lock-open"></i> Unlock FAQs</span>
                <span class="btn-loading" style="display: none;"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CV Download Modal -->
+  <div id="cvDownloadModal" class="cv-modal" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
+    <div class="cv-modal-content shadow-dark">
+      <div class="cv-modal-header">
+        <h3 id="cvModalTitle">Download Resume</h3>
+        <span class="cv-modal-close" aria-label="Close modal">&times;</span>
+      </div>
+      <div class="cv-modal-body">
+        <p style="color: var(--text-black-700); margin-bottom: 20px; font-size: 14px;">
+          Please provide your details below to unlock the direct download link for Mirjan's Resume.
+        </p>
+        
+        <form id="cvDownloadForm">
+          <div class="cv-form-group">
+            <label for="cv_name">Company or Your Name *</label>
+            <input type="text" id="cv_name" name="cv_name" class="cv-form-control" placeholder="e.g. Google / John Doe" required>
+            <span id="cv_name_error" class="error-msg">Name is required</span>
+          </div>
+          
+          <div class="cv-form-group">
+            <label for="cv_address">Address *</label>
+            <input type="text" id="cv_address" name="cv_address" class="cv-form-control" placeholder="City, Country" required>
+            <span id="cv_address_error" class="error-msg">Address is required</span>
+          </div>
+
+          <div class="cv-form-group">
+            <label for="cv_email">Email Address *</label>
+            <input type="email" id="cv_email" name="cv_email" class="cv-form-control" placeholder="your@email.com" required>
+            <span id="cv_email_error" class="error-msg">Email is required</span>
+          </div>
+          
+          <div class="cv-form-group">
+            <label for="cv_phone">Phone number (Optional)</label>
+            <input type="tel" id="cv_phone" name="cv_phone" class="cv-form-control" placeholder="+91 XXX XXX XXXX">
+            <span id="cv_phone_error" class="error-msg">Please enter a valid phone number</span>
+          </div>
+          
+          <div class="cv-form-group">
+            <label for="cv_purpose">Purpose or Job Descriptions or Comments *</label>
+            <textarea id="cv_purpose" name="cv_purpose" class="cv-form-control" placeholder="Tell us why you're interested in Mirjan's profile..." required></textarea>
+            <span id="cv_purpose_error" class="error-msg">Purpose is required</span>
+          </div>
+          
+          <div class="cv-modal-footer">
+            <button type="button" class="btn cv-btn-cancel"><i class="fas fa-times"></i> Cancel</button>
+            <button type="submit" class="btn cv-btn-submit">
+              <span class="cv-btn-text"><i class="fas fa-download"></i> Download CV</span>
+              <span class="cv-spinner"><i class="fas fa-spinner fa-spin"></i> Processing...</span>
             </button>
           </div>
         </form>
@@ -2030,6 +2100,8 @@
   <script src="js/faq-lock.js"></script>
   <!-- Achievements & GitHub Stats -->
   <script src="js/stats.js"></script>
+  <!-- CV Download Capture Logic -->
+  <script src="js/cv-form.js"></script>
   <!-- App Configuration & Service Worker Registration -->
   <script>
     // ╔══════════════════════════════════════════════════════╗

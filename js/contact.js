@@ -221,10 +221,11 @@
                 
             case 'tel':
                 if (value) {
-                    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+                    // More robust phone regex for international formats
+                    const phoneRegex = /^\+?(\d[\d\-. ]+)?(\([\d\-. ]+\))?[\d\-. ]+\d$/;
                     const cleanPhone = value.replace(/[\s\-\(\)\.]/g, '');
-                    if (!phoneRegex.test(cleanPhone)) {
-                        errorMessage = 'Please enter a valid phone number';
+                    if (!phoneRegex.test(value) || cleanPhone.length < 8 || cleanPhone.length > 15) {
+                        errorMessage = 'Please enter a valid phone number (min 8 digits)';
                         isValid = false;
                     }
                 }
@@ -292,6 +293,20 @@
 
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+
+            // Run validation on all fields
+            let isFormValid = true;
+            const inputsToValidate = contactForm.querySelectorAll('.form-input, .form-select, .form-textarea');
+            inputsToValidate.forEach(input => {
+                if (!validateSingleField(input)) {
+                    isFormValid = false;
+                }
+            });
+
+            if (!isFormValid) {
+                showToast('Please correct the errors in the form.', 'error');
+                return;
+            }
 
             // Check rate limit
             if (window.RateLimiter && window.RateLimiter.isOnCooldown('contact')) {

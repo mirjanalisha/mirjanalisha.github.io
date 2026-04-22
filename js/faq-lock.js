@@ -15,6 +15,7 @@
     let errorMsg;
     let cancelBtn;
     let unlockBtn;
+    let phoneInput;
 
     document.addEventListener('DOMContentLoaded', function() {
         initElements();
@@ -30,6 +31,7 @@
         errorMsg = document.querySelector('#faqEmailError');
         cancelBtn = document.querySelector('#btnCancelFaq');
         unlockBtn = document.querySelector('#btnUnlockFaq');
+        phoneInput = document.querySelector('#faqUnlockPhone');
     }
 
     function checkInitialStatus() {
@@ -74,6 +76,20 @@
                 }
             });
         });
+        
+        if (emailInput) {
+            emailInput.addEventListener('focus', function() {
+                this.style.borderColor = '';
+                if (errorMsg) errorMsg.style.display = 'none';
+            });
+        }
+        
+        if (phoneInput) {
+            phoneInput.addEventListener('focus', function() {
+                this.style.borderColor = '';
+                if (errorMsg) errorMsg.style.display = 'none';
+            });
+        }
 
         if (unlockForm) {
             unlockForm.addEventListener('submit', function(e) {
@@ -113,6 +129,7 @@
             if (errorMsg) errorMsg.style.display = 'none';
             if (unlockForm) unlockForm.reset();
             if (emailInput) emailInput.style.borderColor = '';
+            if (phoneInput) phoneInput.style.borderColor = '';
         }
     }
 
@@ -130,7 +147,13 @@
         }
 
         if (!validateEmail(email)) {
-            showError('Please enter a valid email address.');
+            showError('Please enter a valid email address.', emailInput);
+            return;
+        }
+
+        const phone = phoneInput ? phoneInput.value.trim() : '';
+        if (phone && !validatePhone(phone)) {
+            showError('Please enter a valid phone number (min 8 digits).', phoneInput);
             return;
         }
 
@@ -191,14 +214,20 @@
         }
     }
 
-    function showError(msg) {
+    function showError(msg, inputElement = null) {
         if (errorMsg) {
             errorMsg.textContent = msg;
             errorMsg.style.display = 'block';
         }
-        if (emailInput) {
-            emailInput.style.borderColor = '#e74c3c';
+        if (inputElement) {
+            inputElement.style.borderColor = '#e74c3c';
         }
+    }
+
+    function validatePhone(phone) {
+        const phoneRegex = /^\+?(\d[\d\-. ]+)?(\([\d\-. ]+\))?[\d\-. ]+\d$/;
+        const cleanPhone = phone.replace(/[\s\-\(\)\.]/g, '');
+        return phoneRegex.test(phone) && cleanPhone.length >= 8 && cleanPhone.length <= 15;
     }
 
     function validateEmail(email) {

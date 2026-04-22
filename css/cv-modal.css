@@ -1,0 +1,238 @@
+/* 
+ * CV Download Modal Styles 
+ * Premium Glassmorphism Design
+ */
+
+.cv-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.85); /* Increased opacity for focus */
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cv-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.cv-modal-content {
+    background-color: #ffffff; /* Forced solid white for legibility */
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--bg-black-50);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transform: translateY(-50px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cv-modal.show .cv-modal-content {
+    transform: translateY(0);
+}
+
+.cv-modal-header {
+    padding: 25px 30px;
+    border-bottom: 1px solid var(--bg-black-50);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cv-modal-header h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #302e4d;
+    font-weight: 700;
+}
+
+.cv-modal-close {
+    color: var(--text-black-700);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.cv-modal-close:hover {
+    color: var(--skin-color);
+}
+
+.cv-modal-body {
+    padding: 30px;
+}
+
+.cv-form-group {
+    margin-bottom: 20px;
+}
+
+.cv-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #302e4d;
+    font-size: 14px;
+}
+
+.cv-form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #d4d4e3;
+    background: #fdf9ff;
+    color: #302e4d;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+.cv-form-control:focus {
+    border-color: var(--skin-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--skin-color-rgb), 0.1);
+}
+
+.cv-form-control::placeholder {
+    color: var(--text-black-600);
+    opacity: 0.6;
+}
+
+.cv-modal-footer {
+    padding: 20px 30px 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.cv-btn {
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    font-size: 14px; /* Slightly smaller to guarantee fit */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-transform: none !important; /* Override global uppercase */
+    letter-spacing: 0.5px;
+}
+
+.cv-btn-submit {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+    flex: 1.5;
+    min-width: 150px;
+}
+
+.cv-btn-submit:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cv-btn-cancel {
+    background-color: #e4e6ea;
+    color: #302e4d;
+    flex: 1;
+}
+
+.cv-btn-cancel:hover {
+    background-color: #d4d4e3;
+    transform: translateY(-2px);
+}
+
+.cv-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Success State Overlay */
+.cv-success-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff; /* Forced solid white */
+    border-radius: 20px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    z-index: 5;
+}
+
+.cv-success-overlay.active {
+    display: flex;
+    animation: fadeIn 0.4s ease;
+}
+
+.cv-success-icon {
+    font-size: 60px;
+    color: #27ae60;
+    margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Helper for loading state */
+.cv-spinner {
+    display: none;
+}
+
+.cv-btn-submit.loading .cv-spinner {
+    display: inline-block;
+}
+
+.cv-btn-submit.loading .cv-btn-text {
+    display: none;
+}
+
+/* Error Messages */
+.error-msg {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+    font-weight: 500;
+}
+
+.cv-form-control.invalid {
+    border-color: #e74c3c !important;
+}
+
+/* ============================================
+   DARK MODE OVERRIDES
+   ============================================ */
+body.dark .cv-modal-content {
+    background-color: #222222 !important;
+    border-color: #393939 !important;
+}
+
+body.dark .cv-btn-cancel {
+    background-color: #393939 !important;
+    color: #ffffff !important;
+}
+
+body.dark .cv-btn-cancel:hover {
+    background-color: #444444 !important;
+}

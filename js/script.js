@@ -531,6 +531,11 @@ function initializeNavigation() {
             const targetElement = document.querySelector("#" + target);
             if (targetElement) {
                 targetElement.classList.add("active");
+
+                // Update URL fragment (Push to history for click)
+                if (window.location.hash !== href) {
+                    history.pushState(null, null, href);
+                }
                 
                 // Add smooth scrolling to the target section
                 setTimeout(() => {
@@ -607,6 +612,11 @@ function initializeScrollSpy() {
                 const correspondingLink = document.querySelector(`.nav a[href="#${sectionId}"]`);
                 if (correspondingLink) {
                     correspondingLink.classList.add('active');
+                    
+                    // Update URL fragment without adding to history while scrolling
+                    if (window.location.hash !== `#${sectionId}`) {
+                        history.replaceState(null, null, `#${sectionId}`);
+                    }
                 }
             }
         });
@@ -823,7 +833,21 @@ document.addEventListener("DOMContentLoaded", function() {
     } catch (error) {
         console.error("Error initializing blog section:", error);
     }
-    
+    // Handle initial hash in URL on page load
+    if (window.location.hash) {
+        const hash = window.location.hash;
+        const targetLink = document.querySelector(`.nav a[href="${hash}"]`);
+        if (targetLink) {
+            console.log("Initial hash detected, navigating to:", hash);
+            // Small delay to ensure all initializations and GSAP are ready
+            setTimeout(() => {
+                if (window.showSection && window.updateNav) {
+                    window.showSection(targetLink);
+                    window.updateNav(targetLink);
+                }
+            }, 500);
+        }
+    }
     
     console.log("All components initialized successfully");
 });
