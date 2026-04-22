@@ -54,6 +54,12 @@ body.dark .faq-lock-message {
     border-color: #393939;
 }
 
+body.royal-golden .faq-lock-message {
+    background: rgba(26, 26, 26, 0.98);
+    border-color: #d4af37;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
 .faq-lock-message i {
     font-size: 3rem;
     color: var(--primary-color);
@@ -68,6 +74,14 @@ body.dark .faq-lock-message {
 
 body.dark .faq-lock-message p {
     color: #ffffff;
+}
+
+body.royal-golden .faq-lock-message p {
+    color: #d4af37;
+}
+
+body.royal-golden .faq-lock-message i {
+    color: #d4af37;
 }
 
 /* Modal Styling */
