@@ -64,7 +64,7 @@ input, textarea, select{
 .main-content {
     margin-left: 270px;
     min-height: 100vh;
-    transition: all 0.3s ease;
+    transition: margin-left 0.3s ease, transform 0.3s ease;
 }
 
 /* SECTIONS - APPLY OFFSET TO ALL SECTIONS INDIVIDUALLY */
@@ -76,8 +76,8 @@ input, textarea, select{
     margin-left: 270px; /* CRITICAL FIX: Apply offset to ALL sections */
     position: relative;
     right: 0;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: margin-left 0.3s ease, opacity 0.3s ease;
+    transition: margin-left 0.3s ease, opacity 0.3s ease;
 }
 
 /* Override for sections already inside main-content */
@@ -91,28 +91,24 @@ input, textarea, select{
 
 .section.active{
     opacity: 1;
-    -webkit-animation: slidSection 1s ease;
-    animation: slidSection 1s ease;
+    -webkit-animation: highlightIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: highlightIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-@-webkit-keyframes slidSection{
+@-webkit-keyframes highlightIn{
     0%{
-        -webkit-transform: translateX(100%);
-        transform: translateX(100%);
+        opacity: 0;
     }
     100%{
-        -webkit-transform: translateX(0%);
-        transform: translateX(0%);
+        opacity: 1;
     }
 }
-@keyframes slidSection{
+@keyframes highlightIn{
     0%{
-        -webkit-transform: translateX(100%);
-        transform: translateX(100%);
+        opacity: 0;
     }
     100%{
-        -webkit-transform: translateX(0%);
-        transform: translateX(0%);
+        opacity: 1;
     }
 }
 
@@ -273,8 +269,8 @@ input, textarea, select{
     top: 0;
     z-index: 11;
     border-right: 1px solid #e8dfec;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .aside .aside-inner{
@@ -337,8 +333,8 @@ input, textarea, select{
     align-items: center;
     -ms-flex-pack: center;
     justify-content: center;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .aside .nav-toggler span{
@@ -400,13 +396,9 @@ input, textarea, select{
     line-height: 45px;
     display: block;
     border-bottom: 1px solid #e8dfec;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: background 0.3s ease, color 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
     text-transform: capitalize;
-}
-
-.aside .nav li a:not(.active):hover{
-    padding-left: 5px;
 }
 
 .aside .nav li a .fa{
@@ -1827,11 +1819,12 @@ body.dark .blog-content h6 {
 /* RESPONSIVE DESIGN - COMPLETELY FIXED */
 @media(max-width: 1199px){
     .aside{
-        left: -270px;
+        left: 0;
+        transform: translateX(-100%);
     }
     
     .aside.open{
-        left: 0px;
+        transform: translateX(0);
     }
     
     .aside .nav-toggler{
@@ -1855,11 +1848,11 @@ body.dark .blog-content h6 {
     }
     
     .main-content.open{
-        margin-left: 270px;
+        margin-left: 0; /* CRITICAL FIX: Prevent layout thrashing on mobile */
     }
     
     .section.open{
-        margin-left: 270px; /* Apply margin when mobile menu is open */
+        margin-left: 0; /* CRITICAL FIX: Prevent layout thrashing on mobile */
     }
     
     .section .container{

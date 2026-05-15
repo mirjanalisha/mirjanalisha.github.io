@@ -44,8 +44,8 @@ input, textarea, select{
    overflow-x: hidden; /* New */
    overflow-y: auto; /* New */
    opacity: 1; /* New */
-   -webkit-transition: all 0.3s ease;
-   transition: all 0.3s ease;
+   -webkit-transition: left 0.3s ease, opacity 0.3s ease;
+   transition: left 0.3s ease, opacity 0.3s ease;
 }
 .section.back-section{ /* New */
     z-index: 1;
@@ -53,27 +53,23 @@ input, textarea, select{
 .section.active{ /* New */
     opacity: 1;
     z-index: 2;
-    -webkit-animation: slidSection 1s ease;
-    animation: slidSection 1s ease;
+    -webkit-animation: fadeInSection 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: fadeInSection 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-@-webkit-keyframes slidSection{
+@-webkit-keyframes fadeInSection{
     0%{
-        -webkit-transform: translateX(100%);
-        transform: translateX(100%);
+        opacity: 0;
     }
     100%{
-        -webkit-transform: translateX(0%);
-        transform: translateX(0%);
+        opacity: 1;
     }
 }
-@keyframes slidSection{
+@keyframes fadeInSection{
     0%{
-        -webkit-transform: translateX(100%);
-        transform: translateX(100%);
+        opacity: 0;
     }
     100%{
-        -webkit-transform: translateX(0%);
-        transform: translateX(0%);
+        opacity: 1;
     }
 }
 .section .container{
@@ -233,8 +229,8 @@ input, textarea, select{
     border-right: 1px solid #e8dfec;
     /* padding: 30px; */
     /* overflow-y: auto; */
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .aside .aside-inner{
     position: absolute;
@@ -297,8 +293,8 @@ input, textarea, select{
     align-items: center;
     -ms-flex-pack: center;
     justify-content: center;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .aside .nav-toggler span{
     height: 2px;
@@ -1073,10 +1069,11 @@ input, textarea, select{
 /* Responsive */
 @media(max-width: 1199px){
     .aside{
-        left: -270px;
+        left: 0;
+        transform: translateX(-100%);
     }
     .aside.open{
-        left: 0px;
+        transform: translateX(0);
     }
     .aside .nav-toggler{
         display: -ms-flexbox;
@@ -1090,7 +1087,7 @@ input, textarea, select{
         left: 0;
     }
     .section.open{
-        left: 270px;
+        left: 0;
     }
     .section .container{
         padding: 70px;
