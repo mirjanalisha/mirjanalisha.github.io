@@ -766,7 +766,7 @@ body.dark .contact .contact-info-item {
 }
 
 /* Premium Text Highlights */
-.home .intro .text-container p:nth-child(2) {
+.home .intro .text-container .hero-name {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -1202,7 +1202,7 @@ body.dark .aside .logo a {
 }
 
 /* "I'M MIRJAN" Headline Animation */
-.home .intro .text-container p:nth-child(2) {
+.home .intro .text-container .hero-name {
     animation: slideInRight 1s ease-out;
     opacity: 0;
     animation-fill-mode: forwards;
@@ -1214,7 +1214,7 @@ body.dark .aside .logo a {
 }
 
 /* Typewriter effect for name */
-.home .intro .text-container p:nth-child(2)::before {
+.home .intro .text-container .hero-name::before {
     content: '';
     position: absolute;
     right: 0;
@@ -1226,8 +1226,26 @@ body.dark .aside .logo a {
     animation-delay: 0.5s;
 }
 
-body.dark .home .intro .text-container p:nth-child(2)::before {
-    background: #1a1a2e;
+body.dark .home .intro .hero-name {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: none !important;
+}
+
+body.dark .home .intro .hero-name::before {
+    background: #1a1a2e !important;
+}
+
+body.dark .home .intro .text-container p:nth-child(1) {
+    color: #ffffff !important;
+}
+
+body.royal-golden .home .intro .text-container p:nth-child(1) {
+    color: #f1c40f !important;
+}
+
+body.dark .home .intro .text-container p {
+    color: #e0e0e0 !important;
 }
 
 /* Subtitle Animation */
@@ -1581,8 +1599,12 @@ body.dark .contact .contact-info-item:hover {
 
 /* Mobile Optimizations */
 @media (max-width: 991px) {
-    .home .intro .text-container p:nth-child(2)::before {
-        animation: none;
+    .home .intro .text-container .hero-name {
+        opacity: 1 !important;
+        animation: none !important;
+    }
+    .home .intro .text-container .hero-name::before {
+        display: none !important;
     }
     
     @keyframes profileEntrance {
@@ -2221,21 +2243,113 @@ body.dark .skill-tag:hover {
 }
 
 /* Dark Mode Consistency — standardize all section backgrounds */
+body.dark,
+body.dark .main-container,
+body.dark .main-content,
 body.dark .section,
+body.dark .home,
+body.dark .about,
+body.dark .skills-education,
+body.dark .experience,
+body.dark .service,
+body.dark .portfolio,
+body.dark .blog,
+body.dark .contact,
 body.dark .contact-section,
-body.dark .faq {
-    background: #1a1a2e !important;
+body.dark .faq,
+body.dark .blog-modal,
+body.dark .nav-toggler,
+body.dark .style-switcher {
+    background-color: #111111 !important; /* Deep dark background */
+    background-image: none !important;
+}
+
+body.dark .nav-toggler,
+body.dark .style-switcher {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark .nav-toggler span,
+body.dark .nav-toggler span::before,
+body.dark .nav-toggler span::after {
+    background-color: #ffffff !important;
+}
+
+body.dark .blog-modal .modal-content {
+    background-color: #1a1a1a !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark .blog-modal .modal-header {
+    background-color: #252525 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 body.dark .preloader {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
 }
 
 body.dark .about .about-content .about-container,
 body.dark .skill-category,
-body.dark .faq-content .faq-item {
-    background: rgba(30, 30, 45, 0.8);
-    border-color: rgba(255, 255, 255, 0.08);
+body.dark .faq-content .faq-item,
+body.dark .blog .blog-item-inner,
+body.dark .service-item-inner,
+body.dark .portfolio-item-inner,
+body.dark .timeline,
+body.dark .blog-archive {
+    background: rgba(30, 30, 45, 0.95) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Force Light Text for ALL Content in Dark Mode */
+body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6,
+body.dark p, body.dark span, body.dark li, body.dark label,
+body.dark .hero-name,
+body.dark .section-title h2,
+body.dark .about-text h3,
+body.dark .timeline-title,
+body.dark .timeline-text,
+body.dark .service-item-inner h4,
+body.dark .blog-title,
+body.dark .modal-title,
+body.dark .blog-content {
+    color: #ffffff !important;
+}
+
+body.dark .timeline-text, 
+body.dark .about-text p, 
+body.dark .service-item-inner p, 
+body.dark .blog-description,
+body.dark .blog-content p,
+body.dark .blog-content li,
+body.dark .home .intro p {
+    color: #e0e0e0 !important;
+}
+
+/* Fix specific home intro paragraph specificity */
+body.dark .home .intro .text-container p:nth-child(3) {
+    color: #ffffff !important;
+}
+
+/* Sync Sidebar with Dark Theme */
+body.dark .aside {
+    background-color: #111111 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark .aside .logo a {
+    color: #ffffff !important;
+}
+
+body.dark .aside .nav li a {
+    color: #ffffff !important;
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark .aside .nav li a:hover,
+body.dark .aside .nav li a.active {
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Hero image responsive fix for tablets */
@@ -2262,12 +2376,15 @@ body.dark .faq-content .faq-item {
     }
 
     .home .intro img {
+        position: relative !important;
+        inset: auto !important;
         margin: 30px auto 0 !important;
         display: block;
         max-width: 280px;
         height: auto !important;
         border-radius: 20px;
         box-shadow: var(--premium-shadow-lg);
+        transform: none !important;
     }
 
     /* Full-width Glass Cards on Mobile */
@@ -2316,36 +2433,45 @@ body.dark .faq-content .faq-item {
 
 
 /* ============================================
-   ROYAL GOLDEN THEME SUPPORT: START
+   ROYAL GOLDEN THEME SUPPORT: START (Now True Black Mode)
    High-end Luxury Aesthetic with Glassmorphism
    ============================================ */
 
 body.royal-golden {
     --primary-gradient: linear-gradient(135deg, #d4af37 0%, #f1c40f 100%);
-    --secondary-gradient: linear-gradient(135deg, #800000 0%, #4b0082 100%);
-    --primary-color: #d4af37;
-    --primary-rgb: 212, 175, 55;
-    --glass-bg: rgba(26, 26, 46, 0.95);
-    --glass-border: rgba(212, 175, 55, 0.2);
-    --text-main: #fdfcf0;
-    --text-muted: #d4af37;
-    background-color: #0f0f1a;
+    --secondary-gradient: linear-gradient(135deg, #f1c40f 0%, #d4af37 100%);
+    --primary-color: #f1c40f;
+    --primary-rgb: 241, 196, 15;
+    --glass-bg: rgba(0, 0, 0, 0.95);
+    --glass-border: rgba(241, 196, 15, 0.2);
+    --text-main: #ffffff;
+    --text-muted: #f1c40f;
+    background-color: #000000 !important;
 }
 
 /* Background for Royal mode */
-body.royal-golden .main-content {
-    background: linear-gradient(135deg, #0f0f1a 0%, #1a0f1a 100%);
-}
-
-body.royal-golden .section {
-    background: transparent !important;
+body.royal-golden,
+body.royal-golden .main-container,
+body.royal-golden .main-content,
+body.royal-golden .section,
+body.royal-golden .home,
+body.royal-golden .about,
+body.royal-golden .skills-education,
+body.royal-golden .experience,
+body.royal-golden .service,
+body.royal-golden .portfolio,
+body.royal-golden .blog,
+body.royal-golden .contact,
+body.royal-golden .blog-modal {
+    background-color: #000000 !important;
+    background-image: none !important;
 }
 
 /* Sidebar in Royal Mode */
 body.royal-golden .aside {
-    background: rgba(15, 15, 26, 0.98);
-    border-right: 1px solid rgba(212, 175, 55, 0.15);
-    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
+    background: #000000 !important;
+    border-right: 1px solid rgba(241, 196, 15, 0.2);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8);
 }
 
 /* Glass Cards in Royal Mode */
@@ -2355,18 +2481,21 @@ body.royal-golden .skill-category,
 body.royal-golden .portfolio-item-inner,
 body.royal-golden .contact-info-item,
 body.royal-golden .contact-form,
-body.royal-golden .faq-content .faq-item {
-    background: rgba(30, 30, 45, 0.7);
+body.royal-golden .faq-content .faq-item,
+body.royal-golden .blog .blog-item-inner,
+body.royal-golden .blog-archive {
+    background: rgba(20, 20, 20, 0.9) !important;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(241, 196, 15, 0.15) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
 }
 
 body.royal-golden .portfolio-item-inner:hover,
-body.royal-golden .service-item-inner:hover {
-    border-color: rgba(212, 175, 55, 0.4);
-    box-shadow: 0 15px 45px rgba(212, 175, 55, 0.15);
+body.royal-golden .service-item-inner:hover,
+body.royal-golden .blog .blog-item-inner:hover {
+    border-color: rgba(241, 196, 15, 0.4) !important;
+    box-shadow: 0 15px 45px rgba(241, 196, 15, 0.1) !important;
 }
 
 /* Text Overrides for Royal Mode */
@@ -2374,70 +2503,253 @@ body.royal-golden h1,
 body.royal-golden h2, 
 body.royal-golden h3, 
 body.royal-golden h4, 
-body.royal-golden .section-title h2 {
-    color: #f1c40f;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
+body.royal-golden h5, 
+body.royal-golden h6,
 body.royal-golden p,
 body.royal-golden span,
-body.royal-golden .info-item p span,
+body.royal-golden li,
+body.royal-golden label,
+body.royal-golden .section-title h2,
+body.royal-golden .hero-name,
+body.royal-golden .modal-title {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+body.royal-golden .hero-name {
+    color: #f1c40f !important;
+    -webkit-text-fill-color: #f1c40f !important;
+}
+
+body.royal-golden .hero-name::before {
+    background: #000000 !important;
+}
+
+body.royal-golden .intro p:nth-child(3) {
+    color: #f1c40f !important;
+}
+
+body.royal-golden .text-muted,
+body.royal-golden .timeline-date,
+body.royal-golden .blog-description,
+body.royal-golden .read-time,
+body.royal-golden .about-text p,
 body.royal-golden .service-item-inner p,
-body.royal-golden .about-text p {
-    color: #e0e0e0;
+body.royal-golden .timeline-text {
+    color: #e0e0e0 !important;
 }
 
 body.royal-golden .aside .nav li a {
-    color: #d4af37;
+    color: #ffffff !important;
+    border-bottom-color: rgba(241, 196, 15, 0.1);
 }
 
 body.royal-golden .aside .nav li a.active,
 body.royal-golden .aside .nav li a:hover {
-    color: #f1c40f;
-    background: rgba(212, 175, 55, 0.1);
+    color: #f1c40f !important;
+    background: rgba(241, 196, 15, 0.05);
+}
+
+/* Sidebar Logo for Royal Mode */
+body.royal-golden .aside .logo a {
+    color: #f1c40f !important;
+}
+
+/* Nav Toggler in Royal Mode */
+body.royal-golden .nav-toggler {
+    background-color: #000000 !important;
+    border-color: rgba(241, 196, 15, 0.3) !important;
+}
+
+body.royal-golden .nav-toggler span,
+body.royal-golden .nav-toggler span::before,
+body.royal-golden .nav-toggler span::after {
+    background-color: #f1c40f !important;
+}
+
+body.dark .nav-toggler.open span,
+body.royal-golden .nav-toggler.open span {
+    background-color: transparent !important;
+}
+
+body.dark .nav-toggler.open span::before,
+body.dark .nav-toggler.open span::after,
+body.royal-golden .nav-toggler.open span::before,
+body.royal-golden .nav-toggler.open span::after {
+    top: 0 !important;
+    left: 0 !important;
+    transform-origin: center !important;
+}
+
+body.dark .nav-toggler.open span::before,
+body.royal-golden .nav-toggler.open span::before {
+    transform: rotate(45deg) !important;
+}
+
+body.dark .nav-toggler.open span::after,
+body.royal-golden .nav-toggler.open span::after {
+    transform: rotate(-45deg) !important;
+}
+
+/* Style Switcher in Dark/Royal Modes */
+body.dark .style-switcher,
+body.royal-golden .style-switcher {
+    background-color: #111111 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.royal-golden .style-switcher {
+    border-color: rgba(241, 196, 15, 0.3) !important;
+}
+
+body.dark .toggle-style-switcher,
+body.royal-golden .toggle-style-switcher {
+    background-color: #000000 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-right: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+body.royal-golden .toggle-style-switcher {
+    border-color: rgba(241, 196, 15, 0.4) !important;
+}
+
+body.dark .toggle-style-switcher i,
+body.royal-golden .toggle-style-switcher i {
+    margin: 0 !important;
+    line-height: normal !important;
+    color: #ffffff !important;
+}
+
+body.royal-golden .toggle-style-switcher i {
+    color: #f1c40f !important;
 }
 
 /* Buttons in Royal Mode */
 body.royal-golden .btn {
     background: var(--primary-gradient);
-    color: #1a1a1a;
+    color: #000000 !important;
     font-weight: 700;
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3);
 }
 
 body.royal-golden .btn:hover {
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
-    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(241, 196, 15, 0.5);
+    transform: translateY(-3px) scale(1.05);
 }
 
 /* Specific Section Accents */
 body.royal-golden .skill-tag {
-    background: rgba(212, 175, 55, 0.15);
-    color: #f1c40f;
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(241, 196, 15, 0.1) !important;
+    color: #f1c40f !important;
+    border: 1px solid rgba(241, 196, 15, 0.2) !important;
 }
 
 body.royal-golden .timeline-item::before {
-    background-color: #d4af37;
+    background-color: #f1c40f !important;
 }
 
 body.royal-golden .circle-dot {
-    background-color: #d4af37;
+    background-color: #f1c40f !important;
     box-shadow: 0 0 10px #f1c40f;
 }
 
-/* Statistics Widgets in Royal Mode */
-body.royal-golden .github-theme-label {
-    color: #d4af37;
-    border-color: rgba(212, 175, 55, 0.4);
+/* Social Links in Royal Mode */
+body.royal-golden .home .intro .social-links a {
+    background-color: #f1c40f !important;
+    color: #000000 !important;
 }
 
-body.royal-golden .github-theme-radio:checked + .github-theme-label {
-    background: var(--primary-gradient);
-    color: #1a1a1a;
+/* Codeblock Improvements for Dark/Black Modes */
+body.dark pre, body.royal-golden pre {
+    background: #121212 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #e0e0e0 !important;
+    padding: 20px !important;
+    border-radius: 12px !important;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    margin: 25px 0 !important;
+    overflow-x: auto !important;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark pre code, body.royal-golden pre code {
+    background: transparent !important;
+    color: inherit !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    font-size: inherit !important;
+}
+
+body.dark :not(pre) > code, body.royal-golden :not(pre) > code {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #f1c40f !important;
+    padding: 3px 8px !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    font-family: inherit !important;
+}
+
+body.royal-golden :not(pre) > code {
+    background: rgba(241, 196, 15, 0.1) !important;
+}
+
+body.royal-golden .blog-modal .modal-content {
+    background-color: #0a0a0a !important;
+    border: 1px solid rgba(241, 196, 15, 0.2);
+}
+
+body.royal-golden .blog-modal .modal-header {
+    background-color: #151515 !important;
+    border-bottom: 1px solid rgba(241, 196, 15, 0.15);
+}
+
+/* Refined Blog Modal Close Button */
+.blog-modal .modal-close {
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea !important;
+    font-size: 24px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    transition: all 0.3s ease;
+}
+
+.blog-modal .modal-close:hover {
+    background: #667eea;
+    color: #ffffff !important;
+    transform: rotate(90deg);
+}
+
+body.dark .blog-modal .modal-close {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff !important;
+}
+
+body.royal-golden .blog-modal .modal-close {
+    background: rgba(241, 196, 15, 0.05);
+    border-color: rgba(241, 196, 15, 0.2);
+    color: #f1c40f !important;
+}
+
+body.royal-golden .blog-modal .modal-close:hover {
+    background: #f1c40f;
+    color: #000000 !important;
 }
 
 /* ROYAL GOLDEN THEME SUPPORT: END */
+
 
 /* ============================================
    GSAP SPLASH SCREEN AND BACKGROUND ANIMATIONS
@@ -2631,4 +2943,149 @@ dodecahedron animation frame
   0% { transform: translateY(-30px); }
   50% { transform: translateY(30px); }
   100% { transform: translateY(-30px); }
+}
+
+/* ====================================
+   BLOG ARCHIVE ACCORDION STYLES
+   ==================================== */
+.blog-archive {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.archive-item {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #e8dfec;
+    border-radius: 12px;
+    background: #fdf9ff;
+    overflow: hidden;
+    padding: 0;
+    display: block !important; /* Force block to ensure top-down stacking */
+}
+
+.archive-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.archive-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: relative;
+    z-index: 2;
+    transition: background 0.3s ease;
+}
+
+.archive-header h5 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #302e4d;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.archive-toggle {
+    margin-left: 15px;
+    color: #667eea;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.archive-item.expanded .archive-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.archive-item.expanded .archive-toggle {
+    transform: rotate(180deg);
+}
+
+.inline-content {
+    padding: 20px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    width: 100%; /* Ensure full width */
+    display: block; /* Force block */
+    animation: expandFadeIn 0.4s ease-out;
+}
+
+@keyframes expandFadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.inline-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 12px;
+    color: #667eea;
+    font-weight: 500;
+    flex-wrap: wrap;
+}
+
+.inline-meta span i {
+    margin-right: 5px;
+}
+
+/* Dark & Black Mode Support for Blog Accordion Header */
+body.dark .archive-header h5,
+body.royal-golden .archive-header h5 {
+    color: #ffffff;
+}
+
+body.dark .archive-toggle,
+body.royal-golden .archive-toggle {
+    color: var(--primary-color);
+}
+
+body.dark .archive-item.expanded .archive-header,
+body.royal-golden .archive-item.expanded .archive-header,
+body.dark .inline-meta,
+body.royal-golden .inline-meta {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.inline-blog-content {
+    display: block;
+    line-height: 1.8;
+    color: #4a5568;
+}
+
+/* Dark & Black Mode Support for Blog Accordion */
+body.dark .archive-item,
+body.royal-golden .archive-item {
+    background: rgba(30, 30, 45, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark .archive-header h5,
+body.royal-golden .archive-header h5 {
+    color: #ffffff;
+}
+
+body.dark .archive-item:hover,
+body.royal-golden .archive-item:hover {
+    border-color: var(--primary-color);
+    background: rgba(40, 40, 60, 1);
+}
+
+body.dark .inline-meta,
+body.royal-golden .inline-meta {
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark .inline-blog-content,
+body.royal-golden .inline-blog-content {
+    color: #cbd5e0;
 }

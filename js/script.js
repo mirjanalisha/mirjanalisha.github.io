@@ -909,27 +909,6 @@ window.scrollToElement = function(elementId, offset = 0) {
 };
 
 
-// FAQ Accordion Functionality
-function initializeFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
-        question.addEventListener('click', () => {
-            // Close all other FAQ items
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                }
-            });
-            
-            // Toggle current item
-            item.classList.toggle('active');
-        });
-    });
-}
-
 // Blog Modal and Markdown Loading Functionality
 function initializeBlogSection() {
     const blogModal = document.getElementById('blogModal');
@@ -941,7 +920,7 @@ function initializeBlogSection() {
     // Read More buttons for featured blogs
     const readMoreBtns = document.querySelectorAll('.read-more-btn');
     
-    // Archive item buttons
+    // Archive items (More Articles section)
     const archiveItems = document.querySelectorAll('.archive-item');
     
     // Initialize marked.js for markdown parsing
@@ -954,13 +933,10 @@ function initializeBlogSection() {
     marked.setOptions({
         breaks: true,
         gfm: true,
-        headerIds: true,
-        highlight: function(code, lang) {
-            return code; // You can integrate syntax highlighter here
-        }
+        headerIds: true
     });
     
-    // Featured blog read more functionality
+    // Featured blog read more functionality (Modal based)
     readMoreBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const markdownPath = this.getAttribute('data-markdown');
@@ -969,26 +945,29 @@ function initializeBlogSection() {
         });
     });
     
-    // Archive item functionality
+    // Archive item functionality (Accordion based)
     archiveItems.forEach(item => {
-        const readBtn = item.querySelector('.archive-read-btn');
         const markdownPath = item.getAttribute('data-markdown');
         const title = item.querySelector('h5').textContent;
+        const date = item.getAttribute('data-date');
+        const time = item.getAttribute('data-time');
+        const tags = item.getAttribute('data-tags');
         
-        readBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
+        item.addEventListener('click', function(e) {
+            // Prevent toggling if clicking inside the expanded content
+            if (e.target.closest('.inline-content')) return;
             
             // Check if item is already expanded
             if (item.classList.contains('expanded')) {
                 // Collapse inline content
                 const inlineContent = item.querySelector('.inline-content');
                 if (inlineContent) {
-                    inlineContent.remove();
+                    inlineContent.style.opacity = '0';
+                    setTimeout(() => inlineContent.remove(), 300);
                 }
                 item.classList.remove('expanded');
-                this.querySelector('i').style.transform = 'rotate(0deg)';
             } else {
-                // Collapse all other expanded items
+                // Collapse all other expanded archive items
                 archiveItems.forEach(otherItem => {
                     if (otherItem !== item && otherItem.classList.contains('expanded')) {
                         const otherInlineContent = otherItem.querySelector('.inline-content');
@@ -996,12 +975,11 @@ function initializeBlogSection() {
                             otherInlineContent.remove();
                         }
                         otherItem.classList.remove('expanded');
-                        otherItem.querySelector('.archive-read-btn i').style.transform = 'rotate(0deg)';
                     }
                 });
                 
                 // Expand current item
-                expandArchiveItem(item, markdownPath, title);
+                expandArchiveItem(item, markdownPath, title, date, time, tags);
             }
         });
     });
@@ -1067,14 +1045,19 @@ function initializeBlogSection() {
         document.body.style.overflow = 'auto';
     }
     
-    function expandArchiveItem(item, markdownPath, title) {
+    function expandArchiveItem(item, markdownPath, title, date, time, tags) {
         // Create inline content container
         const inlineContent = document.createElement('div');
         inlineContent.className = 'inline-content';
         inlineContent.innerHTML = `
+            <div class="inline-meta">
+                <span><i class="far fa-calendar-alt"></i> ${date}</span>
+                <span><i class="far fa-clock"></i> ${time}</span>
+                <span><i class="fas fa-tags"></i> ${tags}</span>
+            </div>
             <div class="inline-loading">
                 <div class="small-spinner"></div>
-                <span>Loading...</span>
+                <span>Fetching article content...</span>
             </div>
             <div class="inline-blog-content"></div>
         `;
@@ -1082,7 +1065,6 @@ function initializeBlogSection() {
         // Add to item
         item.appendChild(inlineContent);
         item.classList.add('expanded');
-        item.querySelector('.archive-read-btn i').style.transform = 'rotate(45deg)';
         
         // Load content
         const inlineContentDiv = inlineContent.querySelector('.inline-blog-content');
@@ -1092,7 +1074,6 @@ function initializeBlogSection() {
             .then(html => {
                 inlineContentDiv.innerHTML = html;
                 inlineLoading.style.display = 'none';
-                inlineContentDiv.style.display = 'block';
                 
                 // Smooth scroll to expanded content
                 setTimeout(() => {
@@ -1101,15 +1082,9 @@ function initializeBlogSection() {
             })
             .catch(error => {
                 console.error('Error loading markdown:', error);
-                let errorMessage = 'Error loading article content.';
-                
-                if (window.location.protocol === 'file:') {
-                    errorMessage = '<p style="color: #d9534f; font-size: 0.9em;"><strong>Error:</strong> Local file access blocked. Please use a local web server.</p>';
-                }
-                
+                let errorMessage = '<p style="color: #d9534f; font-size: 0.9em; padding: 20px; text-align: center;"><strong>Error:</strong> Content could not be loaded. Please ensure you are running on a local web server.</p>';
                 inlineContentDiv.innerHTML = errorMessage;
                 inlineLoading.style.display = 'none';
-                inlineContentDiv.style.display = 'block';
             });
     }
     
@@ -1128,127 +1103,5 @@ function initializeBlogSection() {
     }
 }
 
-// Add CSS for inline content
-const inlineContentCSS = `
-    .inline-content {
-        margin-top: 20px;
-        padding: 20px;
-        background: #f8f9fa;
-        border-radius: 10px;
-        border: 1px solid #e8dfec;
-        animation: expandIn 0.3s ease;
-    }
-    
-    @keyframes expandIn {
-        from {
-            max-height: 0;
-            opacity: 0;
-        }
-        to {
-            max-height: 1000px;
-            opacity: 1;
-        }
-    }
-    
-    .inline-loading {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 20px;
-        color: #667eea;
-    }
-    
-    .small-spinner {
-        width: 20px;
-        height: 20px;
-        border: 2px solid #e8dfec;
-        border-top: 2px solid #667eea;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
-    
-    .inline-blog-content {
-        display: none;
-        line-height: 1.6;
-        color: #504e70;
-    }
-    
-    .inline-blog-content h1, .inline-blog-content h2, .inline-blog-content h3 {
-        color: #302e4d;
-        margin-top: 20px;
-        margin-bottom: 10px;
-    }
-    
-    .inline-blog-content p {
-        margin-bottom: 12px;
-    }
-    
-    .inline-blog-content pre {
-        background: #ffffff;
-        border: 1px solid #d4d4e3;
-        border-radius: 5px;
-        padding: 10px;
-        overflow-x: auto;
-        font-size: 12px;
-    }
-    
-    .inline-blog-content code {
-        background: #ffffff;
-        padding: 2px 4px;
-        border-radius: 3px;
-        font-size: 12px;
-    }
-    
-    /* Dark mode support */
-    body.dark .inline-content {
-        background: #2a2a2a;
-        border-color: #393939;
-    }
-    
-    body.dark .inline-blog-content {
-        color: #e9e9e9;
-    }
-    
-    body.dark .inline-blog-content h1, 
-    body.dark .inline-blog-content h2, 
-    body.dark .inline-blog-content h3 {
-        color: #ffffff;
-    }
-    
-    body.dark .inline-blog-content pre,
-    body.dark .inline-blog-content code {
-        background: #333333;
-        border-color: #393939;
-    }
-    
-    /* Local file error styling */
-    .local-file-error {
-        text-align: center;
-        padding: 40px 20px;
-        color: #504e70;
-    }
-    
-    .local-file-error i {
-        font-size: 3em;
-        color: #ffcc00;
-        margin-bottom: 20px;
-    }
-    
-    .local-file-error p {
-        margin-bottom: 15px;
-        line-height: 1.6;
-    }
-    
-    .local-file-error code {
-        background: #e8dfec;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-family: monospace;
-    }
-`;
-
-// Add inline content styles
-const inlineStyleSheet = document.createElement('style');
-inlineStyleSheet.textContent = inlineContentCSS;
-document.head.appendChild(inlineStyleSheet);
+// Remove the inline style injection logic from script.js
+// as it is now moved to premium-enhancements.css

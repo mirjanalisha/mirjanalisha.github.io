@@ -147,6 +147,90 @@ Note how `db` resolves via Docker’s internal network—no hard-coding localhos
 | Notebook can’t plot maps | Missing fontconfig or PROJ data | Install `fontconfig`, `proj-data`, and set `PROJ_LIB` |
 | Image > 5 GB | Too many build layers or cached wheels | Combine RUN steps \& use `--no-cache-dir` |
 
+## Step-by-Step Tutorial: Building Your Containerised GIS Stack
+
+Let's put the concepts together and build the `docker-compose` stack mentioned above, creating a complete, reproducible workspace.
+
+**Step 1: Project Setup**
+Create a new directory for your project and navigate into it:
+```bash
+mkdir gis-docker-stack && cd gis-docker-stack
+mkdir notebooks
+```
+
+**Step 2: Create the Dockerfile**
+Create a `Dockerfile` for your Jupyter/Python environment. We'll use the Ubuntu-based GDAL image for broader package compatibility:
+```dockerfile
+FROM osgeo/gdal:ubuntu-small-latest
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 TZ=UTC
+
+# Install pip and clean up cache to keep the image compact
+RUN apt-get update && apt-get install -y python3-pip && rm -rf /var/lib/apt/lists/*
+
+# Install core GIS Python libraries
+RUN pip3 install --no-cache-dir jupyterlab geopandas sqlalchemy psycopg2-binary rasterio
+
+WORKDIR /workspace
+
+# Launch JupyterLab without authentication for local development ease
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
+```
+
+**Step 3: Create the docker-compose.yml**
+Create a `docker-compose.yml` file in the same directory to orchestrate the database and notebook:
+```yaml
+version: "3.9"
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: gisuser
+      POSTGRES_PASSWORD: gispass
+      POSTGRES_DB: gisdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      
+  notebook:
+    build: .
+    volumes:
+      - ./notebooks:/workspace/notebooks
+    ports:
+      - "8888:8888"
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
+```
+
+**Step 4: Launch the Stack**
+Run the following command to build the image and start the containers in the background:
+```bash
+docker compose up -d --build
+```
+
+**Step 5: Verify and Connect**
+1. Open your browser and navigate to `http://localhost:8888` to access JupyterLab.
+2. Create a new Python notebook inside the `notebooks` folder and test the PostGIS connection:
+```python
+import geopandas as gpd
+import sqlalchemy as sa
+
+# Connect to the 'db' service using the internal Docker network
+engine = sa.create_engine("postgresql://gisuser:gispass@db:5432/gisdb")
+print("Successfully connected to PostGIS!")
+```
+
+**Step 6: Teardown**
+When you are finished, stop and remove the containers. Your data remains safe in the `pgdata` volume:
+```bash
+docker compose down
+```
+*(Note: To wipe everything, including the database volume, use `docker compose down -v`)*
+
 ## Final Thoughts
 
 Docker fundamentally changes the way GIS engineers prototype, share, and deploy spatial solutions. By encapsulating heavyweight libraries and databases into portable containers, you can move from “works on my laptop” to “works everywhere” in minutes. Whether you’re building a PostGIS-backed web map, automating satellite imagery pipelines, or experimenting with GenAI models on geospatial data, containerising your stack keeps you fast, flexible, and future-proof.

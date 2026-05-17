@@ -93,18 +93,17 @@ body.royal-golden .faq-lock-message i {
     height: 100%;
     z-index: 1100;
     display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px 15px;
 }
 
 .faq-modal.open {
-    display: flex;
+    display: block; /* Change from flex to block to allow margins to work with overflow */
     animation: fadeIn 0.3s ease;
 }
 
 .faq-modal-overlay {
-    position: absolute;
+    position: fixed; /* Fixed to cover entire viewport during scroll */
     left: 0;
     top: 0;
     width: 100%;
@@ -121,6 +120,7 @@ body.dark .faq-modal-overlay {
     position: relative;
     width: 100%;
     max-width: 500px;
+    margin: 30px auto; /* Center with margin for scrolling */
     background: #fdf9ff;
     border-radius: 15px;
     padding: 35px;
@@ -310,8 +310,16 @@ body.dark .btn-cancel:hover {
 @media (max-width: 575px) {
     .faq-modal-container {
         padding: 25px 20px;
+        margin: 15px auto;
     }
     .faq-modal-header h3 {
         font-size: 1.5rem;
+    }
+    .faq-modal-footer {
+        flex-direction: column-reverse; /* Put Cancel button at bottom */
+        gap: 10px;
+    }
+    .faq-modal-footer .btn {
+        width: 100%;
     }
 }

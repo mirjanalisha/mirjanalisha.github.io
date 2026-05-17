@@ -1859,10 +1859,14 @@ body.dark .blog-content h6 {
         padding: 70px 15px;
     }
     
+    .home .intro {
+        text-align: center;
+    }
+
     .home .intro img{
         position: relative;
         bottom: 0px;
-        left: 40%;
+        left: 0;
         transform: none;
         height: 200px;
         width: 200px;
@@ -1871,7 +1875,8 @@ body.dark .blog-content h6 {
         border: 8px solid #ffffff;
     }
     
-    .home .intro .text-container p{
+    .home .intro .text-container p,
+    .home .intro .text-container .hero-name{
         text-align: center;
     }
     
@@ -1879,8 +1884,9 @@ body.dark .blog-content h6 {
         font-size:12px;
     }
     
-    .home .intro .text-container p:nth-child(2){
+    .home .intro .text-container .hero-name{
         font-size:30px;
+        margin: 20px 0;
     }
     
     .home .intro .text-container p:nth-child(3){
@@ -2116,7 +2122,8 @@ body.dark .section-title h2,
 body.dark .home .intro h1,
 body.dark .home .intro .text-container p,
 body.dark .aside .logo a,
-body.dark .aside .nav li a{
+body.dark .aside .nav li a,
+body.dark .home .intro .hero-name {
     color: #ffffff;
 }
 

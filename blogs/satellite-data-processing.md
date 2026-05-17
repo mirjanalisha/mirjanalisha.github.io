@@ -253,11 +253,98 @@ Foster effective collaboration by:
 - Contributing to open-source processing tools
 
 
+## Step-by-Step Tutorial: Cloud-Native Processing with STAC APIs and Python
+
+Modern satellite data processing relies on the **SpatioTemporal Asset Catalog (STAC)** standard to query and stream data directly from the cloud without downloading massive archives. We will use the [open-geodata-api](https://open-geodata-api.readthedocs.io/en/latest/) package, which provides a unified, powerful interface to automate searching, authenticating, and downloading satellite data from catalogs like Microsoft Planetary Computer and AWS Earth Search.
+
+**Step 1: Install Cloud-Native Python Libraries**
+Install the necessary libraries for searching STAC catalogs and reading Cloud Optimized GeoTIFFs (COGs).
+```bash
+pip install open-geodata-api rioxarray matplotlib
+```
+
+**Step 2: Search for Imagery using open-geodata-api**
+Create a Python script (`stac_search.py`) to query the Microsoft Planetary Computer for Sentinel-2 images over a specific area of interest.
+```python
+import open_geodata_api as ogapi
+
+# 1. Connect to the STAC Catalog with automatic signing
+pc = ogapi.planetary_computer(auto_sign=True)
+
+# 2. Define Area of Interest and Time Range
+# Example: Bounding box around Paris, France
+bbox = [2.2, 48.8, 2.4, 48.9] 
+time_range = "2023-06-01/2023-06-30"
+
+# 3. Search the Catalog
+results = pc.search(
+    collections=["sentinel-2-l2a"],
+    bbox=bbox,
+    datetime=time_range,
+    query={"eo:cloud_cover": {"lt": 10}} # Less than 10% clouds
+)
+
+# 4. Get all items
+items = results.get_all_items()
+print(f"Found {len(items)} clear images!")
+
+# Get the first (most recent) item
+latest_item = items[0]
+```
+
+**Step 3: Stream and Process Data with `rioxarray`**
+Instead of downloading the whole scene, we will get the automatically signed URLs from `open-geodata-api` and stream just the red and near-infrared (NIR) bands to calculate NDVI.
+```python
+import rioxarray
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 5. Get the ready-to-use COG URLs for Red (B04) and NIR (B08) bands
+red_href = latest_item.get_asset_url('B04')
+nir_href = latest_item.get_asset_url('B08')
+
+# 6. Open the datasets via URL (Streaming)
+red_band = rioxarray.open_rasterio(red_href, masked=True)
+nir_band = rioxarray.open_rasterio(nir_href, masked=True)
+
+# 7. Calculate NDVI: (NIR - Red) / (NIR + Red)
+ndvi = (nir_band - red_band) / (nir_band + red_band)
+
+# 8. Visualize the Result
+plt.figure(figsize=(10, 10))
+ndvi.plot(cmap='RdYlGn', vmin=-1, vmax=1)
+plt.title("Calculated NDVI")
+plt.axis('off')
+plt.show()
+```
+
+**Step 4: Downloading the Data Locally**
+If you prefer to download the bands for offline processing, `open-geodata-api` has built-in utility functions:
+```python
+from open_geodata_api.utils import download_url, download_items
+
+# Option A: Download a single asset directly via its URL
+download_url(url=red_href, output_path='./sentinel_red_band.tif')
+
+# Option B: Batch download specific bands for multiple items
+download_items(
+    items=items[:2], 
+    assets=['B04', 'B08'], 
+    output_dir='./satellite_data'
+)
+```
+
+Execute your script. Because the data is stored as Cloud Optimized GeoTIFFs (COGs), streaming reads only the necessary bytes to perform the calculation, drastically reducing processing time. If offline work is needed, the `open_geodata_api.utils` makes batch downloading effortless.
+
 ## Conclusion
 
 Satellite data processing continues to evolve rapidly, driven by advances in sensor technology, computing power, and analytical techniques. As we generate more Earth observation data than ever before, the ability to efficiently process and extract meaningful insights becomes increasingly valuable.
 
 The democratization of satellite data through cloud platforms and open-source tools has opened new possibilities for researchers, analysts, and organizations worldwide. Whether monitoring environmental changes, supporting agricultural decision-making, or responding to natural disasters, satellite data processing remains at the forefront of our efforts to understand and protect our planet.
+
+**References**
+- [Open Geodata API Documentation](https://open-geodata-api.readthedocs.io/en/latest/)
+- [Microsoft Planetary Computer STAC API](https://planetarycomputer.microsoft.com/docs/concepts/stac/)
 
 The future promises even more exciting developments, with artificial intelligence, edge computing, and advanced sensor technologies continuing to push the boundaries of what's possible with satellite data processing. As these technologies mature, we can expect more accurate, timely, and actionable insights from our increasingly sophisticated Earth observation systems.
 
