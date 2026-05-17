@@ -8,7 +8,7 @@
 
     const RESUME_URL = 'https://raw.githubusercontent.com/Mirjan-Ali-Sha/portfolio/master/assets/Mirjan-Ali-Sha-Resume.pdf';
     const STORAGE_KEY = 'cv_last_submitted_date';
-    const ACCESS_KEY = '18909221-c276-4d4a-bd99-68c3b0a0b250';
+    const ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY_HERE';
 
     document.addEventListener('DOMContentLoaded', () => {
         initializeCVBtn();
