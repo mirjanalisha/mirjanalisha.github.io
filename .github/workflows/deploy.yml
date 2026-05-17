@@ -31,6 +31,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Inject Web3Forms Access Key
+        run: |
+          # Replace placeholder with actual key from secrets
+          # This replaces YOUR_WEB3FORMS_ACCESS_KEY_HERE in all .html and .js files
+          find . -type f \( -name "*.html" -o -name "*.js" \) -exec sed -i "s/YOUR_WEB3FORMS_ACCESS_KEY_HERE/${{ secrets.WEB3FORMS_ACCESS_KEY }}/g" {} +
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
